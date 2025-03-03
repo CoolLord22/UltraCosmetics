@@ -93,16 +93,16 @@ public class MountType extends CosmeticEntType<Mount> {
 
     public static void register(ServerVersion version) {
         VersionManager vm = UltraCosmeticsData.get().getVersionManager();
+        new MountType("EcologistHorse", XMaterial.GREEN_DYE, XEntityType.HORSE, 2, 0.4, MountEcologistHorse.class, Arrays.asList(XMaterial.LIME_TERRACOTTA, XMaterial.GREEN_TERRACOTTA));
+        new MountType("MountOfFire", XMaterial.BLAZE_POWDER, XEntityType.HORSE, 2, 0.4, MountOfFire.class, Arrays.asList(XMaterial.ORANGE_TERRACOTTA, XMaterial.YELLOW_TERRACOTTA, XMaterial.RED_TERRACOTTA));
+        new MountType("WalkingDead", XMaterial.ROTTEN_FLESH, XEntityType.ZOMBIE_HORSE, 2, 0.4, MountWalkingDead.class);
         new MountType("DruggedHorse", XMaterial.SUGAR, XEntityType.HORSE, 2, 1.1, MountDruggedHorse.class);
         new MountType("GlacialSteed", XMaterial.PACKED_ICE, XEntityType.HORSE, 2, 0.4, MountGlacialSteed.class, Collections.singletonList(XMaterial.SNOW_BLOCK));
-        new MountType("MountOfFire", XMaterial.BLAZE_POWDER, XEntityType.HORSE, 2, 0.4, MountOfFire.class, Arrays.asList(XMaterial.ORANGE_TERRACOTTA, XMaterial.YELLOW_TERRACOTTA, XMaterial.RED_TERRACOTTA));
         new MountType("Snake", XMaterial.WHEAT_SEEDS, XEntityType.SHEEP, 2, 0.3, MountSnake.class);
         new MountType("MoltenSnake", XMaterial.MAGMA_CREAM, XEntityType.MAGMA_CUBE, 1, 0.4, MountMoltenSnake.class);
         new MountType("SlimeSnake", XMaterial.SLIME_BLOCK, XEntityType.SLIME, 1, 0.4, MountSlimeSnake.class);
         new MountType("MountOfWater", XMaterial.LIGHT_BLUE_DYE, XEntityType.HORSE, 2, 0.4, MountOfWater.class, Arrays.asList(XMaterial.LIGHT_BLUE_TERRACOTTA, XMaterial.CYAN_TERRACOTTA, XMaterial.BLUE_TERRACOTTA));
-        new MountType("EcologistHorse", XMaterial.GREEN_DYE, XEntityType.HORSE, 2, 0.4, MountEcologistHorse.class, Arrays.asList(XMaterial.LIME_TERRACOTTA, XMaterial.GREEN_TERRACOTTA));
         new MountType("Rudolph", XMaterial.DEAD_BUSH, XEntityType.MULE, 1, 0.4, MountRudolph.class);
-        new MountType("WalkingDead", XMaterial.ROTTEN_FLESH, XEntityType.ZOMBIE_HORSE, 2, 0.4, MountWalkingDead.class);
         new MountType("InfernalHorror", XMaterial.BONE, XEntityType.SKELETON_HORSE, 2, 0.4, MountInfernalHorror.class);
         new MountType("Horse", XMaterial.SADDLE, XEntityType.HORSE, 0, 0.3, MountHorse.class);
         new MountType("Donkey", XMaterial.CHEST, XEntityType.DONKEY, 0, 0.25, MountDonkey.class);
