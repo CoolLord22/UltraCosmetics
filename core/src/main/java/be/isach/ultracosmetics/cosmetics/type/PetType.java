@@ -84,6 +84,10 @@ public class PetType extends CosmeticEntType<Pet> {
         /* registerPet("Ghast", XMaterial.FIRE_CHARGE, XEntityType.GHAST, Pet.class); */
         /* registerPet("GlowSquid", XMaterial.GLOW_INK_SAC, XEntityType.GLOW_SQUID, Pet.class); */
         /* registerPet("Phantom", XMaterial.PHANTOM_MEMBRANE, XEntityType.PHANTOM, Pet.class); */
+        registerPet("Panda", XMaterial.BAMBOO, XEntityType.PANDA, PetPanda.class);
+        registerPet("Slime", XMaterial.SLIME_BALL, XEntityType.SLIME, PetSlime.class);
+        registerPet("MagmaCube", XMaterial.MAGMA_CREAM, XEntityType.MAGMA_CUBE, PetMagmaCube.class);
+        registerPet("Allay", XMaterial.ALLAY_SPAWN_EGG, XEntityType.ALLAY, PetAllay.class);
 
         registerPet("Armadillo", XMaterial.ARMADILLO_SCUTE, XEntityType.ARMADILLO, Pet.class);
         registerPet("Piggy", XMaterial.PORKCHOP, XEntityType.PIG, Pet.class);
@@ -109,7 +113,6 @@ public class PetType extends CosmeticEntType<Pet> {
                         "'none': not visible to any players");
             }
         };
-        registerPet("Slime", XMaterial.SLIME_BALL, XEntityType.SLIME, PetSlime.class);
         registerPet("Silverfish", XMaterial.GRAY_DYE, XEntityType.SILVERFISH, Pet.class);
         registerPet("Blaze", XMaterial.BLAZE_ROD, XEntityType.BLAZE, Pet.class);
         registerPet("Creeper", XMaterial.GUNPOWDER, XEntityType.CREEPER, PetCreeper.class);
@@ -122,7 +125,6 @@ public class PetType extends CosmeticEntType<Pet> {
         registerPet("Endermite", XMaterial.ENDER_EYE, XEntityType.ENDERMITE, Pet.class);
 
         registerPet("Guardian", XMaterial.PRISMARINE_SHARD, XEntityType.GUARDIAN, Pet.class);
-        registerPet("MagmaCube", XMaterial.MAGMA_CREAM, XEntityType.MAGMA_CUBE, PetMagmaCube.class);
         registerPet("Witch", XMaterial.POTION, XEntityType.WITCH, Pet.class);
         registerPet("Horse", XMaterial.LEATHER_HORSE_ARMOR.or(XMaterial.LEATHER), XEntityType.HORSE, PetHorse.class);
 
@@ -140,7 +142,6 @@ public class PetType extends CosmeticEntType<Pet> {
                 }
             };
         }
-        registerPet("Allay", XMaterial.ALLAY_SPAWN_EGG, XEntityType.ALLAY, PetAllay.class);
         registerPet("Tadpole", XMaterial.TADPOLE_BUCKET, XEntityType.TADPOLE, PetTadpole.class);
         registerPet("Goat", XMaterial.GOAT_HORN.or(XMaterial.WHEAT), XEntityType.GOAT, PetGoat.class);
 
@@ -158,7 +159,6 @@ public class PetType extends CosmeticEntType<Pet> {
         registerPet("Zoglin", XMaterial.ZOGLIN_SPAWN_EGG, XEntityType.ZOGLIN, Pet.class);
         registerPet("ZombifiedPiglin", XMaterial.GOLDEN_SWORD, XEntityType.ZOMBIFIED_PIGLIN, PetZombifiedPiglin.class);
         registerPet("Bee", XMaterial.HONEYCOMB, XEntityType.BEE, Pet.class);
-        registerPet("Panda", XMaterial.BAMBOO, XEntityType.PANDA, PetPanda.class);
         registerPet("Fox", XMaterial.SWEET_BERRIES, XEntityType.FOX, PetFox.class);
         registerPet("Kitty", XMaterial.TROPICAL_FISH, XEntityType.CAT, PetKitty.class);
         registerPet("Ocelot", XMaterial.COD, XEntityType.OCELOT, Pet.class);
