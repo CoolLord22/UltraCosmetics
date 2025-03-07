@@ -32,7 +32,11 @@ public class CosmeticNoPermissionButton extends CosmeticButton {
             rawLore = Arrays.asList(SettingsManager.getConfig().getString("No-Permission.Custom-Item.Lore", "").split("\n"));
         }
         for (String item : rawLore) {
-            lore.add(MessageManager.toLegacy(mm.deserialize(item)));
+            if (item.equalsIgnoreCase("<description>")) {
+                lore.addAll(cosmeticType.getDescription());
+            } else {
+                lore.add(MessageManager.toLegacy(mm.deserialize(item)));
+            }
         }
     }
 
