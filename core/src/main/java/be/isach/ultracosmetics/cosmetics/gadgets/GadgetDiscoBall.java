@@ -61,11 +61,16 @@ public class GadgetDiscoBall extends Gadget implements PlayerAffectingCosmetic, 
         getUltraCosmetics().getScheduler().runAtEntityLater(getPlayer(), this::clean, 400);
     }
 
+    @SuppressWarnings("deprecation")
     @Override
     protected boolean checkRequirements(PlayerInteractEvent event) {
         Area area = new Area(getPlayer().getLocation(), 0, 4);
         if (!area.isEmpty()) {
             MessageManager.send(getPlayer(), "Gadgets.DiscoBall.Not-Space-Above");
+            return false;
+        }
+        if (!getPlayer().isOnGround()) {
+            MessageManager.send(getPlayer(), "Gadgets.Rocket.Not-On-Ground");
             return false;
         }
         return true;

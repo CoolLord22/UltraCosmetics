@@ -83,6 +83,7 @@ public class GadgetParachute extends Gadget implements Updatable {
         }
     }
 
+    @SuppressWarnings("deprecation")
     @Override
     protected boolean checkRequirements(PlayerInteractEvent event) {
         Location loc1 = getPlayer().getLocation().add(2, 28, 2);
@@ -91,6 +92,10 @@ public class GadgetParachute extends Gadget implements Updatable {
 
         if (!checkArea.isEmpty()) {
             MessageManager.send(getPlayer(), "Gadgets.Rocket.Not-Enough-Space");
+            return false;
+        }
+        if (!getPlayer().isOnGround()) {
+            MessageManager.send(getPlayer(), "Gadgets.Rocket.Not-On-Ground");
             return false;
         }
         return true;

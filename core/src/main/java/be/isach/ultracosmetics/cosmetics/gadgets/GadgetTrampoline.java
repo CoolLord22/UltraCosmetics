@@ -50,6 +50,7 @@ public class GadgetTrampoline extends Gadget implements Updatable {
         running = true;
     }
 
+    @SuppressWarnings("deprecation")
     @Override
     protected boolean checkRequirements(PlayerInteractEvent event) {
         Location loc1 = event.getPlayer().getLocation().add(2, 15, 2);
@@ -60,6 +61,10 @@ public class GadgetTrampoline extends Gadget implements Updatable {
 
         if (!checkArea.isEmpty() || !BlockUtils.isAir(ladder1.getType()) || !BlockUtils.isAir(ladder2.getType())) {
             MessageManager.send(getPlayer(), "Gadgets.Rocket.Not-Enough-Space");
+            return false;
+        }
+        if (!getPlayer().isOnGround()) {
+            MessageManager.send(getPlayer(), "Gadgets.Rocket.Not-On-Ground");
             return false;
         }
         return true;

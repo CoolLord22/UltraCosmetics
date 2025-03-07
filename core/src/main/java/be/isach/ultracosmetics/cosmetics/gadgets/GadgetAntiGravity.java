@@ -1,6 +1,7 @@
 package be.isach.ultracosmetics.cosmetics.gadgets;
 
 import be.isach.ultracosmetics.UltraCosmetics;
+import be.isach.ultracosmetics.config.MessageManager;
 import be.isach.ultracosmetics.cosmetics.PlayerAffectingCosmetic;
 import be.isach.ultracosmetics.cosmetics.Updatable;
 import be.isach.ultracosmetics.cosmetics.type.GadgetType;
@@ -11,6 +12,7 @@ import com.cryptomorin.xseries.particles.XParticle;
 import org.bukkit.entity.ArmorStand;
 import org.bukkit.entity.Entity;
 import org.bukkit.entity.LivingEntity;
+import org.bukkit.event.player.PlayerInteractEvent;
 import org.bukkit.inventory.ItemStack;
 import org.bukkit.metadata.FixedMetadataValue;
 import org.bukkit.potion.PotionEffect;
@@ -31,6 +33,16 @@ public class GadgetAntiGravity extends Gadget implements PlayerAffectingCosmetic
 
     public GadgetAntiGravity(UltraPlayer owner, GadgetType type, UltraCosmetics ultraCosmetics) {
         super(owner, type, ultraCosmetics);
+    }
+
+    @SuppressWarnings("deprecation")
+    @Override
+    protected boolean checkRequirements(PlayerInteractEvent event) {
+        if (!getPlayer().isOnGround()) {
+            MessageManager.send(getPlayer(), "Gadgets.Rocket.Not-On-Ground");
+            return false;
+        }
+        return true;
     }
 
     @Override

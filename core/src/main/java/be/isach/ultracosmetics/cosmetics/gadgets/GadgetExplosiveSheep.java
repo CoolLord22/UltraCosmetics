@@ -1,8 +1,10 @@
 package be.isach.ultracosmetics.cosmetics.gadgets;
 
 import be.isach.ultracosmetics.UltraCosmetics;
+import be.isach.ultracosmetics.config.MessageManager;
 import be.isach.ultracosmetics.cosmetics.type.GadgetType;
 import be.isach.ultracosmetics.player.UltraPlayer;
+import be.isach.ultracosmetics.util.Area;
 import be.isach.ultracosmetics.util.EntitySpawner;
 import be.isach.ultracosmetics.util.MathUtils;
 import com.cryptomorin.xseries.XSound;
@@ -19,6 +21,7 @@ import org.bukkit.entity.Player;
 import org.bukkit.entity.Sheep;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.entity.EntityDamageEvent;
+import org.bukkit.event.player.PlayerInteractEvent;
 import org.bukkit.event.player.PlayerShearEntityEvent;
 import org.bukkit.util.Vector;
 
@@ -44,6 +47,16 @@ public class GadgetExplosiveSheep extends Gadget {
 
     public GadgetExplosiveSheep(UltraPlayer owner, GadgetType type, UltraCosmetics ultraCosmetics) {
         super(owner, type, ultraCosmetics);
+    }
+
+    @SuppressWarnings("deprecation")
+    @Override
+    protected boolean checkRequirements(PlayerInteractEvent event) {
+        if (!getPlayer().isOnGround()) {
+            MessageManager.send(getPlayer(), "Gadgets.Rocket.Not-On-Ground");
+            return false;
+        }
+        return true;
     }
 
     @Override
