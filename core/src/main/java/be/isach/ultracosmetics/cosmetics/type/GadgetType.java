@@ -122,9 +122,7 @@ public class GadgetType extends CosmeticType<Gadget> {
         new GadgetType(XMaterial.LEAD, 60, 7, "Parachute", GadgetParachute.class);
         new GadgetType(XMaterial.SKELETON_SKULL, 45, 8, "GhostParty", GadgetGhostParty.class);
         new GadgetType(XMaterial.FIREWORK_ROCKET, 0.2, 0, "Firework", GadgetFirework.class);
-        new GadgetType(XMaterial.FERN, 20, 10, "ChristmasTree", GadgetChristmasTree.class);
         new GadgetType(XMaterial.ICE, 8, 3, "FreezeCannon", GadgetFreezeCannon.class);
-        new GadgetType(XMaterial.SNOWBALL, 0.5, 0, "Snowball", GadgetSnowball.class);
         new GadgetType(XMaterial.GOLDEN_CARROT, 2, 0, "PartyPopper", GadgetPartyPopper.class);
         new GadgetType(XMaterial.LIGHT_BLUE_WOOL, 25, 7, "ColorBomb", GadgetColorBomb.class);
         new GadgetType(XMaterial.BLUE_WOOL, 75, 12, "Trampoline", GadgetTrampoline.class);
@@ -138,5 +136,7 @@ public class GadgetType extends CosmeticType<Gadget> {
             new GadgetType(XMaterial.PACKED_ICE, 12, 2, "BlizzardBlaster", GadgetBlizzardBlaster.class);
             new GadgetType(XMaterial.DIAMOND_HOE, 3, 0, "QuakeGun", GadgetQuakeGun.class);
         }
+        new GadgetType(XMaterial.SNOWBALL, 0.5, 0, "Snowball", GadgetSnowball.class);
+        new GadgetType(XMaterial.FERN, 20, 10, "ChristmasTree", GadgetChristmasTree.class);
     }
 }
