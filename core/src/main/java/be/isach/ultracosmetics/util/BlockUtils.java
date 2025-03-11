@@ -114,8 +114,8 @@ public class BlockUtils {
                     if (distance < radius * radius
                             && !(hollow && distance < ((radius - 1) * (radius - 1)))) {
                         Location l = new Location(location.getWorld(), x, y, z);
-                        if (l.getBlock().getType() != Material.BARRIER) {
-                            blocks.add(l.getBlock());
+                        if (l.getBlock().getType() != Material.BARRIER && l.getBlock().getType().isSolid() && l.getBlock().getType().isOccluding()) {
+                                blocks.add(l.getBlock());
                         }
                     }
                 }
