@@ -27,11 +27,15 @@ public class ParticleEffectType extends CosmeticParticleType<ParticleEffect> {
         new ParticleEffectType("SpringFootprints", 1, XParticle.HAPPY_VILLAGER, XMaterial.POPPY, ParticleEffectFootprints.class, false);
         new ParticleEffectType("ShadowFootprints", 2, XParticle.LARGE_SMOKE, XMaterial.BLACK_WOOL, ParticleEffectFootprints.class, false);
         new ParticleEffectType("EnderFootprints", 1, XParticle.DRAGON_BREATH, XMaterial.DRAGON_BREATH, ParticleEffectFootprints.class, false);
+        new ParticleEffectType("EnderAura", 1, XParticle.PORTAL, XMaterial.ENDER_EYE, ParticleEffectEnderAura.class, true);
+
         new ParticleEffectType("CursedFootprints", 1, XParticle.WITCH, XMaterial.JACK_O_LANTERN, ParticleEffectFootprints.class, false);
         new ParticleEffectType("FrozenWalk", 1, XParticle.ITEM_SNOWBALL, XMaterial.SNOWBALL, ParticleEffectFrozenWalk.class, false);
+
         new ParticleEffectType("DivineHalo", 2, XParticle.WAX_OFF, XMaterial.GLOWSTONE, ParticleEffectHalo.class, false);
         new ParticleEffectType("CursedHalo", 2, XParticle.WITCH, XMaterial.PURPLE_DYE, ParticleEffectCursedHalo.class, false);
         new ParticleEffectType("VolcanicHalo", 2, XParticle.FLAME, XMaterial.MAGMA_CREAM, ParticleEffectHalo.class, false);
+
         new ParticleEffectType("SnowCloud", 1, XParticle.ITEM_SNOWBALL, XMaterial.SNOWBALL, ParticleEffectCloud.class, true);
         new ParticleEffectType("RainCloud", 1, XParticle.DRIPPING_WATER, XMaterial.LAPIS_LAZULI, ParticleEffectCloud.class, true);
         new ParticleEffectType("Notes", 6, XParticle.NOTE, XMaterial.NOTE_BLOCK, ParticleEffectAboveHead.class, false);
@@ -44,7 +48,6 @@ public class ParticleEffectType extends CosmeticParticleType<ParticleEffect> {
         new ParticleEffectType("Inferno", 1, XParticle.FLAME, XMaterial.NETHER_WART, ParticleEffectInferno.class, true);
         new ParticleEffectType("MagicalRods", 3, XParticle.DUST, XMaterial.BLAZE_ROD, ParticleEffectMagicalRods.class, true);
 
-        new ParticleEffectType("EnderAura", 1, XParticle.PORTAL, XMaterial.ENDER_EYE, ParticleEffectEnderAura.class, true);
         new ParticleEffectType("Enchanted", 1, XParticle.ENCHANT, XMaterial.BOOK, ParticleEffectEnchanted.class, true);
 
         new ParticleEffectType("FlameFairy", 1, XParticle.FLAME, XMaterial.BLAZE_POWDER, ParticleEffectFlameFairy.class, false);
