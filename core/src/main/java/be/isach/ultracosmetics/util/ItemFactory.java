@@ -94,7 +94,7 @@ public class ItemFactory {
             meta.setLore(finalLore);
         }
         itemstack.setItemMeta(meta);
-        return itemstack;
+        return ItemFactory.hideAttributes(itemstack);
     }
 
     public static Item setUnpickable(Item item) {
@@ -186,7 +186,7 @@ public class ItemFactory {
 
         stack.setItemMeta(meta);
         applyCosmeticMarker(stack);
-        return stack;
+        return ItemFactory.hideAttributes(stack);
     }
 
     public static ItemStack getMenuItem() {

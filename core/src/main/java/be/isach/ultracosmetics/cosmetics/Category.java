@@ -120,7 +120,7 @@ public enum Category {
         ItemMeta itemMeta = is.getItemMeta();
         itemMeta.setDisplayName(MessageManager.getLegacyMessage("Menu." + configPath + ".Button.Name"));
         is.setItemMeta(itemMeta);
-        return is;
+        return ItemFactory.hideAttributes(is);
     }
 
     /**
