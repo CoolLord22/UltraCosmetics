@@ -18,10 +18,13 @@ import org.bukkit.Color;
 import org.bukkit.Location;
 import org.bukkit.Material;
 import org.bukkit.NamespacedKey;
+import org.bukkit.attribute.Attribute;
+import org.bukkit.attribute.AttributeModifier;
 import org.bukkit.configuration.ConfigurationSection;
 import org.bukkit.enchantments.Enchantment;
 import org.bukkit.entity.Item;
 import org.bukkit.entity.Player;
+import org.bukkit.inventory.EquipmentSlotGroup;
 import org.bukkit.inventory.ItemFlag;
 import org.bukkit.inventory.ItemStack;
 import org.bukkit.inventory.meta.ItemMeta;
@@ -262,5 +265,18 @@ public class ItemFactory {
     public static XMaterial randomFromTag(XTag<XMaterial> tag) {
         // copy tag values into temporary ArrayList because getting random values from a Set is hard
         return randomXMaterial(new ArrayList<>(tag.getValues()));
+    }
+
+    public static ItemStack hideAttributes(ItemStack itemstack) {
+        ItemMeta itemMeta = itemstack.getItemMeta();
+        if(itemMeta != null) {
+            for (Attribute attribute : Attribute.values()) {
+                itemMeta.removeAttributeModifier(attribute);
+            }
+            itemMeta.addAttributeModifier(Attribute.GENERIC_KNOCKBACK_RESISTANCE, new AttributeModifier(NamespacedKey.minecraft("generic.knockback_resistance"), 0.0, AttributeModifier.Operation.ADD_NUMBER, EquipmentSlotGroup.ANY));
+            itemMeta.addItemFlags(ItemFlag.HIDE_ATTRIBUTES);
+        }
+        itemstack.setItemMeta(itemMeta);
+        return itemstack;
     }
 }
