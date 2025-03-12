@@ -5,12 +5,15 @@ import be.isach.ultracosmetics.UltraCosmeticsData;
 import be.isach.ultracosmetics.config.MessageManager;
 import be.isach.ultracosmetics.config.SettingsManager;
 import be.isach.ultracosmetics.cosmetics.Category;
+import be.isach.ultracosmetics.cosmetics.gadgets.GadgetEgg;
 import be.isach.ultracosmetics.cosmetics.suits.ArmorSlot;
+import be.isach.ultracosmetics.cosmetics.type.CosmeticType;
 import be.isach.ultracosmetics.player.UltraPlayer;
 import be.isach.ultracosmetics.player.UltraPlayerManager;
 import be.isach.ultracosmetics.player.profile.CosmeticsProfile;
 import be.isach.ultracosmetics.run.FallDamageManager;
 import be.isach.ultracosmetics.util.ItemFactory;
+import be.isach.ultracosmetics.util.SmartLogger;
 import net.kyori.adventure.text.Component;
 import net.kyori.adventure.text.format.NamedTextColor;
 import net.kyori.adventure.text.format.TextDecoration;
@@ -80,6 +83,9 @@ public class PlayerListener implements Listener {
                     }
                     if (UltraCosmeticsData.get().areCosmeticsProfilesEnabled()) {
                         ultraPlayer.getProfile().onLoad(CosmeticsProfile::equip);
+                    }
+                    if(!ultraPlayer.hasCosmetic(Category.GADGETS)) {
+                        CosmeticType.valueOf(Category.GADGETS, "Egg").equip(ultraPlayer, ultraCosmetics);
                     }
                 }, Math.max(joinItemDelay - 2, 1));
             }, 2);
