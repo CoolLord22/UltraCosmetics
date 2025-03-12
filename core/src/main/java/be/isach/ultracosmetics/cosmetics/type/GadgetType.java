@@ -81,6 +81,7 @@ public class GadgetType extends CosmeticType<Gadget> {
     }
 
     public static void register(ServerVersion version) {
+        new GadgetType(XMaterial.EGG, 0.5, 0, "Egg", GadgetEgg.class);
         new GadgetType(XMaterial.IRON_HORSE_ARMOR, 8, 3, "BatBlaster", GadgetBatBlaster.class);
         new GadgetType(XMaterial.COOKED_CHICKEN, 6, 3, "Chickenator", GadgetChickenator.class);
         new GadgetType(XMaterial.BEACON, 45, 20, "DiscoBall", GadgetDiscoBall.class);
