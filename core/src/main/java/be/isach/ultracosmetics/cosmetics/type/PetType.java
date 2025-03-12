@@ -88,10 +88,10 @@ public class PetType extends CosmeticEntType<Pet> {
         registerPet("Slime", XMaterial.SLIME_BALL, XEntityType.SLIME, PetSlime.class);
         registerPet("MagmaCube", XMaterial.MAGMA_CREAM, XEntityType.MAGMA_CUBE, PetMagmaCube.class);
         registerPet("Allay", XMaterial.ALLAY_SPAWN_EGG, XEntityType.ALLAY, PetAllay.class);
+        registerPet("Vex", XMaterial.IRON_SWORD, XEntityType.VEX, PetVex.class);
 
         registerPet("Armadillo", XMaterial.ARMADILLO_SCUTE, XEntityType.ARMADILLO, Pet.class);
         registerPet("Piggy", XMaterial.PORKCHOP, XEntityType.PIG, Pet.class);
-        registerPet("EasterBunny", XMaterial.CARROT, XEntityType.RABBIT, PetEasterBunny.class);
         registerPet("Cow", XMaterial.MILK_BUCKET, XEntityType.COW, Pet.class);
         registerPet("Mooshroom", XMaterial.RED_MUSHROOM, XEntityType.MOOSHROOM, PetMooshroom.class);
         registerPet("Dog", XMaterial.BONE, XEntityType.WOLF, PetDog.class);
@@ -175,7 +175,6 @@ public class PetType extends CosmeticEntType<Pet> {
         registerPet("Parrot", XMaterial.COOKIE, XEntityType.PARROT, PetParrot.class);
         registerPet("Illusioner", XMaterial.COMMAND_BLOCK, XEntityType.ILLUSIONER, Pet.class);
         registerPet("Llama", XMaterial.RED_WOOL, XEntityType.LLAMA, PetLlama.class);
-        registerPet("Vex", XMaterial.IRON_SWORD, XEntityType.VEX, PetVex.class);
         registerPet("Evoker", XMaterial.TOTEM_OF_UNDYING, XEntityType.EVOKER, Pet.class);
         registerPet("Vindicator", XMaterial.IRON_AXE, XEntityType.VINDICATOR, PetVindicator.class);
         // Some entities are here because they were split into different XEntityTypes in 1.11
@@ -203,6 +202,8 @@ public class PetType extends CosmeticEntType<Pet> {
         if (UltraCosmeticsData.get().getVersionManager().isUsingNMS()) {
             registerPet("Pumpling", XMaterial.PUMPKIN, XEntityType.ZOMBIE, UltraCosmeticsData.get().getVersionManager().getModule().getPumplingClass());
         }
+
+        registerPet("EasterBunny", XMaterial.CARROT, XEntityType.RABBIT, PetEasterBunny.class);
 
         ConfigurationSection pets = getCustomConfig(Category.PETS);
         if (pets == null) return;
