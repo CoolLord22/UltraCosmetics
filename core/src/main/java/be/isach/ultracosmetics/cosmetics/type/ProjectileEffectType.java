@@ -37,11 +37,15 @@ public class ProjectileEffectType extends CosmeticParticleType<ProjectileEffect>
         new ProjectileEffectType("RedstoneHelix", 1, XParticle.DUST, XMaterial.REDSTONE_BLOCK, ProjectileEffectRedstoneHelix.class);
         new ProjectileEffectType("FlameHelix", 1, XParticle.FLAME, XMaterial.FIRE_CHARGE, ProjectileEffectHelix.class);
         new ProjectileEffectType("SoulFireHelix", 1, XParticle.SOUL_FIRE_FLAME, XMaterial.SOUL_CAMPFIRE, ProjectileEffectHelix.class);
-
-        // Rainbow Trail
-        new ProjectileEffectType("Rainbow", 1, XParticle.DUST, XMaterial.LIME_WOOL, ProjectileEffectRainbow.class);
+        new ProjectileEffectType("BloodOmenHelix", 1, XParticle.RAID_OMEN, XMaterial.RED_DYE, ProjectileEffectHelix.class);
+        new ProjectileEffectType("TotemHelix", 1, XParticle.TOTEM_OF_UNDYING, XMaterial.TOTEM_OF_UNDYING, ProjectileEffectHelix.class);
 
         // Basic Trails
+        new ProjectileEffectType("CherryLeaves", 1, XParticle.CHERRY_LEAVES, XMaterial.CHERRY_SAPLING, ProjectileEffectBasicTrail.class);
+        new ProjectileEffectType("PaleOakLeaves", 1, XParticle.PALE_OAK_LEAVES, XMaterial.PALE_OAK_SAPLING, ProjectileEffectBasicTrail.class);
+        new ProjectileEffectType("FallingTears", 1, XParticle.FALLING_OBSIDIAN_TEAR, XMaterial.CRYING_OBSIDIAN, ProjectileEffectBasicTrail.class);
+        new ProjectileEffectType("DarkHeart", 1, XParticle.DAMAGE_INDICATOR, XMaterial.WEEPING_VINES, ProjectileEffectBasicTrail.class);
+
         new ProjectileEffectType("Redstone", 1, XParticle.DUST, XMaterial.REDSTONE, ProjectileEffectBasicTrail.class);
         new ProjectileEffectType("Spark", 1, XParticle.FIREWORK, XMaterial.FIREWORK_ROCKET, ProjectileEffectBasicTrail.class);
         new ProjectileEffectType("SoulFireFlame", 1, XParticle.SOUL_FIRE_FLAME, XMaterial.SOUL_TORCH, ProjectileEffectBasicTrail.class);
@@ -64,6 +68,8 @@ public class ProjectileEffectType extends CosmeticParticleType<ProjectileEffect>
         if (version.isAtLeast(ServerVersion.v1_19)) {
             new ProjectileEffectType("SculkSoul", 1, XParticle.SCULK_SOUL, XMaterial.SCULK_CATALYST, ProjectileEffectBasicTrail.class);
         }
+        // Rainbow Trail
+        new ProjectileEffectType("Rainbow", 1, XParticle.DUST, XMaterial.LIME_WOOL, ProjectileEffectRainbow.class);
 
         new ProjectileEffectType("Love", 2, XParticle.HEART, XMaterial.PINK_WOOL, ProjectileEffectBasicTrail.class);
         new ProjectileEffectType("Snowflake", 1, XParticle.SNOWFLAKE, XMaterial.POWDER_SNOW_BUCKET, ProjectileEffectBasicTrail.class);
