@@ -47,6 +47,8 @@ public class ParticleEffectType extends CosmeticParticleType<ParticleEffect> {
         new ParticleEffectType("FireWaves", 4, XParticle.FLAME, XMaterial.GOLD_NUGGET, ParticleEffectFireWaves.class, true);
         new ParticleEffectType("Inferno", 1, XParticle.FLAME, XMaterial.NETHER_WART, ParticleEffectInferno.class, true);
         new ParticleEffectType("MagicalRods", 3, XParticle.DUST, XMaterial.BLAZE_ROD, ParticleEffectMagicalRods.class, true);
+        new ParticleEffectType("CherryAura", 2, XParticle.CHERRY_LEAVES, XMaterial.CHERRY_LEAVES, ParticleEffectEnderAura.class, true);
+        new ParticleEffectType("PaleOakAura", 2, XParticle.PALE_OAK_LEAVES, XMaterial.PALE_OAK_LEAVES, ParticleEffectEnderAura.class, true);
 
         new ParticleEffectType("Enchanted", 1, XParticle.ENCHANT, XMaterial.BOOK, ParticleEffectEnchanted.class, true);
 
