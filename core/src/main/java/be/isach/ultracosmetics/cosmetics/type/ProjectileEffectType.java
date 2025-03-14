@@ -69,9 +69,9 @@ public class ProjectileEffectType extends CosmeticParticleType<ProjectileEffect>
             new ProjectileEffectType("SculkSoul", 1, XParticle.SCULK_SOUL, XMaterial.SCULK_CATALYST, ProjectileEffectBasicTrail.class);
         }
         // Rainbow Trail
-        new ProjectileEffectType("Rainbow", 1, XParticle.DUST, XMaterial.LIME_WOOL, ProjectileEffectRainbow.class);
+        new ProjectileEffectType("Rainbow", 1, XParticle.DUST, XMaterial.MUSIC_DISC_PRECIPICE, ProjectileEffectRainbow.class);
 
-        new ProjectileEffectType("Love", 2, XParticle.HEART, XMaterial.PINK_WOOL, ProjectileEffectBasicTrail.class);
+        new ProjectileEffectType("Love", 2, XParticle.HEART, XMaterial.RED_WOOL, ProjectileEffectBasicTrail.class);
         new ProjectileEffectType("Snowflake", 1, XParticle.SNOWFLAKE, XMaterial.POWDER_SNOW_BUCKET, ProjectileEffectBasicTrail.class);
         // Christmas Trail
         new ProjectileEffectType("Christmas", 1, XParticle.DUST, XMaterial.SNOW_BLOCK, ProjectileEffectChristmas.class);
