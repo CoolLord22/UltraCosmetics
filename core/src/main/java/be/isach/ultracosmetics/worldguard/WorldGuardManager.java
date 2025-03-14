@@ -88,7 +88,7 @@ public class WorldGuardManager {
 
     public void doCosmeticCheck(Player player, UltraCosmetics uc) {
         if (flagManager == null) return;
-        if (!flagManager.flagCheck(UCFlag.COSMETICS, player) && uc.getPlayerManager().getUltraPlayer(player).clear()) {
+        if (!flagManager.flagCheck(UCFlag.COSMETICS, player) && uc.getPlayerManager().getUltraPlayer(player).clear(true)) {
             MessageManager.send(player, "Region-Disabled");
             return;
         }
@@ -109,7 +109,7 @@ public class WorldGuardManager {
     }
 
     public void noCosmeticsRegionEntered(UltraPlayer ultraPlayer) {
-        if (ultraPlayer.clear()) {
+        if (ultraPlayer.clear(true)) {
             MessageManager.send(ultraPlayer.getBukkitPlayer(), "Region-Disabled");
         }
     }

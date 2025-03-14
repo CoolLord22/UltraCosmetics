@@ -32,7 +32,7 @@ public class InvalidWorldChecker extends UltraTask {
             if (!SettingsManager.isAllowedWorld(p.getWorld())) {
                 ultraPlayer.removeMenuItem();
                 ultraPlayer.withPreserveEquipped(() -> {
-                    if (ultraPlayer.clear()) {
+                    if (ultraPlayer.clear(true)) {
                         MessageManager.send(p, "World-Disabled");
                     }
                 });

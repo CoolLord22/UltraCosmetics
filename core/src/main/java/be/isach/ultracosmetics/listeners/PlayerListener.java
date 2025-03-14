@@ -135,7 +135,8 @@ public class PlayerListener implements Listener {
         ultraPlayer.removeMenuItem();
         ultraPlayer.withPreserveEquipped(() -> {
             // Clear cosmetics either way, but only display the message if player is going to a bad world.
-            if (ultraPlayer.clear() && goingToBadWorld) {
+            // Pass keepProjectile: true to ensure projectile isn't removed since we want those globally
+            if (ultraPlayer.clear(true) && goingToBadWorld) {
                 MessageManager.send(ultraPlayer.getBukkitPlayer(), "World-Disabled");
             }
         });
