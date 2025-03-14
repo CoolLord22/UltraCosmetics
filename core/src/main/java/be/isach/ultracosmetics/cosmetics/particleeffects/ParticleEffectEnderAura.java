@@ -26,6 +26,9 @@ public class ParticleEffectEnderAura extends ParticleEffect {
 
     @Override
     public void onUpdate() {
+        if(display.getParticle().equals(XParticle.CHERRY_LEAVES))
+            if(!isMoving() && getPlayer().isFlying())
+                return;
         displayA.spawn();
         displayB.spawn();
     }
