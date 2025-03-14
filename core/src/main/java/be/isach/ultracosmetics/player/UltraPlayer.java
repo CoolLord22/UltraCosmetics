@@ -385,7 +385,7 @@ public class UltraPlayer {
             currentTreasureChest.forceOpen(0);
         }
         saveCosmeticsProfile();
-        clear();
+        clear(false);
         removeMenuItem();
     }
 

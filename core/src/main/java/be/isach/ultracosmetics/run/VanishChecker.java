@@ -38,7 +38,7 @@ public class VanishChecker extends UltraTask {
         if (playersToClear.isEmpty()) return;
         ultraCosmetics.getScheduler().runNextTick((task) -> {
             while (!playersToClear.isEmpty()) {
-                playersToClear.remove().clear();
+                playersToClear.remove().clear(false);
             }
         });
     }

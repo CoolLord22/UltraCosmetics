@@ -217,7 +217,7 @@ public abstract class Gadget extends Cosmetic<GadgetType> implements UnmovableIt
         if (ultraPlayer.getCurrentTreasureChest() != null) return;
 
         if (PlayerAffectingCosmetic.isHidden(event.getPlayer(), getPlayer()) && SettingsManager.getConfig().getBoolean("Prevent-Cosmetics-In-Vanish")) {
-            getOwner().clear();
+            getOwner().clear(false);
             MessageManager.send(getPlayer(), "Not-Allowed-In-Vanish");
             return;
         }

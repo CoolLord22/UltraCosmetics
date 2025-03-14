@@ -47,7 +47,7 @@ public class SubCommandClear extends SubCommand {
         }
 
         if (args.length < 3) {
-            ultraCosmetics.getPlayerManager().getUltraPlayer(target).clear();
+            ultraCosmetics.getPlayerManager().getUltraPlayer(target).clear(false);
             return;
         }
 

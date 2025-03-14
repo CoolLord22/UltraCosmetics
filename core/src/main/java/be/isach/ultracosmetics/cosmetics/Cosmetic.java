@@ -65,7 +65,7 @@ public abstract class Cosmetic<T extends CosmeticType<?>> implements Listener {
         }
 
         if (PlayerAffectingCosmetic.isVanished(player) && SettingsManager.getConfig().getBoolean("Prevent-Cosmetics-In-Vanish")) {
-            owner.clear();
+            owner.clear(false);
             MessageManager.send(player, "Not-Allowed-In-Vanish");
             return;
         }
