@@ -344,7 +344,11 @@ public class UltraPlayer {
     /**
      * Clears all gadgets.
      */
-    public boolean clear() {
+    public boolean clear(boolean keepProjectile) {
+        if(keepProjectile)
+            if(equipped.size() == 1 && hasCosmetic(Category.PROJECTILE_EFFECTS))
+                return false;
+
         boolean toReturn = hasCosmeticsEquipped();
         if (!preserveEquipped) {
             cosmeticsProfile.clearAllEquipped();
@@ -359,6 +363,10 @@ public class UltraPlayer {
         for (Category cat : Category.values()) {
             // handled above
             if (cat == Category.MORPHS) {
+                continue;
+            }
+            // skip over projectile if we need to keep that category
+            if (keepProjectile && cat == Category.PROJECTILE_EFFECTS) {
                 continue;
             }
             removeCosmetic(cat);
