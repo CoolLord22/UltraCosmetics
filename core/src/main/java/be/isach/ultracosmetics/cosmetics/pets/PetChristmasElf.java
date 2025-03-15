@@ -5,6 +5,8 @@ import be.isach.ultracosmetics.cosmetics.type.PetType;
 import be.isach.ultracosmetics.player.UltraPlayer;
 import be.isach.ultracosmetics.util.ItemFactory;
 
+import com.cryptomorin.xseries.XMaterial;
+import org.bukkit.Material;
 import org.bukkit.inventory.ItemStack;
 
 import java.util.Arrays;
@@ -17,7 +19,7 @@ import java.util.List;
  * @author iSach
  * @since 11-29-2015
  */
-public class PetChristmasElf extends PetVillager {
+public class PetChristmasElf extends PetZombie {
     private static final List<ItemStack> PRESENTS = Arrays.asList(
             getSkull("f5612dc7b86d71afc1197301c15fd979e9f39e7b1f41d8f1ebdf8115576e2e"),
             getSkull("6b4cde16a4014de0a7651f6067f12695bb5fed6feaec1e9413ca4271e7c819"),
@@ -28,8 +30,23 @@ public class PetChristmasElf extends PetVillager {
             getSkull("6cef9aa14e884773eac134a4ee8972063f466de678363cf7b1a21a85b7"),
             getSkull("aa074845885202e17ed5c4be4103733121235c5440ae3a1c49fbd39317b04d"));
 
+    private static final ItemStack head = getSkull("82ab6c79c63b8334b2c03b6f736acf61aced5c24f2ba72b777d77f28e8c");
+    private static final ItemStack chest = ItemFactory.createColouredLeather(Material.LEATHER_CHESTPLATE, 255, 0,0);
+    private static final ItemStack legs = ItemFactory.createColouredLeather(Material.LEATHER_LEGGINGS, 255, 0,0);
+    private static final ItemStack boots = ItemFactory.createColouredLeather(Material.LEATHER_BOOTS, 255, 0,0);
+
     public PetChristmasElf(UltraPlayer owner, PetType type, UltraCosmetics ultraCosmetics) {
         super(owner, type, ultraCosmetics);
+    }
+
+    @Override
+    public void onEquip() {
+        super.onEquip();
+        entity.setSilent(true);
+        entity.getEquipment().setHelmet(head);
+        entity.getEquipment().setChestplate(chest);
+        entity.getEquipment().setLeggings(legs);
+        entity.getEquipment().setBoots(boots);
     }
 
     @Override
