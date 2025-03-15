@@ -9,6 +9,7 @@ import be.isach.ultracosmetics.cosmetics.Category;
 import be.isach.ultracosmetics.cosmetics.Cosmetic;
 import be.isach.ultracosmetics.cosmetics.PlayerAffectingCosmetic;
 import be.isach.ultracosmetics.player.UltraPlayer;
+import be.isach.ultracosmetics.util.ItemFactory;
 import be.isach.ultracosmetics.util.SmartLogger.LogLevel;
 import be.isach.ultracosmetics.version.ServerVersion;
 import com.cryptomorin.xseries.XMaterial;
@@ -206,6 +207,9 @@ public abstract class CosmeticType<T extends Cosmetic<?>> {
     }
 
     public ItemStack getItemStack() {
+        if(getMaterial().equals(XMaterial.PLAYER_HEAD)) {
+            return ItemFactory.createSkull(SettingsManager.getConfig().getString(category.getConfigPath() + "." + getConfigName() + ".Custom-Skull", ""), "");
+        }
         return material.parseItem();
     }
 
