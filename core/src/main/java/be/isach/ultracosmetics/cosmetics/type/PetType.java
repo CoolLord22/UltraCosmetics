@@ -7,6 +7,7 @@ import be.isach.ultracosmetics.config.MessageManager;
 import be.isach.ultracosmetics.cosmetics.Category;
 import be.isach.ultracosmetics.cosmetics.pets.*;
 import be.isach.ultracosmetics.player.UltraPlayer;
+import be.isach.ultracosmetics.util.ItemFactory;
 import be.isach.ultracosmetics.util.SmartLogger;
 import be.isach.ultracosmetics.util.SmartLogger.LogLevel;
 import com.cryptomorin.xseries.XEntityType;
@@ -16,6 +17,7 @@ import net.kyori.adventure.text.minimessage.tag.resolver.Placeholder;
 import org.bukkit.ChatColor;
 import org.bukkit.configuration.ConfigurationSection;
 import org.bukkit.entity.Player;
+import org.bukkit.inventory.ItemStack;
 
 import java.util.HashMap;
 import java.util.Locale;
@@ -96,7 +98,6 @@ public class PetType extends CosmeticEntType<Pet> {
         registerPet("Mooshroom", XMaterial.RED_MUSHROOM, XEntityType.MOOSHROOM, PetMooshroom.class);
         registerPet("Dog", XMaterial.BONE, XEntityType.WOLF, PetDog.class);
         registerPet("Chick", XMaterial.EGG, XEntityType.CHICKEN, Pet.class);
-        registerPet("ChristmasElf", XMaterial.BEACON, XEntityType.VILLAGER, PetChristmasElf.class);
         registerPet("IronGolem", XMaterial.IRON_INGOT, XEntityType.IRON_GOLEM, PetIronGolem.class);
         registerPet("Snowman", XMaterial.SNOWBALL, XEntityType.SNOW_GOLEM, PetSnowman.class);
         registerPet("Villager", XMaterial.EMERALD, XEntityType.VILLAGER, PetVillager.class);
@@ -204,6 +205,7 @@ public class PetType extends CosmeticEntType<Pet> {
         }
 
         registerPet("EasterBunny", XMaterial.CARROT, XEntityType.RABBIT, PetEasterBunny.class);
+        registerPet("ChristmasElf", XMaterial.PLAYER_HEAD, XEntityType.ZOMBIE, PetChristmasElf.class);
 
         ConfigurationSection pets = getCustomConfig(Category.PETS);
         if (pets == null) return;
