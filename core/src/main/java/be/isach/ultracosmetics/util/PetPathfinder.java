@@ -5,10 +5,7 @@ import me.gamercoder215.mobchip.EntityBrain;
 import me.gamercoder215.mobchip.ai.goal.CustomPathfinder;
 import me.gamercoder215.mobchip.bukkit.BukkitBrain;
 import org.bukkit.Location;
-import org.bukkit.entity.EntityType;
-import org.bukkit.entity.Mob;
-import org.bukkit.entity.Player;
-import org.bukkit.entity.Slime;
+import org.bukkit.entity.*;
 
 public class PetPathfinder extends CustomPathfinder {
     private final Player target;
@@ -54,7 +51,7 @@ public class PetPathfinder extends CustomPathfinder {
         if (entity.getWorld() != loc.getWorld()) {
             return;
         }
-        if (entity.getLocation().distanceSquared(loc) > 10 * 10) {
+        if (entity.getLocation().distanceSquared(loc) > 10 * 10 && ((Entity) target).isOnGround()) {
             UltraCosmeticsData.get().getPlugin().getScheduler().teleportAsync(entity, loc);
             brain.getController().moveTo(loc, speed);
             return;
