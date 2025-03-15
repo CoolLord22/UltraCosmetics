@@ -205,7 +205,7 @@ public class PetType extends CosmeticEntType<Pet> {
         }
 
         registerPet("EasterBunny", XMaterial.CARROT, XEntityType.RABBIT, PetEasterBunny.class);
-        registerPet("ChristmasElf", XMaterial.PLAYER_HEAD, XEntityType.ZOMBIE, PetChristmasElf.class);
+        registerPet("ChristmasElf", XMaterial.BEACON, XEntityType.ZOMBIE, PetChristmasElf.class);
 
         ConfigurationSection pets = getCustomConfig(Category.PETS);
         if (pets == null) return;
