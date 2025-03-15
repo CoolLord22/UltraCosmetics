@@ -40,8 +40,8 @@ public class PetChristmasElf extends PetZombie {
     }
 
     @Override
-    public void onEquip() {
-        super.onEquip();
+    public void setupEntity() {
+        super.setupEntity();
         entity.setSilent(true);
         entity.getEquipment().setHelmet(head);
         entity.getEquipment().setChestplate(chest);
