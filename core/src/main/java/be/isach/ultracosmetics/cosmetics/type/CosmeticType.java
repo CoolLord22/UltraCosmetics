@@ -208,7 +208,7 @@ public abstract class CosmeticType<T extends Cosmetic<?>> {
 
     public ItemStack getItemStack() {
         String skull = SettingsManager.getConfig().getString(category.getConfigPath() + "." + getConfigName() + ".Custom-Head");
-        if(skull != null) {
+        if(skull != null && !skull.isBlank()) {
             return ItemFactory.createSkull(skull, "");
         }
         return material.parseItem();
