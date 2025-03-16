@@ -43,7 +43,7 @@ public class GadgetRocket extends Gadget implements Updatable {
     private static final Material QUARTZ_BLOCK = XMaterial.QUARTZ_BLOCK.get();
     private static final ParticleDisplay EMITTER = ParticleDisplay.of(XParticle.EXPLOSION_EMITTER);
     private final ParticleDisplay flame = ParticleDisplay.of(XParticle.FLAME).withCount(10).offset(0.3, 0.2, 0.3).withLocationCaller(() -> getPlayer().getLocation().subtract(0, 3, 0));
-    private final ParticleDisplay lava = flame.clone().withParticle(XParticle.LAVA);
+    private final ParticleDisplay lava = flame.copy().withParticle(XParticle.LAVA);
 
     private final StructureRollback rollback = new StructureRollback();
     private boolean stillEquipped = true;

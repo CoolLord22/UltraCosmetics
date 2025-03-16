@@ -20,7 +20,12 @@ import org.bukkit.Difficulty;
 import org.bukkit.Location;
 import org.bukkit.attribute.Attribute;
 import org.bukkit.block.Block;
-import org.bukkit.entity.*;
+import org.bukkit.entity.AbstractHorse;
+import org.bukkit.entity.Ageable;
+import org.bukkit.entity.Entity;
+import org.bukkit.entity.EntityType;
+import org.bukkit.entity.LivingEntity;
+import org.bukkit.entity.Slime;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.entity.EntityDamageByEntityEvent;
 import org.bukkit.event.entity.EntityDamageEvent;
@@ -153,11 +158,6 @@ public abstract class Mount extends EntityCosmetic<MountType, Entity> implements
 
     @EventHandler
     public void onEntityDamage(EntityDamageEvent event) {
-        if (event.getEntity() == getEntity()) {
-            event.setCancelled(true);
-            return;
-        }
-
         if (event.getEntity() == getPlayer() && getOwner().getCurrentMount() == this
                 && !getUltraCosmetics().getConfig().getBoolean("allow-damage-to-players-on-mounts")) {
             event.setCancelled(true);

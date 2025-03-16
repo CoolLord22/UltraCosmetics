@@ -6,10 +6,6 @@ package be.isach.ultracosmetics.v1_19_R1;
 public class ObfuscatedFields {
     // corresponds to net.minecraft.world.entity.LivingEntity#jumping
     public static final String JUMPING = "%placeholder%";
-    // corresponds to net.minecraft.core.MappedRegistry#frozen
-    public static final String FROZEN = "%placeholder%";
-    // corresponds to net.minecraft.core.MappedRegistry#unregisteredIntrusiveHolders
-    public static final String INTRUSIVE_HOLDER_CACHE = "%placeholder%";
 
     private ObfuscatedFields() {
     };

@@ -5,6 +5,7 @@ import org.bukkit.entity.Zombie;
 import org.bukkit.event.Cancellable;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
+import org.bukkit.event.entity.EntityDamageEvent;
 import org.bukkit.event.entity.EntityPickupItemEvent;
 import org.bukkit.event.entity.EntityTransformEvent;
 import org.bukkit.event.entity.ItemMergeEvent;
@@ -22,6 +23,13 @@ public class MainListener implements Listener {
     @EventHandler
     public void onInteractAtEntity(PlayerInteractAtEntityEvent event) {
         if (event.getRightClicked().hasMetadata("NO_INTER") || event.getRightClicked().hasMetadata("C_AD_ArmorStand")) {
+            event.setCancelled(true);
+        }
+    }
+
+    @EventHandler
+    public void onDamageEntity(EntityDamageEvent event) {
+        if (event.getEntity().hasMetadata("Pet") || event.getEntity().hasMetadata("Mount")) {
             event.setCancelled(true);
         }
     }

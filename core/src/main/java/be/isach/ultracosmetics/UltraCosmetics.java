@@ -318,15 +318,9 @@ public class UltraCosmetics extends JavaPlugin {
         // Register Listeners.
         registerListeners();
 
-        try {
-            paperSupport = Class.forName("be.isach.ultracosmetics.paper.PaperSupportImpl").asSubclass(PaperSupport.class).getDeclaredConstructor().newInstance();
-            getSmartLogger().write("Paper-specific features enabled");
-        } catch (ReflectiveOperationException | UnsupportedClassVersionError | IllegalArgumentException e) {
-            // ReflectiveOperationException shouldn't happen
-            // UnsupportedClassVersionError is thrown when server is running on a version below Java 21
-            // IllegalArgumentException is also thrown when the server is running on a version below Java 21
-            // and CraftBukkit tries to process it.
-            paperSupport = new DummyPaperSupport();
+        if (UltraCosmeticsData.get().getServerVersion().isAtLeast(ServerVersion.v1_20)) {
+            // Commodore didn't have a new enough version of ASM to load Java 21 classes until 1.20
+            loadPaperSupport();
         }
 
         // Set up Cosmetics config.
@@ -432,6 +426,19 @@ public class UltraCosmetics extends JavaPlugin {
         getSmartLogger().write("UltraCosmetics successfully finished loading in " + (System.currentTimeMillis() - startTime) + "ms!");
         getSmartLogger().write("-------------------------------------------------------------------");
         enableFinished = true;
+    }
+
+    private void loadPaperSupport() {
+        try {
+            paperSupport = Class.forName("be.isach.ultracosmetics.paper.PaperSupportImpl").asSubclass(PaperSupport.class).getDeclaredConstructor().newInstance();
+            getSmartLogger().write("Paper-specific features enabled");
+        } catch (ReflectiveOperationException | UnsupportedClassVersionError | IllegalArgumentException e) {
+            // ReflectiveOperationException shouldn't happen
+            // UnsupportedClassVersionError is thrown when server is running on a version below Java 21
+            // IllegalArgumentException is also thrown when the server is running on a version below Java 21
+            // and CraftBukkit tries to process it.
+            paperSupport = new DummyPaperSupport();
+        }
     }
 
     /**
@@ -681,7 +688,7 @@ public class UltraCosmetics extends JavaPlugin {
         }
         if (!raw.contains("&")) return;
         MiniMessage mm = MessageManager.getMiniMessage();
-        LegacyComponentSerializer deserializer = LegacyComponentSerializer.legacyAmpersand();
+        LegacyComponentSerializer deserializer = MessageManager.legacySerializer();
         String[] parts = raw.split("\n");
         StringBuilder builder = new StringBuilder(mm.serialize(deserializer.deserialize(parts[0])));
         for (int i = 1; i < parts.length; i++) {

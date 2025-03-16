@@ -18,7 +18,7 @@ public class ParticleEffectEnderAura extends ParticleEffect {
             .withExtra(0.1)
             .withCount(getModifiedAmount(5))
             .withLocationCaller(() -> getPlayer().getLocation().add(0, 1.2, 0));
-    private final ParticleDisplay displayB = displayA.clone().withLocationCaller(() -> getPlayer().getLocation().add(0, 0.2, 0));
+    private final ParticleDisplay displayB = displayA.copy().withLocationCaller(() -> getPlayer().getLocation().add(0, 0.2, 0));
 
     public ParticleEffectEnderAura(UltraPlayer owner, ParticleEffectType type, UltraCosmetics ultraCosmetics) {
         super(owner, type, ultraCosmetics);

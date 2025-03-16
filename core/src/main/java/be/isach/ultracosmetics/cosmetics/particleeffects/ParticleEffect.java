@@ -41,7 +41,7 @@ public abstract class ParticleEffect extends Cosmetic<ParticleEffectType> implem
     public ParticleEffect(UltraPlayer ultraPlayer, ParticleEffectType type, UltraCosmetics ultraCosmetics) {
         super(ultraPlayer, type, ultraCosmetics);
         display = ParticleDisplay.of(getType().getEffect());
-        alternativeEffect = display.clone()
+        alternativeEffect = display.copy()
                 .offset(0.2)
                 .withCount(getModifiedAmount(3))
                 .withLocationCaller(() -> getPlayer().getLocation().add(0, 0.2, 0));

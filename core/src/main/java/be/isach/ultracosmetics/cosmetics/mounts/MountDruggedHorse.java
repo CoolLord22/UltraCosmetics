@@ -10,7 +10,7 @@ import org.bukkit.Location;
 import org.bukkit.entity.Horse;
 import org.bukkit.potion.PotionEffect;
 
-import java.awt.*;
+import java.awt.Color;
 import java.util.concurrent.ThreadLocalRandom;
 
 /**
@@ -20,9 +20,9 @@ public class MountDruggedHorse extends MountAbstractHorse {
     private static final int AMBIENT_ALPHA = 38;
 
     private final ParticleDisplay fireworkDisplay = ParticleDisplay.of(XParticle.FIREWORK).offset(0.4, 0.2, 0.4).withCount(5);
-    private final ParticleDisplay effectDisplay = fireworkDisplay.clone().withParticle(XParticle.EFFECT);
-    private final ParticleDisplay ambientEffectDisplay = effectDisplay.clone().withCount(1);
-    private final ParticleDisplay coloredEffectDisplay = effectDisplay.clone().withColor(new Color(5, 255, 0));
+    private final ParticleDisplay effectDisplay = fireworkDisplay.copy().withParticle(XParticle.EFFECT);
+    private final ParticleDisplay ambientEffectDisplay = effectDisplay.copy().withCount(1);
+    private final ParticleDisplay coloredEffectDisplay = effectDisplay.copy().withColor(new Color(5, 255, 0));
 
     public MountDruggedHorse(UltraPlayer owner, MountType type, UltraCosmetics ultraCosmetics) {
         super(owner, type, ultraCosmetics);

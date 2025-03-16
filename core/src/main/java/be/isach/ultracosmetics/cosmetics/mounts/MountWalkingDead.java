@@ -19,7 +19,7 @@ public class MountWalkingDead extends MountAbstractHorse {
         super(owner, type, ultraCosmetics);
         enchantedDisplay = ParticleDisplay.of(XParticle.ENCHANTED_HIT).offset(0.4, 0.2, 0.4).withCount(5)
                 .withLocationCaller(() -> entity.getLocation().add(0, 1, 0));
-        entityEffectDisplay = enchantedDisplay.clone().withParticle(XParticle.ENTITY_EFFECT);
+        entityEffectDisplay = enchantedDisplay.copy().withParticle(XParticle.ENTITY_EFFECT);
     }
 
     @Override

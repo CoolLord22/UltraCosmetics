@@ -13,7 +13,7 @@ import org.bukkit.Location;
 import org.bukkit.event.block.Action;
 import org.bukkit.event.player.PlayerInteractEvent;
 
-import java.awt.*;
+import java.awt.Color;
 
 /**
  * Represents an instance of a Christmas Tree gadget summoned by a player.
@@ -69,7 +69,7 @@ public class GadgetChristmasTree extends Gadget implements Updatable {
 
     private void drawLog() {
         Location to = lastLocation.clone().add(0, 2.5, 0);
-        Particles.line(lastLocation, to, 0.25, LOG.clone());
+        Particles.line(lastLocation, to, 0.25, LOG.copy());
     }
 
     private void drawLeavesAndBalls() {
@@ -81,7 +81,7 @@ public class GadgetChristmasTree extends Gadget implements Updatable {
                 float angle = MathUtils.random(steps) * inc;
                 float x = MathUtils.cos(angle) * (radius + 0.05f);
                 float z = MathUtils.sin(angle) * (radius + 0.05f);
-                LEAF.clone().withColor(new Color(RANDOM.nextInt(256), RANDOM.nextInt(256), RANDOM.nextInt(256)))
+                LEAF.copy().withColor(new Color(RANDOM.nextInt(256), RANDOM.nextInt(256), RANDOM.nextInt(256)))
                         .spawn(lastLocation.clone().add(x, y, z));
             }
             for (int i = 0; i < steps; i++) {

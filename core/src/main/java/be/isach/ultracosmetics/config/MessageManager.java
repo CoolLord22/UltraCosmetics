@@ -34,6 +34,8 @@ import java.util.regex.Pattern;
  * @since 03-08-2015
  */
 public class MessageManager {
+    private static final LegacyComponentSerializer LEGACY_SERIALIZER = LegacyComponentSerializer.legacySection().toBuilder()
+            .hexColors().useUnusualXRepeatedCharacterHexFormat().build();
     private static MessageManager instance;
     private final SettingsManager messagesConfig;
     private final MiniMessage miniMessage;
@@ -233,7 +235,7 @@ public class MessageManager {
         SmartLogger log = UltraCosmeticsData.get().getPlugin().getSmartLogger();
         log.write(SmartLogger.LogLevel.WARNING, "Your messages file is using legacy color codes, it will be upgraded now");
         // Prefix hasn't been converted yet, so don't use it.
-        migration(LegacyComponentSerializer.legacyAmpersand(), buildMinimessage(false));
+        migration(LEGACY_SERIALIZER, buildMinimessage(false));
     }
 
     private void migration(ComponentSerializer<Component, ?, String> deserializer, ComponentSerializer<Component, ?, String> serializer) {
@@ -326,7 +328,7 @@ public class MessageManager {
     }
 
     public static String toLegacy(Component component) {
-        return LegacyComponentSerializer.legacySection().serialize(component);
+        return LEGACY_SERIALIZER.serialize(component);
     }
 
     public static String getLegacyMessage(String messagePath, TagResolver.Single... placeholders) {
@@ -361,5 +363,9 @@ public class MessageManager {
             instance.audiences.close();
             instance = null;
         }
+    }
+
+    public static LegacyComponentSerializer legacySerializer() {
+        return LEGACY_SERIALIZER;
     }
 }

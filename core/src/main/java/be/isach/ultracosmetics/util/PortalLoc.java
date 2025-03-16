@@ -42,6 +42,6 @@ public class PortalLoc {
     }
 
     public ParticleDisplay getParticle() {
-        return particle.clone();
+        return particle.copy();
     }
 }
