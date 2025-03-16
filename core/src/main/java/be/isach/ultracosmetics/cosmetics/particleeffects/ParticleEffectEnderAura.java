@@ -13,7 +13,7 @@ import com.cryptomorin.xseries.particles.XParticle;
  * @since 12-23-2015
  */
 public class ParticleEffectEnderAura extends ParticleEffect {
-    private final ParticleDisplay displayA = display.clone()
+        private final ParticleDisplay displayA = display.copy()
             .offset(0.35, 0.05, 0.35)
             .withExtra(0.1)
             .withCount(getModifiedAmount(5))
