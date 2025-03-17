@@ -96,9 +96,11 @@ public abstract class Cosmetic<T extends CosmeticType<?>> implements Listener {
         this.equipped = true;
 
         if (!owner.isPreserveEquipped()) {
-            TagResolver.Single typeNamePlaceholder = Placeholder.component(getCategory().getChatPlaceholder(), TextUtil.filterPlaceholderColors(typeName));
-            Component activateMessage = MessageManager.getMessage(category.getConfigPath() + ".Equip", typeNamePlaceholder);
-            owner.sendMessage(appendActivateMessage(activateMessage));
+            if(!cosmeticType.getConfigName().equalsIgnoreCase("Egg")) {
+                TagResolver.Single typeNamePlaceholder = Placeholder.component(getCategory().getChatPlaceholder(), TextUtil.filterPlaceholderColors(typeName));
+                Component activateMessage = MessageManager.getMessage(category.getConfigPath() + ".Equip", typeNamePlaceholder);
+                owner.sendMessage(appendActivateMessage(activateMessage));
+            }
         }
 
         if (this instanceof Updatable) {
