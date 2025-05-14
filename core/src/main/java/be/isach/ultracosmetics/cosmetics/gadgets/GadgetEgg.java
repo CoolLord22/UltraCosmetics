@@ -11,6 +11,7 @@ import org.bukkit.entity.Snowball;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.entity.EntityDamageByEntityEvent;
 import org.bukkit.event.entity.ProjectileHitEvent;
+import org.bukkit.event.player.PlayerEggThrowEvent;
 import org.bukkit.metadata.FixedMetadataValue;
 
 import java.util.ArrayList;
@@ -56,6 +57,13 @@ public class GadgetEgg extends Gadget {
                     }
                 }
             }
+        }
+    }
+
+    @EventHandler
+    public void onEggThrow(PlayerEggThrowEvent event) {
+        if (event.getEgg().hasMetadata("EGG_NO_DAMAGE")) {
+            event.setHatching(false);
         }
     }
 }
