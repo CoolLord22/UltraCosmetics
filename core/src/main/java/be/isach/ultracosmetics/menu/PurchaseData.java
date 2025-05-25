@@ -1,5 +1,6 @@
 package be.isach.ultracosmetics.menu;
 
+import be.isach.ultracosmetics.cosmetics.type.CosmeticType;
 import org.bukkit.inventory.ItemStack;
 
 import java.util.function.BooleanSupplier;
@@ -13,6 +14,7 @@ public class PurchaseData {
     private BooleanSupplier canPurchase;
     private Runnable onPurchase;
     private Runnable onCancel;
+    private Runnable onPreview;
     private ItemStack showcaseItem;
 
     public int getBasePrice() {
@@ -30,6 +32,10 @@ public class PurchaseData {
 
     public void runOnPurchase() {
         onPurchase.run();
+    }
+
+    public void runOnPreview() {
+        onPreview.run();
     }
 
     public void runOnCancel() {
@@ -50,6 +56,10 @@ public class PurchaseData {
 
     public void setOnCancel(Runnable onCancel) {
         this.onCancel = onCancel;
+    }
+
+    public void setOnPreview(Runnable onPreview) {
+        this.onPreview = onPreview;
     }
 
     public void setShowcaseItem(ItemStack showcaseItem) {

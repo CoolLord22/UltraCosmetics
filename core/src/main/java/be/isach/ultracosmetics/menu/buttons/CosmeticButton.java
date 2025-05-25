@@ -14,7 +14,9 @@ import be.isach.ultracosmetics.util.TextUtil;
 import net.kyori.adventure.text.Component;
 import net.kyori.adventure.text.minimessage.tag.resolver.Placeholder;
 import net.kyori.adventure.text.serializer.plain.PlainTextComponentSerializer;
+import org.bukkit.Bukkit;
 import org.bukkit.ChatColor;
+import org.bukkit.entity.Player;
 import org.bukkit.inventory.ItemStack;
 import org.bukkit.inventory.meta.ItemMeta;
 
@@ -115,6 +117,15 @@ public abstract class CosmeticButton implements Button {
             PurchaseData pd = new PurchaseData();
             pd.setBasePrice(price);
             pd.setShowcaseItem(display);
+            pd.setOnPreview(() -> {
+                Player clicker = ultraPlayer.getBukkitPlayer();
+                if(!clicker.getWorld().getName().equals("CosmeticPreview")) {
+                    Bukkit.dispatchCommand(Bukkit.getConsoleSender(), String.format("mvtp %s CosmeticPreview", clicker.getName()));
+                }
+                ultraCosmetics.getScheduler().runAtEntityLater(ultraPlayer.getBukkitPlayer(), () -> {
+                    cosmeticType.equip(ultraPlayer, ultraCosmetics);
+                }, 5);
+            });
             pd.setOnPurchase(() -> {
                 pm.setPermission(ultraPlayer, cosmeticType);
                 // Delay by five ticks so the command processes
