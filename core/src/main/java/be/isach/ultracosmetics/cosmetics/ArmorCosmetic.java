@@ -26,7 +26,6 @@ import org.bukkit.inventory.meta.ItemMeta;
 
 import java.util.HashMap;
 import java.util.Map;
-import java.util.UUID;
 
 public abstract class ArmorCosmetic<T extends CosmeticType<?>> extends Cosmetic<T> {
     protected final Map<Attribute, Double> attributes;
@@ -78,10 +77,10 @@ public abstract class ArmorCosmetic<T extends CosmeticType<?>> extends Cosmetic<
         if (meta.hasAttributeModifiers()) {
             meta.removeAttributeModifier(getArmorSlot().toBukkit());
         }
+        int count = 0;
         for (Map.Entry<Attribute, Double> entry : attributes.entrySet()) {
-            if (entry.getValue() == 0) continue;
-            AttributeModifier mod = new AttributeModifier(UUID.randomUUID(), "ultracosmetics attribute modifier",
-                    entry.getValue(), AttributeModifier.Operation.ADD_NUMBER, getArmorSlot().toBukkit());
+            AttributeModifier mod = ItemFactory.createAttributeModifier("custom_mod_" + count++,
+                    entry.getValue(), AttributeModifier.Operation.ADD_NUMBER, getArmorSlot().toBukkit().getGroup());
             meta.addAttributeModifier(entry.getKey(), mod);
         }
         stack.setItemMeta(meta);

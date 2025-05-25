@@ -8,6 +8,7 @@ import be.isach.ultracosmetics.cosmetics.projectileeffects.ProjectileEffectChris
 import be.isach.ultracosmetics.cosmetics.projectileeffects.ProjectileEffectHelix;
 import be.isach.ultracosmetics.cosmetics.projectileeffects.ProjectileEffectNote;
 import be.isach.ultracosmetics.cosmetics.projectileeffects.ProjectileEffectRainbow;
+import be.isach.ultracosmetics.cosmetics.projectileeffects.ProjectileEffectRedstone;
 import be.isach.ultracosmetics.cosmetics.projectileeffects.ProjectileEffectRedstoneHelix;
 import be.isach.ultracosmetics.version.ServerVersion;
 import com.cryptomorin.xseries.XMaterial;
@@ -46,7 +47,7 @@ public class ProjectileEffectType extends CosmeticParticleType<ProjectileEffect>
         new ProjectileEffectType("FallingTears", 1, XParticle.FALLING_OBSIDIAN_TEAR, XMaterial.CRYING_OBSIDIAN, ProjectileEffectBasicTrail.class);
         new ProjectileEffectType("DarkHeart", 1, XParticle.DAMAGE_INDICATOR, XMaterial.WEEPING_VINES, ProjectileEffectBasicTrail.class);
 
-        new ProjectileEffectType("Redstone", 1, XParticle.DUST, XMaterial.REDSTONE, ProjectileEffectBasicTrail.class);
+        new ProjectileEffectType("Redstone", 1, XParticle.DUST, XMaterial.REDSTONE, ProjectileEffectRedstone.class);
         new ProjectileEffectType("Spark", 1, XParticle.FIREWORK, XMaterial.FIREWORK_ROCKET, ProjectileEffectBasicTrail.class);
         new ProjectileEffectType("SoulFireFlame", 1, XParticle.SOUL_FIRE_FLAME, XMaterial.SOUL_TORCH, ProjectileEffectBasicTrail.class);
         new ProjectileEffectType("Water", 1, XParticle.SPLASH, XMaterial.WATER_BUCKET, ProjectileEffectBasicTrail.class);

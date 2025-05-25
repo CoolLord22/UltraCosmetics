@@ -72,10 +72,10 @@ public final class MenuSuits extends CosmeticMenu<SuitType> {
     protected int getMaxPages(UltraPlayer player) {
         int i = 0;
         for (SuitCategory cat : SuitCategory.enabled()) {
-            if (player.canEquip(cat.getHelmet())
-                    || player.canEquip(cat.getChestplate())
-                    || player.canEquip(cat.getLeggings())
-                    || player.canEquip(cat.getBoots())) {
+            if (!shouldHideItem(player, cat.getHelmet())
+                    || !shouldHideItem(player, cat.getChestplate())
+                    || !shouldHideItem(player, cat.getLeggings())
+                    || !shouldHideItem(player, cat.getBoots())) {
                 i++;
             }
         }

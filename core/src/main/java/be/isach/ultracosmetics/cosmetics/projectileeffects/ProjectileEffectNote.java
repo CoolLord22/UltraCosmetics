@@ -9,18 +9,20 @@ import org.bukkit.entity.Projectile;
 
 import java.util.HashMap;
 import java.util.Map;
+import java.util.UUID;
 
 public class ProjectileEffectNote extends ProjectileEffectBasicTrail {
     private static final Sound SOUND = XSound.BLOCK_NOTE_BLOCK_HARP.get();
-    private final Map<Projectile, Integer> colors = new HashMap<>();
+    private final Map<UUID, Integer> colors = new HashMap<>();
 
     public ProjectileEffectNote(UltraPlayer owner, ProjectileEffectType type, UltraCosmetics ultraCosmetics) {
         super(owner, type, ultraCosmetics);
+        display.withExtra(1);
     }
 
     @Override
     public void showParticles(Projectile projectile) {
-        int color = colors.getOrDefault(projectile, 0);
+        int color = colors.getOrDefault(projectile.getUniqueId(), 0);
         display.withNoteColor(color).spawn(projectile.getLocation());
         // Magic function source: https://minecraft.fandom.com/wiki/Note_Block#Notes
         // I know there is an API for playing note block sounds,
@@ -30,11 +32,11 @@ public class ProjectileEffectNote extends ProjectileEffectBasicTrail {
         if (++color > 24) {
             color = 0;
         }
-        colors.put(projectile, color);
+        colors.put(projectile.getUniqueId(), color);
     }
 
     @Override
     public void projectileLanded(Projectile projectile) {
-        colors.remove(projectile);
+        colors.remove(projectile.getUniqueId());
     }
 }

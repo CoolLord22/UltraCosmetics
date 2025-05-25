@@ -23,7 +23,7 @@ import java.util.concurrent.ConcurrentLinkedQueue;
 public class SqlCache extends CosmeticsProfile {
     private final MySqlConnectionManager sql;
     private final Queue<Runnable> queue = new ConcurrentLinkedQueue<>();
-    private WrappedTask updateTask = null;
+    private volatile WrappedTask updateTask = null;
 
     public SqlCache(UltraPlayer ultraPlayer, UltraCosmetics ultraCosmetics) {
         super(ultraPlayer, ultraCosmetics);
@@ -126,14 +126,20 @@ public class SqlCache extends CosmeticsProfile {
      * @param update The function to run
      */
     private void queueUpdate(Runnable update) {
-        queue.add(update);
-        if (updateTask == null || updateTask.isCancelled()) {
-            updateTask = ultraCosmetics.getScheduler().runLaterAsync(() -> {
-                while (!queue.isEmpty()) {
-                    queue.poll().run();
-                }
-                updateTask.cancel();
-            }, 1); // 1 tick delay so that the queue can be filled before running
+        // Ensure we "lock" the queue while we're adding to it AND checking if the update task is running.
+        synchronized (queue) {
+            queue.add(update);
+            if (updateTask == null) {
+                updateTask = ultraCosmetics.getScheduler().runLaterAsync(() -> {
+                    // Process the whole queue and unset the update task while the queue is "locked".
+                    synchronized (queue) {
+                        while (!queue.isEmpty()) {
+                            queue.poll().run();
+                        }
+                        updateTask = null;
+                    }
+                }, 1); // 1 tick delay so that the queue can be filled before running
+            }
         }
     }
 }

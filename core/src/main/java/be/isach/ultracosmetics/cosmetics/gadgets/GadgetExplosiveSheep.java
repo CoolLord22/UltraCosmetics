@@ -36,8 +36,6 @@ import java.util.Set;
  */
 public class GadgetExplosiveSheep extends Gadget {
 
-    // I know 'sheeps' isn't the plural form of 'sheep' but it's funny
-    // and it distinguishes it from the local variables named 'sheep' (singular)
     private final Set<Sheep> sheeps = new HashSet<>();
     private WrappedTask sheepRemovalRunnable = null;
     private final XSound.SoundPlayer tickSound = XSound.BLOCK_NOTE_BLOCK_HAT.record().withVolume(1.4f).withPitch(1.5f).soundPlayer();
@@ -147,11 +145,13 @@ public class GadgetExplosiveSheep extends Gadget {
                 // Pathfinder requires the entity has been damaged by another entity
                 sheep.damage(1, player);
                 brain.getGoalAI().put(new PathfinderPanic(sheep, 2), 0);
+                GadgetExplosiveSheep.this.sheeps.add(sheep);
             }, getUltraCosmetics());
 
             sheepRemovalRunnable = getUltraCosmetics().getScheduler().runAtEntityLater(player, () -> {
                 for (Sheep sheep : sheeps.getEntities()) {
                     lava.spawn(sheep.getLocation());
+                    GadgetExplosiveSheep.this.sheeps.remove(sheep);
                 }
                 sheeps.removeEntities();
             }, 110);

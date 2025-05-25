@@ -169,7 +169,7 @@ public class TreasureChestManager implements Listener {
     public static boolean shouldPush(UltraPlayer chestOwner, Entity entity) {
         if (chestOwner.getBukkitPlayer() == entity || !(entity instanceof LivingEntity)) return false;
         if (entity instanceof ArmorStand && !((ArmorStand) entity).isVisible()) return false;
-        if (entity.hasMetadata("NPC")) return false;
+        if (entity.hasMetadata("NPC") || entity.hasMetadata("fake-player")) return false;
         if (chestOwner.getCurrentPet() != null && entity == chestOwner.getCurrentPet().getEntity()) return false;
         return true;
     }

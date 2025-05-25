@@ -54,7 +54,11 @@ public class UltraPlayerManager {
     }
 
     public boolean remove(Player player) {
-        return playerCache.remove(player.getUniqueId()) != null;
+        return remove(player.getUniqueId());
+    }
+
+    public boolean remove(UUID uuid) {
+        return playerCache.remove(uuid) != null;
     }
 
     public Collection<UltraPlayer> getUltraPlayers() {

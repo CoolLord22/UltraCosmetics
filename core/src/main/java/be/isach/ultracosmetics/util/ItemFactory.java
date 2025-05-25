@@ -233,6 +233,32 @@ public class ItemFactory {
         item.setItemMeta(itemMeta);
     }
 
+    @SuppressWarnings("UnstableApiUsage")
+    public static void setFlags(ItemStack item) {
+        ItemMeta meta = item.getItemMeta();
+        meta.addItemFlags(ItemFlag.values());
+        try {
+            meta.removeItemFlags(ItemFlag.valueOf("HIDE_LORE"));
+        } catch (IllegalArgumentException e) {
+            // ignored
+        }
+        if (!meta.hasAttributeModifiers()) {
+            AttributeModifier modifier = createAttributeModifier("itemflags", 0, AttributeModifier.Operation.ADD_NUMBER, EquipmentSlotGroup.MAINHAND);
+            meta.addAttributeModifier(Attribute.GENERIC_KNOCKBACK_RESISTANCE, modifier);
+        }
+        item.setItemMeta(meta);
+    }
+
+    @SuppressWarnings({"UnstableApiUsage", "removal"})
+    public static AttributeModifier createAttributeModifier(String modName, double amount, AttributeModifier.Operation operation, EquipmentSlotGroup slots) {
+        NamespacedKey key = new NamespacedKey(UltraCosmeticsData.get().getPlugin(), modName);
+        try {
+            return new AttributeModifier(key, amount, operation, slots);
+        } catch (NoSuchMethodError error) {
+            return new AttributeModifier(UUID.randomUUID(), key.toString(), amount, operation, slots);
+        }
+    }
+
     public static boolean haveSameName(ItemStack a, ItemStack b) {
         if (a.hasItemMeta() && b.hasItemMeta()) {
             if (a.getItemMeta().hasDisplayName() && b.getItemMeta().hasDisplayName()) {

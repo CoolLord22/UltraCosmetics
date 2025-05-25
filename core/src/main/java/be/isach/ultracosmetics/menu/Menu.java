@@ -16,7 +16,6 @@ import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
 import org.bukkit.event.inventory.InventoryClickEvent;
 import org.bukkit.inventory.Inventory;
-import org.bukkit.inventory.ItemFlag;
 import org.bukkit.inventory.ItemStack;
 import org.bukkit.inventory.meta.ItemMeta;
 import org.bukkit.permissions.Permission;
@@ -140,8 +139,8 @@ public abstract class Menu implements Listener {
     protected void putItem(Inventory inventory, int slot, Button button, UltraPlayer ultraPlayer) {
         ItemStack itemStack = button.getDisplayItem(ultraPlayer);
         if (itemStack.hasItemMeta()) {
+            ItemFactory.setFlags(itemStack);
             ItemMeta itemMeta = itemStack.getItemMeta();
-            itemMeta.addItemFlags(ItemFlag.values());
             if (itemMeta.hasLore() && ultraCosmetics.getPlaceholderHook() != null) {
                 Player player = ultraPlayer.getBukkitPlayer();
                 List<String> loreList = itemMeta.getLore();

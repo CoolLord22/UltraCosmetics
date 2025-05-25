@@ -50,7 +50,6 @@ Emotes:
 #     Frog: frog type (controls color) options are (COLD, TEMPERATE, WARM)
 #     Goat: left horn, right horn, and screaming, (true/false separated by ':') for example a screaming goat with no horns would be "false,false,true"
 #     Horse: color and style, separated by ':'. Options for color are (BLACK, BROWN, CHESTNUT, CREAMY, DARK_BROWN, GRAY, WHITE), options for style are (BLACK_DOTS, NONE, WHITE, WHITE_DOTS, WHITEFIELD)
-#     Iron Golem: held item, options are any item with optional custom model data separated by ':'
 #     Cat: style, options are (ALL_BLACK, BLACK, BRITISH_SHORTHAIR, CALICO, JELLIE, PERSIAN, RAGDOLL, RED, SIAMESE, TABBY, WHITE)
 #     Llama: color and optionally carpet, separated by ':', color options are (BROWN, CREAMY, GRAY, WHITE) and carpet options are technically any valid block, but carpets are standard.
 #     Mooshroom: variant, options are (BROWN, RED)
@@ -65,7 +64,6 @@ Emotes:
 #       type: AXOLOTL
 #       item: AXOLOTL_BUCKET
 #       customization: BLUE
-
 Pets:
 
 # Format for suits:

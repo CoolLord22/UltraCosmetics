@@ -57,7 +57,7 @@ public class InsertQuery {
      */
     public void execute() {
         // This happens regularly during migration.
-        if (inserts.size() == 0) {
+        if (inserts.isEmpty()) {
             UltraCosmeticsData.get().getPlugin().getSmartLogger().write(
                     "Skipping query to " + table.getClass().getSimpleName() + " as no values were specified.");
             return;

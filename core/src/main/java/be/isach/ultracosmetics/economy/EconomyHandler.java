@@ -74,7 +74,6 @@ public class EconomyHandler {
             if (!section.isDouble(key)) continue;
             discounts.add(new Discount(key, section.getDouble(key)));
         }
-        Bukkit.getLogger().info("Loaded " + discounts.size() + " discount groups.");
         Collections.sort(discounts);
     }
 
