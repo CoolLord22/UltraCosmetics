@@ -22,12 +22,8 @@ import org.bukkit.inventory.meta.ItemMeta;
 import org.bukkit.permissions.Permission;
 import org.bukkit.permissions.PermissionDefault;
 
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
+import java.util.*;
 import java.util.Map.Entry;
-import java.util.Set;
 
 /**
  * Represents a Menu. A menu can have multiple pages in case of cosmetics.
@@ -38,6 +34,27 @@ import java.util.Set;
  */
 public abstract class Menu implements Listener {
     public static final Permission ALL_MENUS_PERMISSION = registerAllPermission();
+
+    private static final Set<Integer> VALID_VALUES = new HashSet<>();
+
+    static {
+        // Add individual values
+        int[] singleValues = {9, 18, 27, 36, 17, 26, 35, 44};
+        for (int v : singleValues) {
+            VALID_VALUES.add(v);
+        }
+
+        // Add ranges
+        addRange(0, 8);
+        addRange(45, 48);
+        addRange(50, 53);
+    }
+
+    private static void addRange(int start, int end) {
+        for (int i = start; i <= end; i++) {
+            VALID_VALUES.add(i);
+        }
+    }
 
     private static Permission registerAllPermission() {
         Permission perm = Bukkit.getPluginManager().getPermission("ultracosmetics.menu.all");
@@ -146,8 +163,10 @@ public abstract class Menu implements Listener {
     protected void fillInventory(Inventory inventory) {
         if (!fillEmpty) return;
         for (int i = 0; i < inventory.getSize(); i++) {
-            if (inventory.getItem(i) == null || inventory.getItem(i).getType() == Material.AIR) {
-                inventory.setItem(i, fillerItem);
+            if (VALID_VALUES.contains(i)) {
+                if (inventory.getItem(i) == null || inventory.getItem(i).getType() == Material.AIR) {
+                    inventory.setItem(i, fillerItem);
+                }
             }
         }
     }

@@ -90,10 +90,10 @@ public abstract class CosmeticMenu<T extends CosmeticType<?>> extends Menu {
         }
 
         if (page > 1) {
-            putItem(inventory, getSize() - 18, new PreviousPageButton(), player);
+            putItem(inventory, getSize() - 17, new PreviousPageButton(), player);
         }
         if (page < maxPages) {
-            putItem(inventory, getSize() - 10, new NextPageButton(), player);
+            putItem(inventory, getSize() - 11, new NextPageButton(), player);
         }
 
         putItem(inventory, inventory.getSize() - 5, new ClearCosmeticButton(category), player);
