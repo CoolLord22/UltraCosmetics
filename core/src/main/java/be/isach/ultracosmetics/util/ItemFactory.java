@@ -19,6 +19,7 @@ import org.bukkit.Color;
 import org.bukkit.Location;
 import org.bukkit.Material;
 import org.bukkit.NamespacedKey;
+import org.bukkit.attribute.Attribute;
 import org.bukkit.attribute.AttributeModifier;
 import org.bukkit.configuration.ConfigurationSection;
 import org.bukkit.enchantments.Enchantment;
@@ -310,15 +311,15 @@ public class ItemFactory {
     }
 
     public static ItemStack hideAttributes(ItemStack itemstack) {
-        ItemMeta itemMeta = itemstack.getItemMeta();
-        if(itemMeta != null) {
+        ItemMeta meta = itemstack.getItemMeta();
+        if(meta != null) {
             for (Attribute attribute : Attribute.values()) {
-                itemMeta.removeAttributeModifier(attribute);
+                meta.removeAttributeModifier(attribute);
             }
-            itemMeta.addAttributeModifier(Attribute.GENERIC_KNOCKBACK_RESISTANCE, new AttributeModifier(NamespacedKey.minecraft("generic.knockback_resistance"), 0.0, AttributeModifier.Operation.ADD_NUMBER, EquipmentSlotGroup.ANY));
-            itemMeta.addItemFlags(ItemFlag.HIDE_ATTRIBUTES);
+            AttributeModifier modifier = createAttributeModifier("itemflags", 0, AttributeModifier.Operation.ADD_NUMBER, EquipmentSlot.HAND);
+            meta.addAttributeModifier(XAttribute.KNOCKBACK_RESISTANCE.get(), modifier);
         }
-        itemstack.setItemMeta(itemMeta);
+        itemstack.setItemMeta(meta);
         return itemstack;
     }
 }
