@@ -524,10 +524,8 @@ public class UltraPlayer {
         int slot = section.getInt("Slot");
         ItemStack slotItem = getBukkitPlayer().getInventory().getItem(slot);
         ItemStack menuItem = ItemFactory.getMenuItem();
-        if (slotItem != null) {
-            if (!slotItem.isSimilar(menuItem)) {
-                getBukkitPlayer().getWorld().dropItemNaturally(getBukkitPlayer().getLocation(), slotItem);
-            }
+        if (slotItem != null && !ItemFactory.isSimilar(slotItem, menuItem)) {
+            getBukkitPlayer().getWorld().dropItemNaturally(getBukkitPlayer().getLocation(), slotItem);
         }
         getBukkitPlayer().getInventory().setItem(slot, menuItem);
     }
@@ -538,7 +536,7 @@ public class UltraPlayer {
     public void removeMenuItem() {
         if (!menuItemEnabled || getBukkitPlayer() == null) return;
         ItemStack menuItem = ItemFactory.getMenuItem();
-        PlayerUtils.removeItems(getBukkitPlayer(), menuItem::isSimilar);
+        PlayerUtils.removeItems(getBukkitPlayer(), i -> ItemFactory.isSimilar(i, menuItem));
     }
 
     public void sendMessage(String message) {

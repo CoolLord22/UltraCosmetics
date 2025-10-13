@@ -20,7 +20,6 @@ import org.bukkit.entity.*;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.entity.EntityCombustEvent;
 import org.bukkit.event.entity.EntityDamageByEntityEvent;
-import org.bukkit.event.entity.EntityPortalEvent;
 import org.bukkit.event.player.PlayerInteractEntityEvent;
 import org.bukkit.event.player.PlayerTeleportEvent;
 import org.bukkit.event.vehicle.VehicleEnterEvent;
@@ -175,7 +174,7 @@ public class Pet extends EntityCosmetic<PetType, Mob> implements Updatable {
         // Teleporting an entity across worlds seems to internally remove and re-add
         // the entity anyway, so we do it manually to keep pathfinders working correctly.
         if (entity.getWorld() != getPlayer().getWorld()) {
-            entity.remove();
+            removeEntity();
             initializeEntity();
         }
 
@@ -185,15 +184,13 @@ public class Pet extends EntityCosmetic<PetType, Mob> implements Updatable {
     @Override
     protected void onClear() {
         // Remove Armor Stand.
-        if (armorStand != null) {
-            armorStand.remove();
-        }
+        removeEntitySafe(armorStand);
 
         // Remove Pet Entity.
         removeEntity();
 
         // Remove items.
-        items.stream().filter(Entity::isValid).forEach(Entity::remove);
+        items.stream().filter(Entity::isValid).forEach(this::removeEntitySafe);
 
         // Clear items.
         items.clear();
@@ -262,7 +259,7 @@ public class Pet extends EntityCosmetic<PetType, Mob> implements Updatable {
         Vector velocity = new Vector(RANDOM.nextDouble() - 0.5, RANDOM.nextDouble() / 2.0 + 0.3, RANDOM.nextDouble() - 0.5).multiply(0.4);
         final Item drop = ItemFactory.spawnUnpickableItem(dropItem, ((LivingEntity) entity).getEyeLocation(), velocity);
         items.add(drop);
-        getUltraCosmetics().getScheduler().runAtEntityLater(getPlayer(), () -> {
+        getUltraCosmetics().getScheduler().runAtEntityLater(drop, () -> {
             drop.remove();
             items.remove(drop);
         }, 5);
@@ -286,14 +283,6 @@ public class Pet extends EntityCosmetic<PetType, Mob> implements Updatable {
         if (event.getPlayer() == getPlayer() && event.getFrom().getWorld() == event.getTo().getWorld()) {
             getUltraCosmetics().getScheduler().teleportAsync(entity, event.getTo());
             invalidBypassTicks = 20;
-        }
-    }
-
-    // Going through portals seems to break pathfinders
-    @EventHandler
-    public void onPortal(EntityPortalEvent event) {
-        if (event.getEntity() == getEntity()) {
-            event.setCancelled(true);
         }
     }
 

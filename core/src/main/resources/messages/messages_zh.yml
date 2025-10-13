@@ -1141,7 +1141,7 @@ Hats:
   Unequip: <prefix> <blue>你取下了 <hatname> </blue><blue>头饰！
   Astronaut:
     Name: <bold><gray>宇航员
-    Description: 休斯顿，我们遇到了个问题
+    Description: 休斯顿，我们遇到了一个问题...
   Scared:
     Name: <bold><dark_red>惊吓
     Description: 天呐，那个吓到我了！
@@ -1854,4 +1854,4 @@ Must-Remove:
 Use-Rename-Pet-Command: <prefix> <red>请输入命令 <yellow>/uc rename</yellow> 重命名实体
 Commands-Disabled-During-Chest: <prefix> <bold><red>打开箱子时你不能使用命令!
 No-Buy-Key-Permission: <prefix> <red><bold>你没有权限购买宝藏钥匙!
-Particles-Minimal-In-Client: <yellow>You have particles set to "minimal" in your client settings and so you won't be able to see particles.
+Particles-Minimal-In-Client: <yellow>检测到你的客户端将粒子效果设置为了“最小”，你可能无法看见粒子效果。

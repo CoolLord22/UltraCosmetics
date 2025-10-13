@@ -214,16 +214,18 @@ public class UltraCosmeticsData {
         return null;
     }
 
+    @SuppressWarnings("deprecation")
     protected boolean checkMappingsVersion(ServerVersion version) {
         if (version.getMappingsVersion() == null) return true;
-        String currentMappingsVersion = null;
-        @SuppressWarnings("deprecation")
+        String currentMappingsVersion;
         Object magicNumbers = Bukkit.getUnsafe();
         Class<?> magicNumbersClass = magicNumbers.getClass();
         try {
             Method mappingsVersionMethod = magicNumbersClass.getDeclaredMethod("getMappingsVersion");
             currentMappingsVersion = (String) mappingsVersionMethod.invoke(magicNumbers);
-        } catch (ReflectiveOperationException ignored) {
+        } catch (ReflectiveOperationException ex) {
+            // Paper doesn't support this so we just hope for the best in that case
+            return true;
         }
         return currentMappingsVersion.equals(version.getMappingsVersion());
     }

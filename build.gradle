@@ -12,7 +12,7 @@ allprojects {
     idea.module.downloadSources = true
 
     group = 'be.isach.UltraCosmetics'
-    version = '3.11.1-CUSTOM'
+    version = '3.13.1-CUSTOM'
 
     tasks.withType(JavaCompile) {
         options.encoding = 'UTF-8'
@@ -83,7 +83,10 @@ dependencies {
 subprojects { subproj ->
     repositories {
         mavenLocal()
-        mavenCentral()
+        // mavenCentral()
+        // Instead of real maven central we use the maven mirror Paper uses, to ensure all the dependencies we want will
+        // also be available to the library loader.
+        maven { url = 'https://maven-central.storage-download.googleapis.com/maven2/' }
 
         // AnvilGUI, Treasury
         maven { url = 'https://repo.codemc.io/repository/maven-snapshots/' }
@@ -169,4 +172,62 @@ abstract class VersionedObfTask extends DefaultTask {
 tasks.register('obfuscate') {
     dependsOn tasks.withType(VersionedObfTask)
     group = 'jar preparation'
+}
+
+boolean isDependencyInstalled(String version) {
+    def path = "${System.getProperty("user.home")}/.m2/repository/" +
+            "org/spigotmc/spigot/${version}/spigot-${version}.jar"
+    return file(path).exists()
+}
+
+def getAllDependencies() {
+    def deps = [] as Set
+    subprojects.findAll(it -> it.hasProperty("remapMcVersion")).each { proj ->
+        deps << new Tuple2(proj.property("remapMcVersion") + "-R0.1-SNAPSHOT", proj.property("javaVersion"))
+    }
+    return deps
+}
+
+gradle.projectsEvaluated {
+    def sourceDeps = getAllDependencies()
+
+    def buildtoolsJar = new File("${projectDir}/build/BuildTools.jar")
+    def btDownload = tasks.register('getBuildTools') {
+        group = "build setup"
+        description = "Download BuildTools for building dependencies"
+        onlyIf { !buildtoolsJar.exists() }
+        doLast {
+            buildtoolsJar.parentFile.mkdirs()
+            new URL('https://hub.spigotmc.org/jenkins/job/BuildTools/lastSuccessfulBuild/artifact/target/BuildTools.jar')
+                    .withInputStream { i -> buildtoolsJar.withOutputStream { it << i } }
+        }
+    }
+
+    def prepareDeps = tasks.register("prepareDependencies") {
+        group = "build setup"
+        description = "Install any missing Spigot versions required for building"
+    }
+
+    sourceDeps.each { dep ->
+        def taskName = "installSpigot_${dep[0].split("-")[0]}"
+        def installTask = tasks.register(taskName, JavaExec) {
+            group = "build setup"
+            description = "Installs Spigot ${dep[0].split("-")[0]} to mavenLocal"
+            javaLauncher = javaToolchains.launcherFor {
+                languageVersion = JavaLanguageVersion.of(dep[1])
+            }
+            workingDir = "${projectDir}/build"
+            classpath = files(buildtoolsJar)
+            args = ["--rev", dep[0].split("-")[0], "--remapped"]
+            standardOutput = System.out
+            errorOutput = System.err
+            ignoreExitValue = false
+            dependsOn btDownload
+        }
+
+        if (!isDependencyInstalled(dep[0])) {
+            // Add this subtask as a dependency of the parent task
+            prepareDeps.get().dependsOn(installTask)
+        }
+    }
 }

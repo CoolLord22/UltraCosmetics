@@ -56,7 +56,7 @@ public abstract class ParticleEffect extends Cosmetic<ParticleEffectType> implem
 
     @Override
     protected void scheduleTask() {
-        task = getUltraCosmetics().getScheduler().runTimerAsync(this::run, 0, getType().getRepeatDelay());
+        task = getUltraCosmetics().getScheduler().runTimerAsync(this::run, 1, getType().getRepeatDelay());
     }
 
     protected boolean locEquals(Location a, Location b) {

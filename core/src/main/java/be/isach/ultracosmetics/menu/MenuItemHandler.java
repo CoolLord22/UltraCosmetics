@@ -7,6 +7,7 @@ import be.isach.ultracosmetics.player.UltraPlayerManager;
 import be.isach.ultracosmetics.util.InventoryViewHelper;
 import be.isach.ultracosmetics.util.ItemFactory;
 import be.isach.ultracosmetics.util.UnmovableItemProvider;
+import org.bukkit.Material;
 import org.bukkit.entity.Player;
 import org.bukkit.event.block.Action;
 import org.bukkit.event.inventory.InventoryType;
@@ -34,7 +35,7 @@ public class MenuItemHandler implements UnmovableItemProvider {
 
     @Override
     public boolean itemMatches(ItemStack stack) {
-        return menuItem.isSimilar(stack);
+        return ItemFactory.isSimilar(menuItem, stack);
     }
 
     @Override
@@ -52,8 +53,9 @@ public class MenuItemHandler implements UnmovableItemProvider {
         PlayerInventory inv = player.getInventory();
         // If there's something in the menu item slot, move it to
         // where the menu item was before and clear the menu item slot.
-        if (inv.getItem(this.slot) != null) {
-            inv.setItem(slot, inv.getItem(this.slot));
+        ItemStack current = inv.getItem(this.slot);
+        if (current != null && current.getType() != Material.AIR) {
+            inv.setItem(slot, current);
             inv.setItem(this.slot, null);
         }
         pm.getUltraPlayer(player).giveMenuItem();

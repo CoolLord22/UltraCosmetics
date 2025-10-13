@@ -234,7 +234,7 @@ public class PetType extends CosmeticEntType<Pet> {
                 continue;
             }
             MessageManager.addMessage(Category.PETS.getConfigPath() + "." + key + ".menu-name", key);
-            MessageManager.addMessage(Category.PETS.getConfigPath() + "." + key + ".entity-displayname", "&l%playername%'s " + key);
+            MessageManager.addMessage(Category.PETS.getConfigPath() + "." + key + ".entity-displayname", "<bold><playername>'s " + key);
             MessageManager.addMessage(Category.PETS.getConfigPath() + "." + key + ".Description", "A custom pet!");
             new PetType(key, mat.get(), type, PET_MAP.get(type), pet.getString("customization"));
         }

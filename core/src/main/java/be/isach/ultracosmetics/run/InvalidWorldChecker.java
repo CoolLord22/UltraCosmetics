@@ -42,6 +42,6 @@ public class InvalidWorldChecker extends UltraTask {
 
     @Override
     public void schedule() {
-        task = getScheduler().runTimer(this::run, 0, 5);
+        task = getScheduler().runTimer(this::run, 1, 5);
     }
 }

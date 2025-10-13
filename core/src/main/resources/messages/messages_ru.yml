@@ -1153,7 +1153,7 @@ Hats:
   Unequip: <prefix> <blue>Вы сняли <hatname> </blue><blue>шапку!
   Astronaut:
     Name: <bold><gray>Астронавт
-    Description: Хьюстон, у нас проблема.
+    Description: Хьюстон, у нас проблема...
   Scared:
     Name: <bold><dark_red>Напуганный
     Description: О боже, это напугало меня!

@@ -37,6 +37,7 @@ import be.isach.ultracosmetics.util.InventoryViewHelper;
 import be.isach.ultracosmetics.util.PermissionPrinter;
 import be.isach.ultracosmetics.util.PlayerUtils;
 import be.isach.ultracosmetics.util.Problem;
+import be.isach.ultracosmetics.util.ProblemSeverity;
 import be.isach.ultracosmetics.util.SmartLogger;
 import be.isach.ultracosmetics.util.SmartLogger.LogLevel;
 import be.isach.ultracosmetics.util.UpdateManager;
@@ -184,7 +185,7 @@ public class UltraCosmetics extends JavaPlugin {
 
         Problem problem = UltraCosmeticsData.get().checkServerVersion();
         if (problem != null) {
-            if (problem.isSevere()) {
+            if (problem.getSeverity() == ProblemSeverity.FATAL) {
                 loadTimeProblems.add(problem);
                 return;
             }
@@ -318,9 +319,8 @@ public class UltraCosmetics extends JavaPlugin {
         // Register Listeners.
         registerListeners();
 
-        if (UltraCosmeticsData.get().getServerVersion().isAtLeast(ServerVersion.v1_20)) {
-            // Commodore didn't have a new enough version of ASM to load Java 21 classes until 1.20
-            loadPaperSupport();
+        if (!loadPaperSupport()) {
+            paperSupport = new DummyPaperSupport();
         }
 
         // Set up Cosmetics config.
@@ -344,6 +344,12 @@ public class UltraCosmetics extends JavaPlugin {
                 } catch (NoSuchMethodError | NoClassDefFoundError ignored) {
                 }
             }
+        }
+
+        if (!UltraCosmeticsData.get().isMobChipAvailable()) {
+            getSmartLogger().write();
+            getSmartLogger().write("MobChip does not support this version of Minecraft, pets will be disabled.");
+            activeProblems.add(Problem.MOBCHIP_ERROR);
         }
 
         if (Bukkit.getPluginManager().isPluginEnabled("PlaceholderAPI")) {
@@ -428,16 +434,21 @@ public class UltraCosmetics extends JavaPlugin {
         enableFinished = true;
     }
 
-    private void loadPaperSupport() {
+    private boolean loadPaperSupport() {
+        if (!UltraCosmeticsData.get().getServerVersion().isAtLeast(ServerVersion.v1_20)) {
+            // Commodore didn't have a new enough version of ASM to load Java 21 classes until 1.20
+            return false;
+        }
         try {
             paperSupport = Class.forName("be.isach.ultracosmetics.paper.PaperSupportImpl").asSubclass(PaperSupport.class).getDeclaredConstructor().newInstance();
             getSmartLogger().write("Paper-specific features enabled");
+            return true;
         } catch (ReflectiveOperationException | UnsupportedClassVersionError | IllegalArgumentException e) {
             // ReflectiveOperationException shouldn't happen
             // UnsupportedClassVersionError is thrown when server is running on a version below Java 21
             // IllegalArgumentException is also thrown when the server is running on a version below Java 21
             // and CraftBukkit tries to process it.
-            paperSupport = new DummyPaperSupport();
+            return false;
         }
     }
 
@@ -714,6 +725,15 @@ public class UltraCosmetics extends JavaPlugin {
     }
 
     /**
+     * Get the instance of FoliaLib used by the plugin
+     *
+     * @return the instance of FoliaLib
+     */
+    public FoliaLib getFoliaLib() {
+        return foliaLib;
+    }
+
+    /**
      * Get a platform-agnostic scheduler.
      *
      * @return the scheduler.
@@ -924,7 +944,7 @@ public class UltraCosmetics extends JavaPlugin {
 
     public Set<Problem> getSevereProblems() {
         Set<Problem> severe = new HashSet<>(activeProblems);
-        severe.removeIf(p -> !p.isSevere());
+        severe.removeIf(p -> p.getSeverity() != ProblemSeverity.FATAL);
         return severe;
     }
 

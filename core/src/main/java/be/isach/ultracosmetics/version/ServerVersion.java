@@ -13,7 +13,7 @@ public enum ServerVersion {
     v1_18(18, 2),
     v1_19(19, 4),
     v1_20(20, 6, "ee13f98a43b9c5abffdcc0bb24154460", 4),
-    v1_21(21, 5, "7ecad754373a5fbc43d381d7450c53a5", 4),
+    v1_21(21, 8, "98b42190c84edaa346fd96106ee35d6f", 5),
     NEW("???"),
     ;
 

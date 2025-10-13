@@ -24,7 +24,7 @@ public class Suit extends ArmorCosmetic<SuitType> {
     @Override
     protected void scheduleTask() {
         if (isAsync()) {
-            task = getUltraCosmetics().getScheduler().runTimerAsync(this::run, 0, 1);
+            task = getUltraCosmetics().getScheduler().runTimerAsync(this::run, 1, 1);
         } else {
             // Default implementation is sync
             super.scheduleTask();

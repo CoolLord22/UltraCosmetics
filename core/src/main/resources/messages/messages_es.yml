@@ -1153,7 +1153,7 @@ Hats:
   Unequip: '<prefix> <blue>Desequipaste el sombrero: <hatname>'
   Astronaut:
     Name: <bold><gray>Astronauta
-    Description: Houston, tenemos un problema.
+    Description: Houston, tenemos un problema...
   Scared:
     Name: <bold><dark_red>Asustado
     Description: Oh gawd, eso me asusto!

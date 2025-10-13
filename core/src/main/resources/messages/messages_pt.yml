@@ -425,14 +425,14 @@ Mounts:
     Description: O seu normal, cavalo do dia a dia
   Donkey:
     menu-name: <bold><dark_gray>Burro
-    entity-displayname: <bold><playername>'s Donkey
+    entity-displayname: <bold>Burro de <playername>
     Description: O seu normal, burro do dia a dia
   Mule:
     menu-name: <bold><dark_gray>Mula
-    entity-displayname: <bold><playername>'s Mule
+    entity-displayname: <bold>Mula de <playername>
     Description: A sua normal, mula do dia a dia
   Pig:
-    menu-name: <bold><light_purple>Pig
+    menu-name: <bold><light_purple>Porco
     entity-displayname: <bold>Porco de <playername>
     Description: Oink!
     Held-Item-Lore: <italic><gray>Comida do Strider em uma vara!
@@ -634,24 +634,24 @@ Pets:
     Description: Hmmmmmmmmm
   Bat:
     menu-name: <bold><dark_gray>Morcego
-    entity-displayname: <bold><playername>'s Bat
-    Description: I prefer dark areas
+    entity-displayname: <bold>Morcego de <playername>
+    Description: Prefiro áreas escuras
   PolarBear:
     menu-name: <bold><aqua>Urso Polar
-    entity-displayname: <bold><playername>'s Polar Bear
+    entity-displayname: <bold>Urso Polar de <playername>
     Description: Eu prefiro áreas geladas
   Llama:
     menu-name: <bold><gray>Lhama
-    entity-displayname: <bold><playername>'s Llama
-    Description: Need me to carry anything?
+    entity-displayname: <bold>Lhama de <playername>
+    Description: Precisa de mim para carregar algo?
   Parrot:
-    menu-name: <bold><green>Parrot
-    entity-displayname: <bold><playername>'s Parrot
-    Description: Polly want a cracker?
+    menu-name: <bold><green>Papagaio
+    entity-displayname: <bold>Papagaio de <playername>
+    Description: Louro quer biscoito?
   Vex:
     menu-name: <bold><gray>Vex
-    entity-displayname: <bold><playername>'s Vex
-    Description: YAAHH Ehehhehe!
+    entity-displayname: <bold>Vex de <playername>
+    Description: AAHH Hehehehe!
   Panda:
     menu-name: <bold><green>Panda
     entity-displayname: <bold>Panda de <playername>
@@ -721,36 +721,36 @@ Pets:
     entity-displayname: <bold>Allay de <playername>
     Description: Um novo amigo!
   Cod:
-    menu-name: <bold><gray>Cod
-    entity-displayname: <bold><playername>'s Cod
-    Description: Prefers water over land!
+    menu-name: <bold><gray>Bacalhau
+    entity-displayname: <bold>Bacalhau de <playername>
+    Description: Gosta mais de água do que de terra!
   Donkey:
-    menu-name: <bold><gray>Donkey
-    entity-displayname: <bold><playername>'s Donkey
-    Description: Can carry all your stuff!
+    menu-name: <bold><gray>Burro
+    entity-displayname: <bold>Burro de <playername>
+    Description: Pode carregar todas as suas coisas!
   GlowSquid:
-    menu-name: <bold><dark_aqua>Glow Squid
-    entity-displayname: <bold><playername>'s Glow Squid
-    Description: It glows!
+    menu-name: <bold><dark_aqua>
+    entity-displayname: <bold>Lula Brilhante de <playername>
+    Description: Está brilhando!
   Mule:
-    menu-name: <bold><gray>Mule
-    entity-displayname: <bold><playername>'s Mule
-    Description: Basically a donkey!
+    menu-name: <bold><gray>Mula
+    entity-displayname: <bold>Mula de <playername>
+    Description: Basicamente, um burro!
   Pufferfish:
-    menu-name: <bold><yellow>Pufferfish
-    entity-displayname: <bold><playername>'s Pufferfish
-    Description: Doesn't like to be touched!
+    menu-name: <bold><yellow>Baiacu
+    entity-displayname: <bold>Baiacu de <playername>
+    Description: Não gosta de ser tocado!
   Ocelot:
     menu-name: <bold><yellow>Ocelot
-    entity-displayname: <bold><playername>'s Ocelot
-    Description: Watch out...they're pretty shy!
+    entity-displayname: <bold>Jaguatirica de <playername>
+    Description: Cuidado... eles são muito tímidos!
   Salmon:
-    menu-name: <bold><red>Salmon
-    entity-displayname: <bold><playername>'s Salmon
+    menu-name: <bold><red>Salmão
+    entity-displayname: <bold>Salmão de <playername>
     Description: Eles são muito saborosos!
   SkeletonHorse:
-    menu-name: <bold><white>Skeleton Horse
-    entity-displayname: <bold><playername>'s Skeleton Horse
+    menu-name: <bold><white>Cavalo Esqueleto
+    entity-displayname: <bold>Cavalo Esqueleto de <playername>
     Description: Cuidado com relâmpagos!
   Squid:
     menu-name: <bold><black>Lula
@@ -765,96 +765,96 @@ Pets:
     entity-displayname: <bold>Girino de <playername>
     Description: Vai crescer e se tornar um sapo!
   TropicalFish:
-    menu-name: <bold><yellow>Tropical Fish
-    entity-displayname: <bold><playername>'s Tropical Fish
-    Description: A colorful fish!
+    menu-name: <bold><yellow>Peixe Tropical
+    entity-displayname: <bold>Peixe Tropical de <playername>
+    Description: Um peixe colorido!
   Turtle:
-    menu-name: <bold><dark_green>Turtle
-    entity-displayname: <bold><playername>'s Turtle
-    Description: Some of them get over 150 years old!
+    menu-name: <bold><dark_green>Tartaruga
+    entity-displayname: <bold>Tartaruga de <playername>
+    Description: Algumas delas passam de 150 anos!
   WanderingTrader:
-    menu-name: <bold><dark_blue>Wandering Trader
-    entity-displayname: <bold><playername>'s Wandering Trader
-    Description: Wanders around trying to sell his stuff!
+    menu-name: <bold><dark_blue>Vendedor Ambulante
+    entity-displayname: <bold>Vendedor Ambulante de <playername>
+    Description: Tentando vender suas coisas por aí!
   CaveSpider:
-    menu-name: <bold><dark_green>Cave Spider
-    entity-displayname: <bold><playername>'s Cave Spider
-    Description: A spider, but poisonous!
+    menu-name: <bold><dark_green>Aranha das Cavernas
+    entity-displayname: <bold>Aranha das Cavernas de <playername>
+    Description: Uma aranha, mas venenosa!
   Dolphin:
-    menu-name: <bold><aqua>Dolphin
-    entity-displayname: <bold><playername>'s Dolphin
-    Description: The happiest creature of the seas!
+    menu-name: <bold><aqua>
+    entity-displayname: <bold>Golfinho de <playername>
+    Description: A criatura mais feliz dos mares!
   Spider:
     menu-name: <bold><dark_gray>Aranha
     entity-displayname: <bold>Aranha de <playername>
-    Description: Your friendly neighborhood spider!
+    Description: Sua aranha amigável do bairro!
   ZombifiedPiglin:
-    menu-name: <bold><light_purple>Zombified Piglin
-    entity-displayname: <bold><playername>'s Zombified Piglin
-    Description: Attack it and all of them will be after you!
+    menu-name: <bold><light_purple>Piglin-zumbi
+    entity-displayname: <bold>Piglin-zumbi de <playername>
+    Description: Ataque-o e todos eles estarão atrás de você!
   Drowned:
     menu-name: <bold><dark_aqua>Afogado
     entity-displayname: <bold>Afogado de <playername>
-    Description: An underwater zombie!
+    Description: Um zumbi subaquático!
   ElderGuardian:
-    menu-name: <bold><dark_aqua>Elder Guardian
-    entity-displayname: <bold><playername>'s Elder Guardian
-    Description: Guards ancient temples!
+    menu-name: <bold><dark_aqua>Guardião-mestre
+    entity-displayname: <bold>Guardião-mestre de <playername>
+    Description: Protege templos antigos!
   Endermite:
     menu-name: <bold><dark_purple>Endermite
-    entity-displayname: <bold><playername>'s Endermite
-    Description: Attracts Endermen!
+    entity-displayname: <bold>Endermite de <playername>
+    Description: Atrai os Endermans!
   Evoker:
-    menu-name: <bold><gray>Evoker
-    entity-displayname: <bold><playername>'s Evoker
-    Description: Summons Vexes for a living!
+    menu-name: <bold><gray>Invocador
+    entity-displayname: <bold>Invocador de <playername>
+    Description: Invoca Vexes para ganhar a vida!
   Ghast:
     menu-name: <bold><white>Ghast
-    entity-displayname: <bold><playername>'s Ghast
-    Description: '*Demonic screaming*'
+    entity-displayname: <bold>Ghast de <playername>
+    Description: '*Gritos demoníacos*'
   Guardian:
-    menu-name: <bold><dark_aqua>Guardian
-    entity-displayname: <bold><playername>'s Guardian
-    Description: Hates squids!
+    menu-name: <bold><dark_aqua>Guardião
+    entity-displayname: <bold>Guardião de <playername>
+    Description: Odeia lulas!
   Hoglin:
     menu-name: <bold><red>Hoglin
-    entity-displayname: <bold><playername>'s Hoglin
-    Description: A pig, but in angry.
+    entity-displayname: <bold>Hoglin de <playername>
+    Description: Um porco, mas com raiva.
   Husk:
-    menu-name: <bold><yellow>Husk
-    entity-displayname: <bold><playername>'s Husk
-    Description: A zombie, but sandy.
+    menu-name: <bold><yellow>Zumbi-múmia
+    entity-displayname: <bold>Zumbi-múmia de <playername>
+    Description: Um zumbi, mas arenoso.
   MagmaCube:
-    menu-name: <bold><dark_red>Magma Cube
-    entity-displayname: <bold><playername>'s Magma Cube
-    Description: A very hot cube!
+    menu-name: <bold><dark_red>
+    entity-displayname: <bold>Cubo de Magma de <playername>
+    Description: Um cubo muito quente!
   Phantom:
-    menu-name: <bold><dark_blue>Phantom
-    entity-displayname: <bold><playername>'s Phantom
-    Description: Hates players that don't sleep!
+    menu-name: <bold><dark_blue>Fantasma
+    entity-displayname: <bold>Fantasma de <playername>
+    Description: Odeia jogadores que não dormem!
   PiglinBrute:
-    menu-name: <bold><gold>Piglin Brute
-    entity-displayname: <bold><playername>'s Piglin Brute
-    Description: A pretty buff Piglin!
+    menu-name: <bold><gold>Piglin Bruto
+    entity-displayname: <bold>Piglin Bruto de <playername>
+    Description: Um Piglin melhorado!
   Pillager:
-    menu-name: <bold><gray>Pillager
-    entity-displayname: <bold><playername>'s Pillager
-    Description: Likes to pillage villages!
+    menu-name: <bold><gray>Saqueador
+    entity-displayname: <bold>Saqueador de <playername>
+    Description: Gosta de saquear aldeias!
   Ravager:
-    menu-name: <bold><dark_gray>Ravager
-    entity-displayname: <bold><playername>'s Ravager
-    Description: A Pillager's favorite companion!
+    menu-name: <bold><dark_gray>Devastador
+    entity-displayname: <bold>Devastador de <playername>
+    Description: A companhia favorita de um Saqueador!
   Shulker:
     menu-name: <bold><dark_purple>Shulker
-    entity-displayname: <bold><playername>'s Shulker
+    entity-displayname: <bold>Shulker de <playername>
     Description: Gosta de se esconder!
   Stray:
     menu-name: <bold><dark_gray>Esqueleto-errante
     entity-displayname: <bold>Esqueleto-errante de <playername>
-    Description: A freezing cold skeleton!
+    Description: Um esqueleto frio congelante!
   Vindicator:
-    menu-name: <bold><gray>Vindicator
-    entity-displayname: <bold><playername>'s Vindicator
+    menu-name: <bold><gray>Vingador
+    entity-displayname: <bold>Vingador de <playername>
     Description: Não subestime sua força!
   Witch:
     menu-name: <bold><dark_purple>Witch
@@ -866,55 +866,55 @@ Pets:
     Description: A razão pela qual Saque existe.
   Zoglin:
     menu-name: <bold><red>Zoglin
-    entity-displayname: <bold><playername>'s Zoglin
-    Description: A zombified Hoglin!
+    entity-displayname: <bold>Zoglin de <playername>
+    Description: Um Hoglin zumbificado!
   ZombieVillager:
-    menu-name: <bold><dark_green>Zombie Villager
-    entity-displayname: <bold><playername>'s Zombie Villager
-    Description: A Villager Trader's dream!
+    menu-name: <bold><dark_green>Aldeão Zumbi
+    entity-displayname: <bold>Aldeão Zumbi de <playername>
+    Description: O sonho de todo especialista em trocas com villagers?
   ZombieHorse:
-    menu-name: <bold><dark_green>Zombie Horse
-    entity-displayname: <bold><playername>'s Zombie Horse
-    Description: The rarest horse in Minecraft!
+    menu-name: <bold><dark_green>Cavalo Zumbi
+    entity-displayname: <bold>Cavalo Zumbi de <playername>
+    Description: O cavalo mais raro no Minecraft!
   Illusioner:
-    menu-name: <bold><dark_blue>Illusioner
-    entity-displayname: <bold><playername>'s Illusioner
+    menu-name: <bold><dark_blue>Ilusionista
+    entity-displayname: <bold>Ilusionista de <playername>
     Description: Só pode ser gerado com comandos!
   Sniffer:
     menu-name: <bold><green>Farejador
     entity-displayname: <bold>Farejador de <playername>
     Description: Can smell pottery!
-  Equip: <prefix> <blue>You spawned <petname>
-  Unequip: <prefix> <blue>You despawned <petname>
+  Equip: <prefix> <blue>Você invocou <petname>
+  Unequip: <prefix> <blue>Você removeu <petname>
   Armadillo:
-    menu-name: <bold><gold>Armadillo
-    entity-displayname: <bold><playername>'s Armadillo
+    menu-name: <bold><gold>Tatu
+    entity-displayname: <bold>Tatu de <playername>
     Description: |-
-      Don't scare me,
-      or I'll roll up into a ball!
+      Não me assuste,
+      ou eu viro uma bola!
 Morphs:
   Blaze:
     name: <bold><gold>Blaze
-    skill: '<yellow>Sneak</yellow><gray> to: </gray><green>Fly'
+    skill: '<yellow>Agache</yellow><gray> para: </gray><green>Voar'
     Description: Pode ser quente ali...
   Chicken:
     name: <bold><white>Galinha
-    skill: '<yellow>Sneak</yellow><gray> to: </gray><green>Lay eggs'
+    skill: '<yellow>Agache</yellow><gray> para: </gray><green>Colocar ovos'
     Description: Torne-se uma galinha!
   Slime:
     name: <bold><green>Slime
     skill: '<yellow>Sneak</yellow><gray> to: </gray><green>Bounce'
     Description: Splat splat!
   Pig:
-    name: <bold><light_purple>Pig
+    name: <bold><light_purple>Porco
     skill: '<yellow>Collide</yellow><gray> to: </gray><green>Bounce Players'
-    Description: Must hold your carrot!
+    Description: Deve segurar sua cenoura!
   Enderman:
     name: <bold><dark_purple>Enderman
-    skill: '<yellow>Double Jump</yellow><gray> to: </gray><green>Teleport'
+    skill: '<yellow>Pulo duplo</yellow><gray> para: </gray><green>Teleportar'
     Description: |-
-      I go from there to
-      there, then you lost me...
+      Eu vou de cá para
+      lá, então você me perdeu...
   Bat:
     name: <bold><dark_gray>Morcego
     skill: '<yellow>Double Jump</yellow><gray> to: </gray><green>Flap'
@@ -923,14 +923,14 @@ Morphs:
     name: <bold><green>Creeper
     skill: '<yellow>Sneak</yellow><gray> to: </gray><green>Detonate'
     charging: '<bold><green>Charging: <chargelevel>/100'
-    release-to-explode: <bold><white>Release to explode!
+    release-to-explode: <bold><white>Solte para explodir!
     Description: Sssssalve! Tudo bem?
   Snowman:
     name: <bold><white>Boneco de Neve
     skill: '<yellow>Left Click</yellow><gray> to: </gray><green>Throw Snowball'
     Description: Torne-se o Olaf!
-  Equip: <prefix> <blue>You morphed into <morphname>
-  Unequip: <prefix> <blue>You unmorphed from <morphname>
+  Equip: <prefix> <blue>Você se transformou em <morphname>
+  Unequip: <prefix> <blue>Você se deixou de ser <morphname>
   WitherSkeleton:
     name: <bold><dark_gray>Esqueleto Wither
     skill: '<yellow>Sneak</yellow><gray> to: </gray><green>Bone Bomb'
@@ -968,11 +968,11 @@ Morphs:
   Llama:
     name: <bold><dark_aqua>Llama
     skill: '<yellow>Left-Click</yellow><gray> to: </gray><green>Spit'
-    Description: Need me to carry anything?
+    Description: Precisa de mim para carregar algo?
   Parrot:
-    name: <bold><green>Parrot
+    name: <bold><green>Papagaio
     skill: '<yellow>Double Jump</yellow><gray> to: </gray><green>Flap'
-    Description: Polly want a cracker?
+    Description: Louro quer biscoito?
   Allay:
     name: <bold><green>Allay
     skill: '<yellow>Double Jump</yellow><gray> to: </gray><green>Flap'
@@ -992,31 +992,31 @@ Morphs:
   CaveSpider:
     name: <bold><yellow>Cave Spider
     skill: '<yellow>Left-Click</yellow><gray> to: </gray><green>TODO'
-    Description: A spider, but poisonous!
+    Description: Uma aranha, mas venenosa!
   Cod:
-    name: <bold><yellow>Cod
+    name: <bold><yellow>Bacalhau
     skill: '<yellow>Left-Click</yellow><gray> to: </gray><green>TODO'
-    Description: Prefers water over land!
+    Description: Gosta mais de água do que de terra!
   Dolphin:
-    name: <bold><yellow>Dolphin
+    name: <bold><yellow>Golfinho
     skill: '<yellow>Left-Click</yellow><gray> to: </gray><green>TODO'
-    Description: The happiest creature of the seas!
+    Description: A criatura mais feliz dos mares!
   Donkey:
-    name: <bold><gray>Donkey
+    name: <bold><gray>Burro
     skill: '<yellow>Left-Click</yellow><gray> to: </gray><green>TODO'
-    Description: Can carry all your stuff!
+    Description: Pode carregar todas as suas coisas!
   Drowned:
     name: <bold><dark_aqua>Afogado
     skill: '<yellow>Left-Click</yellow><gray> to: </gray><green>TODO'
-    Description: An underwater zombie!
+    Description: Um zumbi subaquático!
   Endermite:
     name: <bold><dark_purple>Endermite
     skill: '<yellow>Left-Click</yellow><gray> to: </gray><green>TODO'
-    Description: Attracts Endermen!
+    Description: Atrai os Endermans!
   Evoker:
-    name: <bold><gray>Evoker
+    name: <bold><gray>Invocador
     skill: '<yellow>Left-Click</yellow><gray> to: </gray><green>TODO'
-    Description: Summons Vexes for a living!
+    Description: Invoca Vexes para ganhar a vida!
   Frog:
     name: <bold><dark_green>Sapo
     skill: '<yellow>Left-Click</yellow><gray> to: </gray><green>TODO'
@@ -1026,23 +1026,23 @@ Morphs:
     skill: '<yellow>Left-Click</yellow><gray> to: </gray><green>TODO'
     Description: '"What does the fox say?"'
   GlowSquid:
-    name: <bold><dark_aqua>Glow Squid
+    name: <bold><dark_aqua>
     skill: '<yellow>Left-Click</yellow><gray> to: </gray><green>TODO'
-    Description: It glows!
+    Description: Está brilhando!
   Goat:
     name: <bold><white>Cabra
     skill: '<yellow>Left-Click</yellow><gray> to: </gray><green>TODO'
     Description: BÉÉÉÉ!
   Guardian:
-    name: <bold><dark_aqua>Guardian
+    name: <bold><dark_aqua>Guardião
     skill: '<yellow>Left-Click</yellow><gray> to: </gray><green>TODO'
-    Description: Hates squids!
+    Description: Odeia lulas!
   Wolf:
-    name: <bold><gray>Wolf
+    name: <bold><gray>Lobo
     Description: Au au!
   IronGolem:
     name: <bold><gray>Golem de Ferro
-    Description: Hates zombies!
+    Description: Odeia zumbis
   Wither:
     name: <bold><dark_gray>Wither
     Description: Cuidado comigo...
@@ -1053,7 +1053,7 @@ Morphs:
     name: <bold><dark_green>Zumbi
     Description: Brains!!!
   Squid:
-    name: <bold><light_purple>Squid
+    name: <bold><light_purple>Lula
     Description: Bloop Bloop!
   Spider:
     name: <bold><dark_gray>Aranha
@@ -1062,8 +1062,8 @@ Morphs:
     name: <bold><white>Ghast
     Description: '*high-pitched scream*'
   MagmaCube:
-    name: <bold><red>Magma Cube
-    Description: A very hot cube!
+    name: <bold><red>Cubo de Magma
+    Description: Um cubo muito quente!
   Horse:
     name: <bold><green>Cavalo
     Description: '*fhrrrrhh*'
@@ -1081,64 +1081,64 @@ Morphs:
     Description: I hate water!
   Hoglin:
     name: <bold><red>Hoglin
-    Description: A pig, but in angry.
+    Description: Um porco, mas com raiva.
   PiglinBrute:
-    name: <bold><gold>Piglin Brute
-    Description: A pretty buff Piglin!
+    name: <bold><gold>Piglin Bruto
+    Description: Um Piglin melhorado!
   Zoglin:
     name: <bold><red>Zoglin
-    Description: A zombified Hoglin!
+    Description: Um Hoglin zumbificado!
   ZombifiedPiglin:
-    name: <bold><light_purple>Zombified Piglin
-    Description: Attack it and all of them will be after you!
+    name: <bold><light_purple>Piglin-zumbi
+    Description: Ataque-o e todos eles estarão atrás de você!
   Panda:
     name: <bold><green>Panda
-    Description: Likes bamboo!
+    Description: Gosta de bambo!
   Ocelot:
     name: <bold><yellow>Ocelot
     Description: King of the jungle
   WanderingTrader:
-    name: <bold><dark_blue>Wandering Trader
-    Description: Wanders around trying to sell his stuff!
+    name: <bold><dark_blue>Vendedor Ambulante
+    Description: Tentando vender suas coisas por aí!
   Pillager:
-    name: <bold><gray>Pillager
-    Description: Likes to pillage villages!
+    name: <bold><gray>Saqueador
+    Description: Gosta de saquear aldeias!
   Ravager:
-    name: <bold><dark_gray>Ravager
-    Description: A Pillager's favorite companion!
+    name: <bold><dark_gray>Devastador
+    Description: A companhia favorita de um Saqueador!
   Pufferfish:
-    name: <bold><yellow>Pufferfish
-    Description: Doesn't like to be touched!
+    name: <bold><yellow>Baiacu
+    Description: Não gosta de ser tocado!
   Salmon:
-    name: <bold><red>Salmon
+    name: <bold><red>Salmão
     Description: Eles são muito saborosos!
   TropicalFish:
-    name: <bold><yellow>Tropical Fish
-    Description: A colorful fish!
+    name: <bold><yellow>Peixe Tropical
+    Description: Um peixe colorido!
   Turtle:
     name: <bold><green>Turtle
     Description: Take your time.
   Phantom:
-    name: <bold><dark_blue>Phantom
-    Description: Hates players that don't sleep!
+    name: <bold><dark_blue>Fantasma
+    Description: Odeia jogadores que não dormem!
   Illusioner:
-    name: <bold><dark_blue>Illusioner
+    name: <bold><dark_blue>Ilusionista
     Description: Só pode ser gerado com comandos!
   Vex:
     name: <bold><gray>Vex
-    Description: YAAHH Ehehhehe!
+    Description: AAHH Hehehehe!
   Vindicator:
-    name: <bold><gray>Vindicator
+    name: <bold><gray>Vingador
     Description: Não subestime sua força!
   Mule:
     name: <bold><dark_gray>Mula
     Description: A sua normal, mula do dia a dia
   SkeletonHorse:
-    name: <bold><white>Skeleton Horse
+    name: <bold><white>Cavalo Esqueleto
     Description: Cuidado com relâmpagos!
   ZombieHorse:
-    name: <bold><dark_green>Zombie Horse
-    Description: The rarest horse in Minecraft!
+    name: <bold><dark_green>Cavalo Zumbi
+    Description: O cavalo mais raro no Minecraft!
   Shulker:
     name: <bold><dark_purple>Shulker
     Description: Gosta de se esconder!
@@ -1146,34 +1146,34 @@ Morphs:
     name: <bold><green>Farejador
     Description: '*sniff sniff*'
 Hats:
-  Equip: <prefix> <blue>You equipped <hatname> hat!
-  Unequip: <prefix> <blue>You unequipped <hatname> hat!
+  Equip: <prefix> <blue>Você equipou o chapéu <hatname>!
+  Unequip: <prefix><blue>Você desequipou o chapéu <hatname>
   Astronaut:
-    Name: <bold><gray>Astronaut
-    Description: Houston, we have got a problem.
+    Name: <bold><gray>Astronaulta
+    Description: Houston, temos um problema...
   Scared:
-    Name: <bold><dark_red>Scared
-    Description: Oh god, that scared me!
+    Name: <bold><dark_red>Assustado
+    Description: Que susto!
   Angel:
-    Name: <bold><white>Angel
-    Description: Did it hurt when you fell from heaven?
+    Name: <bold><white>Anjo
+    Description: Ele se machucou quando você caiu do céu?
   Embarassed:
     Name: <bold><gray>Embarassed
     Description: I'm kinda embarassed by that.
   Kissy:
-    Name: <bold><red>Kissy
-    Description: Wanna kiss?
+    Name: <bold><red>Beijo
+    Description: Quer beijar?
   Sad:
-    Name: <bold><blue>Sad
-    Description: I'm so sad.
+    Name: <bold><blue>Triste
+    Description: Eu estou tão triste.
   Cool:
-    Name: <bold><gold>Cool
-    Description: I'm such a cool guy.
+    Name: <bold><gold>Legal
+    Description: Eu sou um cara tão legal.
   Surprised:
-    Name: <bold><dark_red>Surprised
-    Description: Wow, did not expect that!
+    Name: <bold><dark_red>Surpreso
+    Description: Uau, não esperava isso!
   Dead:
-    Name: <bold><dark_gray>Dead
+    Name: <bold><dark_gray>Morto
     Description: Got rekt
   Crying:
     Name: <bold><blue>Crying
@@ -1224,7 +1224,7 @@ Hats:
     Name: <bold><white>Ovelha
     Description: Béééé, béé
   Pig:
-    Name: <bold><light_purple>Pig
+    Name: <bold><light_purple>Porco
     Description: Oink Oink!
   Cow:
     Name: <bold><green>Cow
@@ -1284,7 +1284,7 @@ Hats:
     Name: <bold><dark_purple>Witch
     Description: Please try my potion!
   Guardian:
-    Name: <bold><dark_aqua>Guardian
+    Name: <bold><dark_aqua>Guardião
     Description: Protect the ocean monuments!
   ShepherdVillager:
     Name: <bold><yellow>Shepherd Villager
@@ -1807,7 +1807,7 @@ Projectile-Effects:
     name: <bold><white>Snowflake
     Description: Small, white clouds
   GlowSquid:
-    name: <bold><dark_aqua>Glow Squid
+    name: <bold><dark_aqua>
     Description: Teal stars
   GlowSquidInk:
     name: <bold><dark_aqua>Glow Squid Ink

@@ -47,7 +47,7 @@ public abstract class ProjectileEffect extends Cosmetic<ProjectileEffectType> im
 
     @Override
     protected void scheduleTask() {
-        task = getUltraCosmetics().getScheduler().runAtEntityTimer(getPlayer(), this::run, 0, getType().getRepeatDelay());
+        task = getUltraCosmetics().getScheduler().runAtEntityTimer(getPlayer(), this::run, 1, getType().getRepeatDelay());
     }
 
     @EventHandler

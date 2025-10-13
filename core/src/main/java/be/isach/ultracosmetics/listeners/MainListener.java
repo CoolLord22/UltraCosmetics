@@ -1,11 +1,15 @@
 package be.isach.ultracosmetics.listeners;
 
+import org.bukkit.entity.EnderDragonPart;
+import org.bukkit.entity.Entity;
 import org.bukkit.entity.Item;
 import org.bukkit.entity.Zombie;
 import org.bukkit.event.Cancellable;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
+import org.bukkit.event.entity.EntityDamageByEntityEvent;
 import org.bukkit.event.entity.EntityDamageEvent;
+import org.bukkit.event.entity.EntityExplodeEvent;
 import org.bukkit.event.entity.EntityPickupItemEvent;
 import org.bukkit.event.entity.EntityTransformEvent;
 import org.bukkit.event.entity.ItemMergeEvent;
@@ -29,7 +33,14 @@ public class MainListener implements Listener {
 
     @EventHandler
     public void onDamageEntity(EntityDamageEvent event) {
-        if (event.getEntity().hasMetadata("Pet") || event.getEntity().hasMetadata("Mount")) {
+        if (isPet(event.getEntity()) || isMount(event.getEntity())) {
+            event.setCancelled(true);
+        }
+    }
+
+    @EventHandler
+    public void onDamageByEntity(EntityDamageByEntityEvent event) {
+        if (isPet(event.getDamager()) || isMount(event.getDamager())) {
             event.setCancelled(true);
         }
     }
@@ -59,7 +70,7 @@ public class MainListener implements Listener {
 
     @EventHandler
     public void onEntityPickup(EntityPickupItemEvent event) {
-        if (event.getEntity().hasMetadata("Pet")) {
+        if (isPet(event.getEntity())) {
             event.setCancelled(true);
         }
     }
@@ -70,5 +81,35 @@ public class MainListener implements Listener {
             event.setCancelled(true);
             ((Zombie) event.getEntity()).setConversionTime(Integer.MAX_VALUE);
         }
+    }
+
+    @EventHandler
+    public void stopDragonDamage(EntityExplodeEvent event) {
+        Entity e = event.getEntity();
+        if (e instanceof EnderDragonPart) e = ((EnderDragonPart) e).getParent();
+        if (isPet(e) || isMount(e)) {
+            event.setCancelled(true);
+        }
+    }
+
+    @EventHandler
+    public void onEntityDamage(EntityDamageByEntityEvent event) {
+        Entity e = event.getDamager();
+        if (e instanceof EnderDragonPart) {
+            e = ((EnderDragonPart) e).getParent();
+        }
+        if (isPet(e) || isMount(e)) {
+            event.setCancelled(true);
+        }
+    }
+
+    private boolean isPet(Entity entity) {
+        if (entity == null) return false;
+        return entity.hasMetadata("Pet");
+    }
+
+    private boolean isMount(Entity entity) {
+        if (entity == null) return false;
+        return entity.hasMetadata("Mount");
     }
 }

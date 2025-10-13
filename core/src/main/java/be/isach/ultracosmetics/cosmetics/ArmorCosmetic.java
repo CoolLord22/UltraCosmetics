@@ -58,7 +58,7 @@ public abstract class ArmorCosmetic<T extends CosmeticType<?>> extends Cosmetic<
 
         // If the user's armor slot is still occupied after we've removed all related cosmetics,
         // give up and ask the user to free up the slot.
-        if (getArmorItem() != null) {
+        if (getArmorItem() != null && getArmorItem().getType() != Material.AIR) {
             getOwner().sendMessage(MessageManager.getMessage(getOccupiedSlotKey()));
             return false;
         }
@@ -70,7 +70,6 @@ public abstract class ArmorCosmetic<T extends CosmeticType<?>> extends Cosmetic<
         return true;
     }
 
-    @SuppressWarnings("deprecation")
     protected void writeAttributes(ItemStack stack) {
         if (attributes.isEmpty()) return;
         ItemMeta meta = stack.getItemMeta();
@@ -80,7 +79,7 @@ public abstract class ArmorCosmetic<T extends CosmeticType<?>> extends Cosmetic<
         int count = 0;
         for (Map.Entry<Attribute, Double> entry : attributes.entrySet()) {
             AttributeModifier mod = ItemFactory.createAttributeModifier("custom_mod_" + count++,
-                    entry.getValue(), AttributeModifier.Operation.ADD_NUMBER, getArmorSlot().toBukkit().getGroup());
+                    entry.getValue(), AttributeModifier.Operation.ADD_NUMBER, getArmorSlot().toBukkit());
             meta.addAttributeModifier(entry.getKey(), mod);
         }
         stack.setItemMeta(meta);

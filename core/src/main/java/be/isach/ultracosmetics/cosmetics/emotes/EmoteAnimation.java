@@ -39,7 +39,7 @@ class EmoteAnimation {
 
     void start() {
         this.running = true;
-        task = emote.getUltraCosmetics().getScheduler().runAtEntityTimer(emote.getPlayer(), this::run, 0, ticksPerFrame);
+        task = emote.getUltraCosmetics().getScheduler().runAtEntityTimer(emote.getPlayer(), this::run, 1, ticksPerFrame);
     }
 
     void stop() {

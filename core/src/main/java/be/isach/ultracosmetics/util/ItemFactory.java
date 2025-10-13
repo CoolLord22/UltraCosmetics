@@ -6,6 +6,7 @@ import be.isach.ultracosmetics.config.MessageManager;
 import be.isach.ultracosmetics.config.SettingsManager;
 import be.isach.ultracosmetics.util.SmartLogger.LogLevel;
 import be.isach.ultracosmetics.version.ServerVersion;
+import com.cryptomorin.xseries.XAttribute;
 import com.cryptomorin.xseries.XMaterial;
 import com.cryptomorin.xseries.XTag;
 import com.cryptomorin.xseries.profiles.builder.XSkull;
@@ -18,15 +19,16 @@ import org.bukkit.Color;
 import org.bukkit.Location;
 import org.bukkit.Material;
 import org.bukkit.NamespacedKey;
-import org.bukkit.attribute.Attribute;
 import org.bukkit.attribute.AttributeModifier;
 import org.bukkit.configuration.ConfigurationSection;
 import org.bukkit.enchantments.Enchantment;
 import org.bukkit.entity.Item;
 import org.bukkit.entity.Player;
+import org.bukkit.inventory.EquipmentSlot;
 import org.bukkit.inventory.EquipmentSlotGroup;
 import org.bukkit.inventory.ItemFlag;
 import org.bukkit.inventory.ItemStack;
+import org.bukkit.inventory.meta.BlockStateMeta;
 import org.bukkit.inventory.meta.ItemMeta;
 import org.bukkit.inventory.meta.LeatherArmorMeta;
 import org.bukkit.inventory.meta.SkullMeta;
@@ -233,7 +235,6 @@ public class ItemFactory {
         item.setItemMeta(itemMeta);
     }
 
-    @SuppressWarnings("UnstableApiUsage")
     public static void setFlags(ItemStack item) {
         ItemMeta meta = item.getItemMeta();
         meta.addItemFlags(ItemFlag.values());
@@ -243,19 +244,21 @@ public class ItemFactory {
             // ignored
         }
         if (!meta.hasAttributeModifiers()) {
-            AttributeModifier modifier = createAttributeModifier("itemflags", 0, AttributeModifier.Operation.ADD_NUMBER, EquipmentSlotGroup.MAINHAND);
-            meta.addAttributeModifier(Attribute.GENERIC_KNOCKBACK_RESISTANCE, modifier);
+            // Add a dummy attribute modifier. If the only attribute modifiers present are the default ones, it won't
+            // actually hide them when we ask using ItemFlags.
+            AttributeModifier modifier = createAttributeModifier("itemflags", 0, AttributeModifier.Operation.ADD_NUMBER, EquipmentSlot.HAND);
+            meta.addAttributeModifier(XAttribute.KNOCKBACK_RESISTANCE.get(), modifier);
         }
         item.setItemMeta(meta);
     }
 
     @SuppressWarnings({"UnstableApiUsage", "removal"})
-    public static AttributeModifier createAttributeModifier(String modName, double amount, AttributeModifier.Operation operation, EquipmentSlotGroup slots) {
+    public static AttributeModifier createAttributeModifier(String modName, double amount, AttributeModifier.Operation operation, EquipmentSlot slot) {
         NamespacedKey key = new NamespacedKey(UltraCosmeticsData.get().getPlugin(), modName);
         try {
-            return new AttributeModifier(key, amount, operation, slots);
+            return new AttributeModifier(key, amount, operation, slot == null ? EquipmentSlotGroup.ANY : slot.getGroup());
         } catch (NoSuchMethodError error) {
-            return new AttributeModifier(UUID.randomUUID(), key.toString(), amount, operation, slots);
+            return new AttributeModifier(UUID.randomUUID(), key.toString(), amount, operation, slot);
         }
     }
 
@@ -291,6 +294,19 @@ public class ItemFactory {
     public static XMaterial randomFromTag(XTag<XMaterial> tag) {
         // copy tag values into temporary ArrayList because getting random values from a Set is hard
         return randomXMaterial(new ArrayList<>(tag.getValues()));
+    }
+
+    public static boolean isSimilar(ItemStack a, ItemStack b) {
+        if (a == b) return true;
+        if (a == null || b == null) return false;
+        if (a.getType() != b.getType()) return false;
+        if (a.getItemMeta() instanceof BlockStateMeta aMeta && b.getItemMeta() instanceof BlockStateMeta bMeta) {
+            // Block state meta spontaneously creates "internal" data that causes it to not be equal.
+            // So, we set them to have the same state part and then compare them.
+            aMeta.setBlockState(bMeta.getBlockState());
+            return aMeta.equals(bMeta);
+        }
+        return a.isSimilar(b);
     }
 
     public static ItemStack hideAttributes(ItemStack itemstack) {

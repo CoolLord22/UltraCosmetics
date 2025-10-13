@@ -58,7 +58,7 @@ public class ChestParticleRunnable extends UltraTask {
 
     @Override
     public void schedule() {
-        task = getScheduler().runAtLocationTimer(chest.getCenter(), this::run, 0L, 50L);
+        task = getScheduler().runAtLocationTimer(chest.getCenter(), this::run, 1L, 50L);
     }
 
     private Location getChestLocation() {

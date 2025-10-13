@@ -13,7 +13,12 @@ import java.util.function.Predicate;
  */
 public interface IEntityUtil {
 
-    void resetWitherSize(Wither wither);
+    default void resetWitherSize(Wither wither) {
+        try {
+            wither.setInvulnerabilityTicks(600);
+        } catch (NoSuchMethodError ignored) {
+        }
+    }
 
     void sendBlizzard(final Player player, Location loc, Predicate<Entity> canAffectFunc, Vector v);
 

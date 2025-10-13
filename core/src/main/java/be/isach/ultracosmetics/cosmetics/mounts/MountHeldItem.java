@@ -51,7 +51,8 @@ public abstract class MountHeldItem extends Mount implements UnmovableItemProvid
     public boolean tryEquip() {
         getOwner().removeCosmetic(Category.GADGETS);
         getOwner().removeCosmetic(Category.MOUNTS);
-        if (getPlayer().getInventory().getItem(slot) != null) {
+        ItemStack current = getPlayer().getInventory().getItem(slot);
+        if (current != null && current.getType() != Material.AIR) {
             MessageManager.send(getPlayer(), "Must-Remove.Mounts",
                     Placeholder.unparsed("slot", String.valueOf(slot + 1))
             );
@@ -78,7 +79,7 @@ public abstract class MountHeldItem extends Mount implements UnmovableItemProvid
 
     @Override
     public boolean itemMatches(ItemStack stack) {
-        return stack != null && stack.isSimilar(heldItem);
+        return ItemFactory.isSimilar(stack, heldItem);
     }
 
     @Override

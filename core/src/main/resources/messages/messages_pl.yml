@@ -147,7 +147,7 @@ Chest-Location:
   In-Ground: <prefix> <bold><red>Znajdujesz się na ziemi!
   Suggestion: <prefix> <green>Masz na myśli <location>?
   Dismount-First: <prefix> <bold><red>Zejdź z pojazdu, aby otworzyć skrzynię.
-  Too-Close-To-Entity: <prefix> <bold><red>You are too close to another entity!
+  Too-Close-To-Entity: <prefix> <bold><red>Jesteś zbyt blisko innej jednostki!
 Active-Pet-Needed: <bold><red>Musisz stworzyć zwierzaka, by zmienić jego nazwę
 Treasure-Chests-Loot:
   Ammo: |-
@@ -1154,7 +1154,7 @@ Hats:
   Unequip: <prefix> <blue>You unequipped <hatname> hat!
   Astronaut:
     Name: <bold><gray>Astronaut
-    Description: Houston, we have got a problem.
+    Description: Houston, mamy problem...
   Scared:
     Name: <bold><dark_red>Scared
     Description: Oh god, that scared me!

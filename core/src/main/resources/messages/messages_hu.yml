@@ -885,11 +885,11 @@ Pets:
   Equip: '<prefix> <blue> Leidézted őt: <petname>'
   Unequip: '<prefix> <blue>Elküldted őt: <petname>'
   Armadillo:
-    menu-name: <bold><gold>Armadillo
-    entity-displayname: <bold><playername>'s Armadillo
+    menu-name: <bold><gold>Tatú
+    entity-displayname: <bold><playername> páncélosának tatuja
     Description: |-
-      Don't scare me,
-      or I'll roll up into a ball!
+      Ne ijesztgess engem,
+      vagy összegömbölyödöm!
 Morphs:
   Blaze:
     name: <bold><gold>Őrláng
@@ -1150,7 +1150,7 @@ Hats:
   Unequip: <prefix><blue>Levetted a(z) <hatname> kalapot!
   Astronaut:
     Name: <bold><gray>Asztronauta
-    Description: Houston, baj van.
+    Description: Houston, baj van...
   Scared:
     Name: <bold><dark_red>Megrémült
     Description: Istenem, ez megijesztett!
@@ -1859,6 +1859,6 @@ Must-Remove:
   Gadgets: <prefix><bold><red>Törölnöd kell a hotbarodban a(z) <slot> slotot hogy felvehesd a kütyüt!
   Mounts: <prefix><bold><red>Törölnöd kell a hotbarodban a(z) <slot> slotot hogy felvehesd ezt a járgányt!
 Use-Rename-Pet-Command: <prefix><red>Használd az <yellow>/uc rename</yellow> parancsot az átnevezéshez
-Commands-Disabled-During-Chest: <prefix> <bold><red>You can't use commands while opening a chest!
-No-Buy-Key-Permission: <prefix> <red><bold>You don't have permission to buy treasure keys!
-Particles-Minimal-In-Client: <yellow>You have particles set to "minimal" in your client settings and so you won't be able to see particles.
+Commands-Disabled-During-Chest: <prefix><bold><red>A láda kinyitásakor nem használhatsz parancsokat!
+No-Buy-Key-Permission: <prefix><red><bold>Nincs engedélye kincses kulcsok vásárlására!
+Particles-Minimal-In-Client: <yellow>A kliensbeállításokban a részecskék „minimálisra” vannak állítva, így nem fogod látni a részecskéket.

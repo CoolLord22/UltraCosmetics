@@ -41,7 +41,7 @@ public class PlaceBlocksRunnable extends UltraTask {
 
     @Override
     public void schedule() {
-        task = getScheduler().runAtLocationTimer(this.chest.getCenter(), this::run, 0L, 12L);
+        task = getScheduler().runAtLocationTimer(this.chest.getCenter(), this::run, 1L, 12L);
     }
 
     private void doChestStages(Player player) {

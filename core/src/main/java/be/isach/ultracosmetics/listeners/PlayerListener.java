@@ -296,6 +296,6 @@ public class PlayerListener implements Listener {
     }
 
     private boolean isMenuItem(ItemStack item) {
-        return menuItem != null && item != null && menuItem.isSimilar(item);
+        return ItemFactory.isSimilar(menuItem, item);
     }
 }

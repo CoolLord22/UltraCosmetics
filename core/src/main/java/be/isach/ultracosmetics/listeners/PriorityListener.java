@@ -3,7 +3,7 @@ package be.isach.ultracosmetics.listeners;
 import be.isach.ultracosmetics.UltraCosmetics;
 import be.isach.ultracosmetics.command.SubCommand;
 import be.isach.ultracosmetics.command.subcommands.SubCommandTroubleshoot;
-
+import be.isach.ultracosmetics.util.ProblemSeverity;
 import org.bukkit.ChatColor;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
@@ -30,8 +30,9 @@ public class PriorityListener implements Listener {
 
     @EventHandler
     public void onJoin(PlayerJoinEvent event) {
-        if (ultraCosmetics.getProblems().size() > 0 && event.getPlayer().hasPermission(troubleshoot.getPermission())) {
-            event.getPlayer().sendMessage(ChatColor.RED + "UltraCosmetics currently has " + ultraCosmetics.getProblems().size() + " problems, please run '/uc troubleshoot' to learn more.");
+        long nonInfoProblems = ultraCosmetics.getProblems().stream().filter(p -> p.getSeverity() != ProblemSeverity.INFO).count();
+        if (nonInfoProblems > 0 && event.getPlayer().hasPermission(troubleshoot.getPermission())) {
+            event.getPlayer().sendMessage(ChatColor.RED + "UltraCosmetics currently has " + nonInfoProblems + " problems, please run '/uc troubleshoot' to learn more.");
         }
     }
 }

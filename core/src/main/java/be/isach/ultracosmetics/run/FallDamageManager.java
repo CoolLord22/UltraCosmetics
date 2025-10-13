@@ -42,7 +42,8 @@ public class FallDamageManager extends UltraTask {
         queue.clear();
     }
 
-    @Override public void schedule() {
-        task = getScheduler().runTimerAsync(this::run, 0, 1);
+    @Override
+    public void schedule() {
+        task = getScheduler().runTimerAsync(this::run, 1, 1);
     }
 }

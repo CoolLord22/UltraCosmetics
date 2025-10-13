@@ -20,15 +20,16 @@ Please read the [Development section](#-development) in this README.
 
 ## ✅ Compatibility
 
-UltraCosmetics v3 officially supports the **Spigot** and **Paper**.
+UltraCosmetics v3 officially supports **Spigot** and **Paper**.
 
-Following the technical changes of Minecraft, the plugin abandon the old versions!
+Due to technical changes in recent versions of Minecraft, support for some very old versions has been dropped!
 
 - For **3.5** -> **1.8.8** to **1.20.4**
 - For **3.6+** -> **1.17.1** to **latest**
 
-
-For more information please check out the [Supported Configurations page](https://github.com/UltraCosmetics/UltraCosmetics/wiki/Supported-Configurations) in the Wiki.
+For more information please check out
+the [Supported Configurations page](https://github.com/UltraCosmetics/UltraCosmetics/wiki/Supported-Configurations) in
+the Wiki.
 
 ## 📥 Download
 
@@ -36,17 +37,20 @@ You can download the latest stable release of UltraCosmetics from our official l
 
 - [SpigotMC][spigotmc-link]
 - [GitHub][github-releases-link]
+- [Modrinth][modrinth-link]
 
 ### Development Builds
 
-You can find development builds on [Discord][discord-invite] or [GitHub][github-releases-link].
+You can find development builds on [Discord][discord-invite], [Modrinth][modrinth-link], or right here
+on [GitHub][github-releases-link].
 
 > **Warning**
 > Do not use any unofficial downloads/mirrors!
 
 ## 📖 Documentation
 
-Read the [Quick Start Guide](https://github.com/UltraCosmetics/UltraCosmetics/wiki/Quick-start-guide) and check out the [Wiki][wiki-link].
+Read the [Quick Start Guide](https://github.com/UltraCosmetics/UltraCosmetics/wiki/Quick-start-guide) and check out
+the [Wiki][wiki-link].
 
 ## 🐛 Report a Bug
 
@@ -62,11 +66,12 @@ Do you speak multiple languages?
 You can help translate UltraCosmetics on our [Crowdin page][crowdin-link].
 Contributions to our community translations are greatly appreciated!
 
-If your language isn't listed or doesn't have an active proofreader, please let us know on our [Discord server][discord-invite].
+If your language isn't listed or doesn't have an active proofreader, please let us know on
+our [Discord server][discord-invite].
 
 ## ❓ Support
 
-For questions and support please visit our [Discord server][discord-invite].
+For questions and support, please visit our [Discord server][discord-invite].
 The Issues page of this repository is **exclusively** for bug reports and feature requests.
 
 ## 💻 Development
@@ -101,7 +106,13 @@ along with this program. If not, see <https://www.gnu.org/licenses/>.
 ```
 
 [discord-invite]: https://discord.gg/PgSXZT37JV
+
 [wiki-link]: https://github.com/UltraCosmetics/UltraCosmetics/wiki
+
 [spigotmc-link]: https://www.spigotmc.org/resources/10905/
+
 [crowdin-link]: https://crowdin.com/project/ultracosmetics
+
 [github-releases-link]: https://github.com/UltraCosmetics/UltraCosmetics/releases
+
+[modrinth-link]: https://modrinth.com/plugin/ultracosmetics

@@ -27,7 +27,8 @@ public class MountRegionChecker extends UltraTask {
         uc.getWorldGuardManager().doCosmeticCheck(bukkitPlayer, uc);
     }
 
-    @Override public void schedule() {
-        task = getScheduler().runAtEntityTimer(player.getBukkitPlayer(), this::run, 0, 1);
+    @Override
+    public void schedule() {
+        task = getScheduler().runAtEntityTimer(player.getBukkitPlayer(), this::run, 1, 1);
     }
 }

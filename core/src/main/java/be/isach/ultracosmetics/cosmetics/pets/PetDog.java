@@ -3,9 +3,10 @@ package be.isach.ultracosmetics.cosmetics.pets;
 import be.isach.ultracosmetics.UltraCosmetics;
 import be.isach.ultracosmetics.cosmetics.type.PetType;
 import be.isach.ultracosmetics.player.UltraPlayer;
-
 import org.bukkit.DyeColor;
 import org.bukkit.entity.Wolf;
+
+import java.util.Locale;
 
 /**
  * Represents an instance of a dog pet summoned by a player.
@@ -30,7 +31,12 @@ public class PetDog extends Pet {
 
     @Override
     public boolean customize(String customization) {
-        fixedColor = enumCustomize(DyeColor.class, customization, ((Wolf) entity)::setCollarColor);
+        String[] parts = customization.split(":", 2);
+        Wolf wolf = (Wolf) entity;
+        fixedColor = enumCustomize(DyeColor.class, parts[0], wolf::setCollarColor);
+        if (fixedColor && parts.length > 1) {
+            fixedColor = oldEnumCustomize(Wolf.Variant.class, parts[1].toUpperCase(Locale.ROOT), wolf::setVariant);
+        }
         return fixedColor;
     }
 }

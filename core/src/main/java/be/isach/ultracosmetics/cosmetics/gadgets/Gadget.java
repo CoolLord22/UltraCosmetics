@@ -20,6 +20,7 @@ import net.kyori.adventure.text.Component;
 import net.kyori.adventure.text.format.NamedTextColor;
 import net.kyori.adventure.text.format.TextDecoration;
 import net.kyori.adventure.text.minimessage.tag.resolver.Placeholder;
+import org.bukkit.Material;
 import org.bukkit.block.Block;
 import org.bukkit.entity.Player;
 import org.bukkit.event.block.Action;
@@ -88,7 +89,8 @@ public abstract class Gadget extends Cosmetic<GadgetType> implements UnmovableIt
     @Override
     public boolean tryEquip() {
         getOwner().removeCosmetic(Category.GADGETS);
-        if (getPlayer().getInventory().getItem(slot) != null) {
+        ItemStack current = getPlayer().getInventory().getItem(slot);
+        if (current != null && current.getType() != Material.AIR) {
             MessageManager.send(getPlayer(), "Must-Remove.Gadgets",
                     Placeholder.unparsed("slot", String.valueOf(slot + 1))
             );

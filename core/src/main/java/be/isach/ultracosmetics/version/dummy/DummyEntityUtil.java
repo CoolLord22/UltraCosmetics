@@ -1,20 +1,14 @@
 package be.isach.ultracosmetics.version.dummy;
 
 import be.isach.ultracosmetics.version.IEntityUtil;
-
 import org.bukkit.Location;
 import org.bukkit.entity.Entity;
 import org.bukkit.entity.Player;
-import org.bukkit.entity.Wither;
 import org.bukkit.util.Vector;
 
 import java.util.function.Predicate;
 
 public class DummyEntityUtil implements IEntityUtil {
-
-    @Override
-    public void resetWitherSize(Wither wither) {
-    }
 
     @Override
     public void sendBlizzard(Player player, Location loc, Predicate<Entity> canAffectFunc, Vector v) {
