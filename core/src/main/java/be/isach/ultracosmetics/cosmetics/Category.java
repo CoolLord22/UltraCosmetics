@@ -37,7 +37,7 @@ public enum Category {
     SUITS_LEGGINGS(ArmorSlot.LEGGINGS),
     SUITS_BOOTS(ArmorSlot.BOOTS),
     EMOTES("Emotes", "emotename", "emotes", "e", true),
-    PROJECTILE_EFFECTS("Projectile-Effects", "projectile-effectname", "projectileeffects", "p", false),
+    PROJECTILE_EFFECTS("Projectile-Effects", "projectile-effectname", "projectileeffects", "pr", false),
     DEATH_EFFECTS("Death-Effects", "death-effectname", "deatheffects", "d", false),
 
     GLOW_COLOR("Glow-Color", "colorname", "glowcolor", "g", false),
