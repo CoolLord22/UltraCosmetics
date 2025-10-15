@@ -27,7 +27,7 @@ import java.util.stream.Collectors;
 public enum Category {
 
     PETS("Pets", "petname", "pets", "pe", true, () -> UltraCosmeticsData.get().isMobChipAvailable()),
-    GADGETS("Gadgets", "gadgetname", "gadgets", "g", true),
+    GADGETS("Gadgets", "gadgetname", "gadgets", "ga", true),
     EFFECTS("Particle-Effects", "effectname", "particleeffects", "ef", true),
     MOUNTS("Mounts", "mountname", "mounts", "mou", true),
     MORPHS("Morphs", "morphname", "morphs", "mor", true, () -> Bukkit.getPluginManager().isPluginEnabled("LibsDisguises")),
@@ -39,6 +39,9 @@ public enum Category {
     EMOTES("Emotes", "emotename", "emotes", "e", true),
     PROJECTILE_EFFECTS("Projectile-Effects", "projectile-effectname", "projectileeffects", "p", false),
     DEATH_EFFECTS("Death-Effects", "death-effectname", "deatheffects", "d", false),
+
+    GLOW_COLOR("Glow-Color", "colorname", "glowcolor", "g", false),
+    NAME_COLOR("Name-Color", "colorname", "namecolor", "n", false),
     ;
 
     // Avoids counting suit categories multiple times since they share settings
