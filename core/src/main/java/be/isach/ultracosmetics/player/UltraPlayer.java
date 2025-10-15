@@ -345,9 +345,10 @@ public class UltraPlayer {
      * Clears all gadgets.
      */
     public boolean clear(boolean keepProjectile) {
-        if(keepProjectile)
-            if(equipped.size() == 1 && hasCosmetic(Category.PROJECTILE_EFFECTS))
-                return false;
+        if(keepProjectile) {
+            if (equipped.size() == 2 && hasCosmetic(Category.PROJECTILE_EFFECTS) && hasCosmetic(Category.NAME_COLOR)) return false;
+            else if (equipped.size() == 1 && (hasCosmetic(Category.PROJECTILE_EFFECTS) || hasCosmetic(Category.NAME_COLOR))) return false;
+        }
 
         boolean toReturn = hasCosmeticsEquipped();
         if (!preserveEquipped) {
@@ -366,7 +367,7 @@ public class UltraPlayer {
                 continue;
             }
             // skip over projectile if we need to keep that category
-            if (keepProjectile && cat == Category.PROJECTILE_EFFECTS) {
+            if (keepProjectile && (cat == Category.PROJECTILE_EFFECTS || cat == Category.NAME_COLOR)) {
                 continue;
             }
             removeCosmetic(cat);
