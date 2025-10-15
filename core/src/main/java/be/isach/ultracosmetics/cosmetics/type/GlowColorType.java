@@ -14,7 +14,7 @@ import java.util.Arrays;
 
 public class GlowColorType extends CosmeticType<GlowColor> {
     private static final String[] colors = new String[] {"black", "dark_blue", "dark_green", "dark_aqua", "dark_red", "dark_purple",
-            "gold", "gray", "dark_gray", "blue", "green", "aqua", "red", "light_purple", "yellow", "white"};
+            "gold", "dark_gray", "blue", "green", "aqua", "red", "light_purple", "yellow", "gray", "white"};
     private final String command;
     private final ItemStack chestplate;
 
@@ -24,7 +24,7 @@ public class GlowColorType extends CosmeticType<GlowColor> {
         this.command = "mythrendcore glow " + configName;
         this.chestplate = color != null ? ItemFactory.createColouredLeather(Material.LEATHER_CHESTPLATE, color.red(), color.green(), color.blue()) : XMaterial.LEATHER_CHESTPLATE.parseItem();
         if (GENERATE_MISSING_MESSAGES) {
-            MessageManager.addMessage(getConfigPath() + ".name", "<aqua>" + configName + " Glow Color");
+            MessageManager.addMessage(getConfigPath() + ".name", "<red>" + configName + " Glow Color");
             MessageManager.addMessage(getConfigPath() + ".description", "<white>Visible in hubs and lobbies.");
         }
     }

@@ -10,14 +10,14 @@ import java.util.Arrays;
 
 public class NameColorType extends CosmeticType<NameColor> {
     private static final String[] colors = new String[] {"black", "dark_blue", "dark_green", "dark_aqua", "dark_red", "dark_purple",
-            "gold", "gray", "dark_gray", "blue", "green", "aqua", "red", "light_purple", "yellow", "white"};
+            "gold", "dark_gray", "blue", "green", "aqua", "red", "light_purple", "yellow", "gray", "white"};
     private final String command;
 
     public NameColorType(String configName) {
         super(Category.NAME_COLOR, configName, XMaterial.PLAYER_HEAD, NameColor.class);
         this.command = "mythrendcore namecolor " + configName;
         if (GENERATE_MISSING_MESSAGES) {
-            MessageManager.addMessage(getConfigPath() + ".name", "<light_purple>" + configName + " Name Color");
+            MessageManager.addMessage(getConfigPath() + ".name", "<blue>" + configName + " Name Color");
             MessageManager.addMessage(getConfigPath() + ".description", "<white>Only visible when chatting.");
         }
     }
