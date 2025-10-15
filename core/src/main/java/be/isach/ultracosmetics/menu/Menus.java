@@ -42,6 +42,7 @@ public class Menus {
         categoryMenus.put(Category.HATS, new MenuHats(ultraCosmetics));
         categoryMenus.put(Category.GLOW_COLOR, new MenuGlowColor(ultraCosmetics));
         categoryMenus.put(Category.NAME_COLOR, new MenuNameColor(ultraCosmetics));
+        categoryMenus.put(Category.PLAYER_TITLE, new MenuPlayerTitle(ultraCosmetics));
         categoryMenus.put(Category.MORPHS, new MenuMorphs(ultraCosmetics));
         categoryMenus.put(Category.MOUNTS, new MenuMounts(ultraCosmetics));
         categoryMenus.put(Category.PETS, new MenuPets(ultraCosmetics));

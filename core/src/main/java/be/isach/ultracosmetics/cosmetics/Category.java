@@ -42,6 +42,7 @@ public enum Category {
 
     GLOW_COLOR("Glow-Color", "colorname", "glowcolor", "g", false),
     NAME_COLOR("Name-Color", "colorname", "namecolor", "n", false),
+    PLAYER_TITLE("Player-Title", "title", "playertitle", "pl", false),
     ;
 
     // Avoids counting suit categories multiple times since they share settings
