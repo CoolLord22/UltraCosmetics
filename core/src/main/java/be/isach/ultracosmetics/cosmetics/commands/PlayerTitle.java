@@ -2,7 +2,6 @@ package be.isach.ultracosmetics.cosmetics.commands;
 
 import be.isach.ultracosmetics.UltraCosmetics;
 import be.isach.ultracosmetics.cosmetics.CommandCosmetic;
-import be.isach.ultracosmetics.cosmetics.type.GlowColorType;
 import be.isach.ultracosmetics.cosmetics.type.PlayerTitleType;
 import be.isach.ultracosmetics.player.UltraPlayer;
 
