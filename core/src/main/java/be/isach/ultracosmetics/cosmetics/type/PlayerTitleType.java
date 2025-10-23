@@ -22,7 +22,7 @@ public class PlayerTitleType extends CosmeticType<PlayerTitle> {
 
     public PlayerTitleType(String configName) {
         super(Category.PLAYER_TITLE, configName, XMaterial.NAME_TAG, PlayerTitle.class);
-        this.command = "playertitle " + configName;
+        this.command = "playertitles  %uuid% " + configName;
         if (GENERATE_MISSING_MESSAGES) {
             MessageManager.addMessage(getConfigPath() + ".name", "<gray>[]");
             MessageManager.addMessage(getConfigPath() + ".description", "\"<white>500 Blocks Found \\n<dark_gray>ᴜɴᴄᴏᴍᴍᴏɴ\"");

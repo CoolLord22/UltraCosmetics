@@ -13,6 +13,6 @@ public class PlayerTitle extends CommandCosmetic<PlayerTitleType> {
 
     @Override
     protected String getResetCommand() {
-        return "playertitle reset";
+        return "playertitles %uuid% reset";
     }
 }
