@@ -45,6 +45,8 @@ public abstract class CosmeticButton implements Button {
                 return new ToggleMorphCosmeticButton(ultraCosmetics, (MorphType) cosmeticType);
             case EMOTES:
                 return new ToggleEmoteCosmeticButton(ultraCosmetics, (EmoteType) cosmeticType);
+            case NAME_COLOR:
+                return new ToggleNameColorCosmeticButton(ultraCosmetics, (NameColorType) cosmeticType);
         }
         return new ToggleCosmeticButton(ultraCosmetics, cosmeticType);
     }
