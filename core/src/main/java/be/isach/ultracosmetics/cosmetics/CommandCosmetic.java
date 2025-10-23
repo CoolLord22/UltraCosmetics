@@ -28,8 +28,8 @@ public abstract class CommandCosmetic<T extends CosmeticType<?>> extends Cosmeti
 
     protected void runCommand(String command) {
         try {
-            if(command.contains("%player"))
-                Bukkit.dispatchCommand(Bukkit.getConsoleSender(), command.replace("%player%", getPlayer().getName()));
+            if(command.contains("%player%") || command.contains("%uuid%"))
+                Bukkit.dispatchCommand(Bukkit.getConsoleSender(), command.replace("%uuid%", getPlayer().getUniqueId().toString()).replace("%player%", getPlayer().getName()));
             else
                 Bukkit.dispatchCommand(getPlayer(), command);
         } catch (Exception ex) {
