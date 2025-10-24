@@ -170,7 +170,15 @@ public class PetType extends CosmeticEntType<Pet> {
         registerPet("Pufferfish", XMaterial.PUFFERFISH, XEntityType.PUFFERFISH, PetPufferfish.class);
         registerPet("Salmon", XMaterial.SALMON_BUCKET, XEntityType.SALMON, Pet.class);
         registerPet("TropicalFish", XMaterial.TROPICAL_FISH_BUCKET, XEntityType.TROPICAL_FISH, PetTropicalFish.class);
-        registerPet("Turtle", XMaterial.TURTLE_HELMET, XEntityType.TURTLE, Pet.class);
+        new PetType("Turtle", XMaterial.TURTLE_HELMET, XEntityType.TURTLE, PetTurtle.class) {
+            @Override
+            public void setupConfig(CustomConfiguration config, String path) {
+                super.setupConfig(config, path);
+                config.addDefault(path + ".Bigger-Babies", false,
+                        "Increase the size of baby turtles. They are just so small!",
+                        "Supported on 1.20.5 or later only.");
+            }
+        };
         registerPet("Dolphin", XMaterial.DOLPHIN_SPAWN_EGG, XEntityType.DOLPHIN, Pet.class);
         registerPet("Drowned", XMaterial.TRIDENT, XEntityType.DROWNED, PetDrowned.class);
         registerPet("Parrot", XMaterial.COOKIE, XEntityType.PARROT, PetParrot.class);

@@ -1842,6 +1842,9 @@ Death-Effects:
   Lightning:
     name: <bold><white>Блискавка
     Description: '⚡ ЗАП!'
+  PuffOfSmoke:
+    Description: Зникнення в хмарі диму!
+    name: <bold><gray>Хмара диму
 Enabled-SelfMorphView: <prefix> <blue>Ви увімкнули самоперегляд для морфів!
 Disabled-SelfMorphView: <prefix> <blue>Ви вимкнули самоперегляд для морфів!
 Enabled-Gadgets: <prefix> <blue>Ви увімкнули гаджети!
@@ -1868,3 +1871,12 @@ Use-Rename-Pet-Command: <prefix> <red>використовувати <yellow>/uc
 Commands-Disabled-During-Chest: <prefix> <bold><red>Ви не можете використовувати команди з відкритою скринею!
 No-Buy-Key-Permission: <prefix> <red><bold>Ви не маєте дозволу на придбання ключів скарбів!
 Particles-Minimal-In-Client: <yellow>У налаштуваннях клієнту частинки встановлено на "мінімальне" значення, тож Ви не зможете їх бачити.
+Cosmetics-Toggled-Off: <prefix> <blue>Cosmetics toggled off
+Cosmetics-Toggled-On: <prefix> <blue>Cosmetics toggled on
+Invalid-Category: <prefix> <bold><red>Invalid Category!
+Invalid-Cosmetic: <prefix> <bold><red>Invalid Cosmetic!
+Invalid-Player: '<prefix> <bold><red>Invalid Player!'
+Must-Specify-Player: <prefix> <bold><red>You must specify a player!
+Invalid-Number: '<prefix> <bold><red>Invalid number: <value>'
+Treasure-Keys-Given: <green><keys> keys given to <playername>
+Ammo-Given: <green><ammo> <gadgetname> ammo given to <playername>

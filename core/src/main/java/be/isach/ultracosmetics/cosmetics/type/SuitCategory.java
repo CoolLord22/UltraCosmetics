@@ -7,7 +7,13 @@ import be.isach.ultracosmetics.config.SettingsManager;
 import be.isach.ultracosmetics.cosmetics.Category;
 import be.isach.ultracosmetics.cosmetics.suits.ArmorSlot;
 import be.isach.ultracosmetics.cosmetics.suits.Suit;
+import be.isach.ultracosmetics.cosmetics.suits.SuitAstronaut;
+import be.isach.ultracosmetics.cosmetics.suits.SuitCursed;
+import be.isach.ultracosmetics.cosmetics.suits.SuitDiamond;
+import be.isach.ultracosmetics.cosmetics.suits.SuitFrozen;
 import be.isach.ultracosmetics.cosmetics.suits.SuitRave;
+import be.isach.ultracosmetics.cosmetics.suits.SuitSanta;
+import be.isach.ultracosmetics.cosmetics.suits.SuitSlime;
 import be.isach.ultracosmetics.util.MathUtils;
 import be.isach.ultracosmetics.util.SmartLogger;
 import com.cryptomorin.xseries.XItemStack;
@@ -40,20 +46,33 @@ public class SuitCategory {
             }
         };
         new SuitCategory("Astronaut",
-                XMaterial.GLASS, XMaterial.GOLDEN_CHESTPLATE, XMaterial.GOLDEN_LEGGINGS, XMaterial.GOLDEN_BOOTS, s -> null, Suit.class);
-        new SuitCategory("Diamond",
-                XMaterial.DIAMOND_HELMET, XMaterial.DIAMOND_CHESTPLATE, XMaterial.DIAMOND_LEGGINGS, XMaterial.DIAMOND_BOOTS, s -> null, Suit.class);
-        new SuitCategory("Santa",
-                XMaterial.LEATHER_HELMET, XMaterial.LEATHER_CHESTPLATE, XMaterial.LEATHER_LEGGINGS, XMaterial.LEATHER_BOOTS, s -> Color.RED, Suit.class);
-        new SuitCategory("Frozen",
+                XMaterial.GLASS, XMaterial.GOLDEN_CHESTPLATE, XMaterial.GOLDEN_LEGGINGS, XMaterial.GOLDEN_BOOTS, s -> null, SuitAstronaut.class) {
+            @Override
+            public void setupConfig(CustomConfiguration config, String path) {
+                config.addDefault(path + ".Antigravity", true,
+                        "Whether the antigravity effect will be enabled when a player is wearing the whole suit.",
+                        "Only supported on 1.20.5+");
+            }
+        };
+        new SuitCategoryTrail("Diamond",
+                XMaterial.DIAMOND_HELMET, XMaterial.DIAMOND_CHESTPLATE, XMaterial.DIAMOND_LEGGINGS, XMaterial.DIAMOND_BOOTS, s -> null, SuitDiamond.class);
+        new SuitCategoryTrail("Santa",
+                XMaterial.LEATHER_HELMET, XMaterial.LEATHER_CHESTPLATE, XMaterial.LEATHER_LEGGINGS, XMaterial.LEATHER_BOOTS, s -> Color.RED, SuitSanta.class);
+        new SuitCategoryTrail("Frozen",
                 XMaterial.PACKED_ICE, XMaterial.LEATHER_CHESTPLATE, XMaterial.LEATHER_LEGGINGS, XMaterial.LEATHER_BOOTS,
-                s -> (s == ArmorSlot.HELMET ? null : Color.AQUA), Suit.class);
-        new SuitCategory("Cursed",
+                s -> (s == ArmorSlot.HELMET ? null : Color.AQUA), SuitFrozen.class);
+        new SuitCategoryTrail("Cursed",
                 XMaterial.JACK_O_LANTERN, XMaterial.LEATHER_CHESTPLATE, XMaterial.LEATHER_LEGGINGS, XMaterial.LEATHER_BOOTS,
-                s -> (s == ArmorSlot.HELMET ? null : Color.fromRGB(35, 30, 42)), Suit.class);
+                s -> (s == ArmorSlot.HELMET ? null : Color.fromRGB(35, 30, 42)), SuitCursed.class);
         new SuitCategory("Slime",
                 XMaterial.SLIME_BLOCK, XMaterial.LEATHER_CHESTPLATE, XMaterial.LEATHER_LEGGINGS, XMaterial.LEATHER_BOOTS,
-                s -> (s == ArmorSlot.HELMET ? null : Color.fromRGB(128, 241, 95)), Suit.class);
+                s -> (s == ArmorSlot.HELMET ? null : Color.fromRGB(128, 241, 95)), SuitSlime.class) {
+            @Override
+            public void setupConfig(CustomConfiguration config, String path) {
+                config.addDefault(path + ".Jump-Boost", true,
+                        "Whether the player will get jump boost when wearing the whole suit.");
+            }
+        };
         ConfigurationSection customSection = CosmeticType.getCustomConfig(Category.SUITS_HELMET);
         if (customSection != null) {
             loadCustom(customSection);
@@ -217,5 +236,17 @@ public class SuitCategory {
 
     public static List<SuitCategory> enabled() {
         return values().stream().filter(SuitCategory::isEnabled).collect(Collectors.toList());
+    }
+
+    private static class SuitCategoryTrail extends SuitCategory {
+        private SuitCategoryTrail(String configName, XMaterial helmet, XMaterial chestplate, XMaterial leggings, XMaterial boots, Function<ArmorSlot, Color> colorFunc, Class<? extends Suit> clazz) {
+            super(configName, helmet, chestplate, leggings, boots, colorFunc, clazz);
+        }
+
+        @Override
+        public void setupConfig(CustomConfiguration config, String path) {
+            config.addDefault(path + ".Trail", true,
+                    "Whether to enable the trail when wearing the whole suit.");
+        }
     }
 }

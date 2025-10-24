@@ -7,6 +7,10 @@ import be.isach.ultracosmetics.cosmetics.Updatable;
 import be.isach.ultracosmetics.cosmetics.type.SuitType;
 import be.isach.ultracosmetics.player.UltraPlayer;
 import be.isach.ultracosmetics.util.ItemFactory;
+import org.bukkit.inventory.ItemStack;
+import org.bukkit.inventory.meta.ItemMeta;
+
+import java.util.function.Consumer;
 
 /**
  * Represents an instance of a suit summoned by a player.
@@ -15,23 +19,20 @@ import be.isach.ultracosmetics.util.ItemFactory;
  * @since 12-20-2015
  */
 public class Suit extends ArmorCosmetic<SuitType> {
+    protected boolean fullSuitEquipped = false;
 
     public Suit(UltraPlayer ultraPlayer, SuitType suitType, UltraCosmetics ultraCosmetics) {
         super(ultraPlayer, suitType, ultraCosmetics);
         setupItemStack();
     }
 
-    @Override
-    protected void scheduleTask() {
-        if (isAsync()) {
-            task = getUltraCosmetics().getScheduler().runTimerAsync(this::run, 1, 1);
-        } else {
-            // Default implementation is sync
-            super.scheduleTask();
+    protected boolean isFullSuit() {
+        for (ArmorSlot slot : ArmorSlot.values()) {
+            Suit part = getOwner().getCurrentSuit(slot);
+            if (part == null || part.getType().getSuitCategory() != getType().getSuitCategory()) {
+                return false;
+            }
         }
-    }
-
-    protected boolean isAsync() {
         return true;
     }
 
@@ -39,6 +40,15 @@ public class Suit extends ArmorCosmetic<SuitType> {
     public void run() {
         if (getPlayer() == null || getOwner().getCurrentSuit(getArmorSlot()) != this) {
             return;
+        }
+        if (getArmorSlot() == ArmorSlot.CHESTPLATE) {
+            boolean full = isFullSuit();
+            if (!fullSuitEquipped && full) {
+                chestplateOnFullSuitEquipped();
+            } else if (fullSuitEquipped && !full) {
+                chestplateOnFullSuitUnequipped();
+            }
+            fullSuitEquipped = full;
         }
         ((Updatable) this).onUpdate();
     }
@@ -49,6 +59,27 @@ public class Suit extends ArmorCosmetic<SuitType> {
 
     @Override
     protected void onEquip() {
+    }
+
+    /**
+     * Called on the first update when the entire suit is equipped. Dispatched only to the chestplate.
+     * Suit must implement {@code Updatable} for this to be detected.
+     */
+    protected void chestplateOnFullSuitEquipped() {
+    }
+
+    /**
+     * Called when a suit piece is removed after the whole suit has been equipped.
+     */
+    protected void chestplateOnFullSuitUnequipped() {
+    }
+
+    protected void updateMeta(Consumer<ItemMeta> func) {
+        ItemStack item = getArmorItem();
+        ItemMeta meta = item.getItemMeta();
+        func.accept(meta);
+        item.setItemMeta(meta);
+        setArmorItem(item);
     }
 
     /**
@@ -64,5 +95,10 @@ public class Suit extends ArmorCosmetic<SuitType> {
     @Override
     public String getOccupiedSlotKey() {
         return "Must-Remove.Suits." + getArmorSlot().toString();
+    }
+
+    @Override
+    protected String getOptionPath(String key) {
+        return getType().getSuitCategory().getConfigPath() + "." + key;
     }
 }

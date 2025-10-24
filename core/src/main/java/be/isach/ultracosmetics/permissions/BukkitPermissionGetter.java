@@ -1,7 +1,6 @@
 package be.isach.ultracosmetics.permissions;
 
 import be.isach.ultracosmetics.cosmetics.type.CosmeticType;
-
 import org.bukkit.entity.Player;
 
 public class BukkitPermissionGetter implements CosmeticPermissionGetter, RawPermissionGetter {
@@ -12,8 +11,8 @@ public class BukkitPermissionGetter implements CosmeticPermissionGetter, RawPerm
     }
 
     @Override
-    public boolean hasPermission(Player player, CosmeticType<?> type) {
-        return hasRawPermission(player, type.getPermission().getName());
+    public GrantSource getGrantSource(Player player, CosmeticType<?> type) {
+        return hasRawPermission(player, type.getPermission().getName()) ? GrantSource.PERMISSION : null;
     }
 
 }

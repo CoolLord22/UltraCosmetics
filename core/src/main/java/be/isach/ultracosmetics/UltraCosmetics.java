@@ -15,6 +15,7 @@ import be.isach.ultracosmetics.hook.DiscordSRVHook;
 import be.isach.ultracosmetics.hook.PlaceholderHook;
 import be.isach.ultracosmetics.hook.PlayerAuctionsHook;
 import be.isach.ultracosmetics.hook.TownyHook;
+import be.isach.ultracosmetics.listeners.ClientBrandListener;
 import be.isach.ultracosmetics.listeners.EntityDismountListener;
 import be.isach.ultracosmetics.listeners.MainListener;
 import be.isach.ultracosmetics.listeners.PlayerListener;
@@ -226,6 +227,7 @@ public class UltraCosmetics extends JavaPlugin {
         start(true);
         // Load the class manually so it's available on shutdown
         PlayerUtils.class.getName();
+        Bukkit.getMessenger().registerIncomingPluginChannel(this, "minecraft:brand", new ClientBrandListener(this));
     }
 
     public void start(boolean firstRun) {

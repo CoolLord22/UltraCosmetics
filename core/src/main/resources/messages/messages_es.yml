@@ -1841,6 +1841,9 @@ Death-Effects:
   Lightning:
     name: <bold><white>Relampago
     Description: '⚡ ZAP!'
+  PuffOfSmoke:
+    Description: Disappear in a puff of smoke!
+    name: <bold><gray>Puff of Smoke
 Enabled-SelfMorphView: <prefix> <blue>Activaste vista propia de las transformaciones!
 Disabled-SelfMorphView: <prefix> <blue>Desactivaste vista propia de las transformaciones!
 Enabled-Gadgets: <prefix> <blue>Activaste los gadgets!
@@ -1867,3 +1870,12 @@ Use-Rename-Pet-Command: <prefix> <red>Usa <yellow>/uc rename</yellow> para renom
 Commands-Disabled-During-Chest: <prefix> <bold><red>¡No puedes usar comandos mientras abres un cofre!
 No-Buy-Key-Permission: <prefix> <red><bold>¡No tienes permiso para comprar llaves del tesoro!
 Particles-Minimal-In-Client: <yellow>Tienes las partículas configuradas como "mínimas" en la configuración de tu Minecraft, por lo que no podrá verlas.
+Cosmetics-Toggled-Off: <prefix> <blue>Cosmetics toggled off
+Cosmetics-Toggled-On: <prefix> <blue>Cosmetics toggled on
+Invalid-Category: <prefix> <bold><red>Invalid Category!
+Invalid-Cosmetic: <prefix> <bold><red>Invalid Cosmetic!
+Invalid-Player: '<prefix> <bold><red>Invalid Player!'
+Must-Specify-Player: <prefix> <bold><red>You must specify a player!
+Invalid-Number: '<prefix> <bold><red>Invalid number: <value>'
+Treasure-Keys-Given: <green><keys> keys given to <playername>
+Ammo-Given: <green><ammo> <gadgetname> ammo given to <playername>

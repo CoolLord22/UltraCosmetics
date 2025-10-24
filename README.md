@@ -89,7 +89,7 @@ If you're looking to compile the project yourself, please check out the [compili
 
 ```text
 UltraCosmetics - Lightweight, Fun and Easy-to-Use Spigot Cosmetics plugin.
-Copyright (C) 2024 Sacha "iSach" Lewin
+Copyright (C) 2025 Sacha "iSach" Lewin
 
 This program is free software: you can redistribute it and/or modify
 it under the terms of the GNU Affero General Public License as published
@@ -106,13 +106,8 @@ along with this program. If not, see <https://www.gnu.org/licenses/>.
 ```
 
 [discord-invite]: https://discord.gg/PgSXZT37JV
-
 [wiki-link]: https://github.com/UltraCosmetics/UltraCosmetics/wiki
-
 [spigotmc-link]: https://www.spigotmc.org/resources/10905/
-
 [crowdin-link]: https://crowdin.com/project/ultracosmetics
-
 [github-releases-link]: https://github.com/UltraCosmetics/UltraCosmetics/releases
-
 [modrinth-link]: https://modrinth.com/plugin/ultracosmetics

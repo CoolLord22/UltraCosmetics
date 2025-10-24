@@ -2,6 +2,7 @@ package be.isach.ultracosmetics.command.subcommands;
 
 import be.isach.ultracosmetics.UltraCosmetics;
 import be.isach.ultracosmetics.command.SubCommand;
+import be.isach.ultracosmetics.config.MessageManager;
 import be.isach.ultracosmetics.config.SettingsManager;
 import be.isach.ultracosmetics.menu.buttons.RenamePetButton;
 import be.isach.ultracosmetics.player.UltraPlayer;
@@ -42,6 +43,12 @@ public class SubCommandRename extends SubCommand {
                 sj.add(args[i]);
             }
             newName = sj.toString();
+        }
+        String stripped = MessageManager.getMiniMessage().stripTags(newName);
+        int maxLength = SettingsManager.getConfig().getInt("Max-Pet-Name-Length", -1);
+        if (maxLength != -1 && stripped.length() > maxLength) {
+            error(player, "Name cannot be longer than " + maxLength + " characters");
+            return;
         }
 
         if (!newName.isEmpty() && ultraCosmetics.getEconomyHandler().isUsingEconomy()

@@ -116,6 +116,18 @@ public class UltraPlayer {
     }
 
     /**
+     * Do actions that should happen once the player is ready, i.e. receive menu item and re-equip cosmetics.
+     */
+    public void load() {
+        if (menuItemEnabled && getBukkitPlayer().hasPermission("ultracosmetics.receivechest")) {
+            giveMenuItem();
+        }
+        if (UltraCosmeticsData.get().areCosmeticsProfilesEnabled()) {
+            getProfile().onLoad(CosmeticsProfile::equip);
+        }
+    }
+
+    /**
      * Checks if a player can use a given gadget type.
      *
      * @param type The gadget type.

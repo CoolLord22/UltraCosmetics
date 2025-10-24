@@ -67,7 +67,7 @@ public abstract class Mount extends EntityCosmetic<MountType, Entity> implements
             }
         }
         entity.setCustomNameVisible(true);
-        entity.setCustomName(MessageManager.toLegacy(getType().getName(getPlayer())));
+        getUltraCosmetics().getPaperSupport().setCustomName(entity, getType().getName(getPlayer()));
         entity.addPassenger(getPlayer());
         entity.setPersistent(false);
         entity.setMetadata("Mount", new FixedMetadataValue(UltraCosmeticsData.get().getPlugin(), "UltraCosmetics"));
@@ -144,7 +144,7 @@ public abstract class Mount extends EntityCosmetic<MountType, Entity> implements
 
     @EventHandler
     public void onPlayerToggleSneakEvent(VehicleExitEvent event) {
-        if (event.getVehicle().getType() == EntityType.BOAT || event.getVehicle().getType() == EntityType.MINECART) {
+        if (event.getVehicle().getType() == EntityType.MINECART) {
             return;
         }
 

@@ -59,6 +59,10 @@ public class PermissionManager {
         }
     }
 
+    public GrantSource getGrantSource(Player player, CosmeticType<?> type) {
+        return cosmeticGetter.getGrantSource(player, type);
+    }
+
     public boolean hasPermission(Player player, CosmeticType<?> type) {
         return cosmeticGetter.hasPermission(player, type);
     }

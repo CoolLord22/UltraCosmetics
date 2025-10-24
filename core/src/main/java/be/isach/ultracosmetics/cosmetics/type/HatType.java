@@ -11,7 +11,6 @@ import net.kyori.adventure.text.Component;
 import org.bukkit.ChatColor;
 import org.bukkit.configuration.ConfigurationSection;
 import org.bukkit.inventory.ItemStack;
-import org.bukkit.inventory.meta.ItemMeta;
 
 import java.util.Optional;
 
@@ -46,9 +45,7 @@ public class HatType extends CosmeticType<Hat> {
         super(Category.HATS, configName, material, Hat.class);
         ItemStack stack = material.parseItem();
         ItemFactory.rename(stack, HAT_NAME);
-        ItemMeta meta = stack.getItemMeta();
-        meta.setCustomModelData(customModelData);
-        stack.setItemMeta(meta);
+        ItemFactory.setCustomModelData(stack, customModelData);
         this.itemStack = stack;
         if (GENERATE_MISSING_MESSAGES) {
             MessageManager.addMessage(getConfigPath() + ".Name", configName);

@@ -7,20 +7,22 @@ import be.isach.ultracosmetics.config.SettingsManager;
 import be.isach.ultracosmetics.util.SmartLogger.LogLevel;
 import be.isach.ultracosmetics.version.ServerVersion;
 import com.cryptomorin.xseries.XAttribute;
+import com.cryptomorin.xseries.XItemStack;
 import com.cryptomorin.xseries.XMaterial;
 import com.cryptomorin.xseries.XTag;
 import com.cryptomorin.xseries.profiles.builder.XSkull;
 import com.cryptomorin.xseries.profiles.objects.ProfileInputType;
 import com.cryptomorin.xseries.profiles.objects.Profileable;
 import net.kyori.adventure.text.Component;
-import net.kyori.adventure.text.minimessage.MiniMessage;
 import org.bukkit.Bukkit;
 import org.bukkit.Color;
 import org.bukkit.Location;
 import org.bukkit.Material;
 import org.bukkit.NamespacedKey;
+import org.bukkit.Tag;
 import org.bukkit.attribute.Attribute;
 import org.bukkit.attribute.AttributeModifier;
+import org.bukkit.block.BlockState;
 import org.bukkit.configuration.ConfigurationSection;
 import org.bukkit.enchantments.Enchantment;
 import org.bukkit.entity.Item;
@@ -46,6 +48,8 @@ import java.util.List;
 import java.util.Random;
 import java.util.UUID;
 import java.util.concurrent.ThreadLocalRandom;
+import java.util.function.BiConsumer;
+import java.util.function.Function;
 
 /**
  * Created by sacha on 03/08/15.
@@ -121,12 +125,19 @@ public class ItemFactory {
         return spawnUnpickableItem(material.parseItem(), loc, new Vector(random.nextDouble() - 0.5, random.nextDouble() / 2.0, random.nextDouble() - 0.5).multiply(variance));
     }
 
-    public static void applyCosmeticMarker(ItemStack item) {
+    /**
+     * Apply a marker to an item to indicate it's managed by UC.
+     *
+     * @param item The item to modify. It will be modified in-place.
+     * @return {@code item}, for convenience
+     */
+    public static ItemStack applyCosmeticMarker(ItemStack item) {
         ItemMeta meta = item.getItemMeta();
         // Do not cache this in a field, it doesn't exist on versions below 1.12
         NamespacedKey marker = new NamespacedKey(UltraCosmeticsData.get().getPlugin(), "marker");
         meta.getPersistentDataContainer().set(marker, PersistentDataType.BYTE, (byte) 1);
         item.setItemMeta(meta);
+        return item;
     }
 
     public static ItemStack getItemStackFromConfig(String path) {
@@ -168,27 +179,28 @@ public class ItemFactory {
         return XMaterial.matchXMaterial(fromConfig).orElse(null);
     }
 
+    private static void migrateMenuItem(ConfigurationSection section) {
+        // Migrate item format to XItemStack
+        ConfigurationSection item = section.createSection("item");
+        BiConsumer<String, String> migrate = (before, after) -> {
+            item.set(after, section.get(before));
+            section.set(before, null);
+        };
+        migrate.accept("Type", "material");
+        migrate.accept("Displayname", "name");
+        migrate.accept("Lore", "lore");
+        migrate.accept("CustomModelData", "custom-model-data");
+    }
+
     private static ItemStack createMenuItem() {
         ConfigurationSection section = SettingsManager.getConfig().getConfigurationSection("Menu-Item");
-        MiniMessage mm = MessageManager.getMiniMessage();
-        String name = MessageManager.toLegacy(mm.deserialize(section.getString("Displayname")));
-        int model = section.getInt("Custom-Model-Data");
-        ItemStack stack = ItemFactory.rename(ItemFactory.getItemStackFromConfig("Menu-Item.Type"), name);
-        ItemMeta meta = stack.getItemMeta();
-        String rawLore = section.getString("Lore", "");
-        if (!rawLore.equals("")) {
-            List<String> lore = new ArrayList<>();
-            for (String line : rawLore.split("\n")) {
-                lore.add(MessageManager.toLegacy(mm.deserialize(line)));
-            }
-            meta.setLore(lore);
+        if (section.isString("Type")) {
+            migrateMenuItem(section);
         }
-        if (model != 0) {
-            meta.setCustomModelData(model);
+        if (!section.isConfigurationSection("item")) {
+            section.createSection("item").set("material", "ENDER_CHEST");
         }
-
-        stack.setItemMeta(meta);
-        applyCosmeticMarker(stack);
+        ItemStack stack = parseXItemStack(section.getConfigurationSection("item"));
         return ItemFactory.hideAttributes(stack);
     }
 
@@ -199,12 +211,17 @@ public class ItemFactory {
         return createMenuItem();
     }
 
+    public static ItemStack parseXItemStack(ConfigurationSection section) {
+        Function<String, String> translator = s -> MessageManager.toLegacy(MessageManager.getMiniMessage().deserialize(s));
+        return applyCosmeticMarker(XItemStack.deserialize(section, translator));
+    }
 
     public static ItemStack createSkull(String url, String name) {
         ItemStack head = create(XMaterial.PLAYER_HEAD, name);
         if (UltraCosmeticsData.get().getServerVersion().isAtLeast(ServerVersion.v1_18)) {
             SkullMeta meta = (SkullMeta) head.getItemMeta();
-            PlayerProfile profile = Bukkit.createPlayerProfile(UUID.nameUUIDFromBytes(url.getBytes()));
+            UUID uuid = UUID.nameUUIDFromBytes(url.getBytes());
+            PlayerProfile profile = Bukkit.createPlayerProfile(uuid, uuid.toString().substring(0, 16));
             PlayerTextures textures = profile.getTextures();
             try {
                 textures.setSkin(new URL("https://textures.minecraft.net/texture/" + url));
@@ -253,6 +270,18 @@ public class ItemFactory {
         item.setItemMeta(meta);
     }
 
+    public static void setCustomModelData(ItemStack item, int customModelData) {
+        ItemMeta meta = item.getItemMeta();
+        if (meta == null) return;
+        setCustomModelData(meta, customModelData);
+        item.setItemMeta(meta);
+    }
+
+    @SuppressWarnings("deprecation")
+    public static void setCustomModelData(ItemMeta meta, int customModelData) {
+        meta.setCustomModelData(customModelData);
+    }
+
     @SuppressWarnings({"UnstableApiUsage", "removal"})
     public static AttributeModifier createAttributeModifier(String modName, double amount, AttributeModifier.Operation operation, EquipmentSlot slot) {
         NamespacedKey key = new NamespacedKey(UltraCosmeticsData.get().getPlugin(), modName);
@@ -272,12 +301,12 @@ public class ItemFactory {
         return false;
     }
 
-    private static XMaterial randomXMaterial(List<XMaterial> mats) {
+    private static <T> T randomFromList(List<T> mats) {
         return mats.get(ThreadLocalRandom.current().nextInt(mats.size()));
     }
 
     private static ItemStack randomStack(List<XMaterial> mats) {
-        return randomXMaterial(mats).parseItem();
+        return randomFromList(mats).parseItem();
     }
 
     public static ItemStack getRandomDye() {
@@ -294,7 +323,12 @@ public class ItemFactory {
 
     public static XMaterial randomFromTag(XTag<XMaterial> tag) {
         // copy tag values into temporary ArrayList because getting random values from a Set is hard
-        return randomXMaterial(new ArrayList<>(tag.getValues()));
+        return randomFromList(new ArrayList<>(tag.getValues()));
+    }
+
+    public static Material randomFromTag(Tag<Material> tag) {
+        // copy tag values into temporary ArrayList because getting random values from a Set is hard
+        return randomFromList(new ArrayList<>(tag.getValues()));
     }
 
     public static boolean isSimilar(ItemStack a, ItemStack b) {
@@ -304,7 +338,11 @@ public class ItemFactory {
         if (a.getItemMeta() instanceof BlockStateMeta aMeta && b.getItemMeta() instanceof BlockStateMeta bMeta) {
             // Block state meta spontaneously creates "internal" data that causes it to not be equal.
             // So, we set them to have the same state part and then compare them.
-            aMeta.setBlockState(bMeta.getBlockState());
+            // There seems to be some sort of conversion that happens when getting the state,
+            // so just `aMeta.setBlockState(bMeta.getBlockState())` isn't enough, we have to set both.
+            BlockState common = aMeta.getBlockState();
+            aMeta.setBlockState(common);
+            bMeta.setBlockState(common);
             return aMeta.equals(bMeta);
         }
         return a.isSimilar(b);

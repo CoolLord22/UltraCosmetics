@@ -1,8 +1,6 @@
 package be.isach.ultracosmetics.player;
 
 import be.isach.ultracosmetics.UltraCosmetics;
-import be.isach.ultracosmetics.config.SettingsManager;
-import be.isach.ultracosmetics.listeners.ClientBrandListener;
 import be.isach.ultracosmetics.run.LoadUltraPlayerTask;
 import org.bukkit.Bukkit;
 import org.bukkit.entity.Player;
@@ -70,12 +68,8 @@ public class UltraPlayerManager {
      */
     public void initPlayers() {
         for (Player p : Bukkit.getOnlinePlayers()) {
-            UltraPlayer up = getUltraPlayer(p);
-            if (SettingsManager.getConfig().getBoolean("Menu-Item.Enabled") && SettingsManager.isAllowedWorld(p.getWorld())) {
-                up.giveMenuItem();
-            }
+            getUltraPlayer(p).load();
         }
-        Bukkit.getMessenger().registerIncomingPluginChannel(ultraCosmetics, "minecraft:brand", new ClientBrandListener(ultraCosmetics));
     }
 
     public void dispose() {

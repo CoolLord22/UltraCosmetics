@@ -49,6 +49,7 @@ public class CustomMainMenu extends Menu {
     @Override
     protected void putItems(Inventory inventory, UltraPlayer player) {
         ConfigurationSection slots = config.getConfigurationSection("Slots");
+        boolean saveRequired = false;
         int slot;
         for (String key : slots.getKeys(false)) {
             try {
@@ -68,6 +69,9 @@ public class CustomMainMenu extends Menu {
             switch (typeName.toLowerCase(Locale.ROOT)) {
                 case "command":
                     try {
+                        if (section.isString("Material")) {
+                            saveRequired = true; // migration is about to be performed
+                        }
                         button = CommandButton.deserialize(section, ultraCosmetics);
                     } catch (IllegalArgumentException e) {
                         ultraCosmetics.getSmartLogger().write(SmartLogger.LogLevel.WARNING, e.getMessage());
@@ -111,6 +115,12 @@ public class CustomMainMenu extends Menu {
                     continue;
             }
             putItem(inventory, slot, button, player);
+        }
+        if (saveRequired) {
+            try {
+                config.save(customMenuFile);
+            } catch (IOException ignored) {
+            }
         }
     }
 

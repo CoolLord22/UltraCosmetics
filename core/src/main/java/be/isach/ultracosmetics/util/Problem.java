@@ -17,7 +17,7 @@ public enum Problem {
 
     // Non-fatal
     BAD_MC_VERSION(ProblemSeverity.WARNING, "This version of Minecraft is not fully supported, please check for an update.", "unsupported-mc-version"),
-    NMS_LOAD_FAILURE(ProblemSeverity.WARNING, "Couldn't load support for this MC version, please report this issue.", "nms-load-failure"),
+    NMS_LOAD_FAILURE(ProblemSeverity.WARNING, "Couldn't load support for this MC version, please check the logs for more info.", "nms-load-failure"),
     BAD_MAPPINGS_VERSION(ProblemSeverity.WARNING, "Server internals seem to have changed since this build was created, you will likely experience issues.", "bad-mappings-version") {
         @Override
         public Component getSummary() {

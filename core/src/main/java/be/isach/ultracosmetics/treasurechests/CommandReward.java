@@ -68,7 +68,7 @@ public class CommandReward {
      * chest is opened. Will not be sent if {@link #isMessageEnabled()}
      * is false.
      *
-     * @return the message to be sent
+     * @return the message to be sent, or null if none should be sent.
      */
     public Component getMessage(Player player) {
         if (rawMessage == null) return null;

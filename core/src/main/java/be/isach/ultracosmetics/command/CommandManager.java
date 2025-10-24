@@ -119,6 +119,7 @@ public class CommandManager implements CommandExecutor {
         registerCommand(new SubCommandTroubleshoot(ultraCosmetics));
         registerCommand(new SubCommandPermission(ultraCosmetics));
         registerCommand(new SubCommandRename(ultraCosmetics));
+        registerCommand(new SubCommandWhyDoIHave(ultraCosmetics));
     }
 
     public static void sendNoPermissionMessage(CommandSender sender) {

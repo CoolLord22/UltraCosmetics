@@ -67,7 +67,9 @@ public class RenamePetButton implements Button {
                     .onClick((slot, state) -> {
                         if (slot != AnvilGUI.Slot.OUTPUT) return Collections.emptyList();
                         String text = state.getText();
-                        if (text.length() > MySqlConnectionManager.MAX_NAME_SIZE) {
+                        String stripped = MessageManager.getMiniMessage().stripTags(text);
+                        int maxLength = SettingsManager.getConfig().getInt("Max-Pet-Name-Length", -1);
+                        if ((maxLength != -1 && stripped.length() > maxLength) || text.length() > MySqlConnectionManager.MAX_NAME_SIZE) {
                             return Collections.singletonList(AnvilGUI.ResponseAction.replaceInputText(MessageManager.getLegacyMessage("Too-Long")));
                         }
                         if (!text.isEmpty() && ultraCosmetics.getEconomyHandler().isUsingEconomy()

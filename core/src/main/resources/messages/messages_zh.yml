@@ -1829,6 +1829,9 @@ Death-Effects:
   Lightning:
     name: <bold><white>闪电
     Description: '⚡ 轰隆!'
+  PuffOfSmoke:
+    Description: Disappear in a puff of smoke!
+    name: <bold><gray>Puff of Smoke
 Enabled-SelfMorphView: <prefix> <blue>你启用了第一人称伪装视角
 Disabled-SelfMorphView: <prefix> <blue>你禁用了第一人称伪装视角
 Enabled-Gadgets: <prefix> <blue>您启用了小工具！
@@ -1855,3 +1858,12 @@ Use-Rename-Pet-Command: <prefix> <red>请输入命令 <yellow>/uc rename</yellow
 Commands-Disabled-During-Chest: <prefix> <bold><red>打开箱子时你不能使用命令!
 No-Buy-Key-Permission: <prefix> <red><bold>你没有权限购买宝藏钥匙!
 Particles-Minimal-In-Client: <yellow>检测到你的客户端将粒子效果设置为了“最小”，你可能无法看见粒子效果。
+Cosmetics-Toggled-Off: <prefix> <blue>Cosmetics toggled off
+Cosmetics-Toggled-On: <prefix> <blue>Cosmetics toggled on
+Invalid-Category: <prefix> <bold><red>Invalid Category!
+Invalid-Cosmetic: <prefix> <bold><red>Invalid Cosmetic!
+Invalid-Player: '<prefix> <bold><red>Invalid Player!'
+Must-Specify-Player: <prefix> <bold><red>You must specify a player!
+Invalid-Number: '<prefix> <bold><red>Invalid number: <value>'
+Treasure-Keys-Given: <green><keys> keys given to <playername>
+Ammo-Given: <green><ammo> <gadgetname> ammo given to <playername>

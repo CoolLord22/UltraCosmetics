@@ -135,6 +135,10 @@ public class BlockUtils {
         return block.getType().isSolid();
     }
 
+    public static boolean isRestoring(Block block) {
+        return BlockViewUpdater.isUpdating(block);
+    }
+
     /**
      * Sends packets to replace each block in a Map of blocks with the new material it's mapped to
      * and after delay, send packets to restore it. No blocks are actually changed on the server side.
@@ -143,7 +147,7 @@ public class BlockUtils {
      * @param tickDelay The delay after which the blocks are restored.
      */
     public static void setToRestoreIgnoring(final Map<Block, XMaterial> blocks, final int tickDelay) {
-        UltraCosmeticsData.get().getPlugin().getScheduler().runAsync((task) -> {
+        UltraCosmeticsData.get().getPlugin().getScheduler().runAsync(task -> {
             blocks.keySet().removeIf(BlockViewUpdater::isUpdating);
             if (blocks.isEmpty()) return;
             World world = blocks.keySet().iterator().next().getWorld();

@@ -1,20 +1,15 @@
 package be.isach.ultracosmetics.menu.buttons;
 
 import be.isach.ultracosmetics.UltraCosmetics;
-import be.isach.ultracosmetics.config.MessageManager;
 import be.isach.ultracosmetics.menu.Button;
 import be.isach.ultracosmetics.menu.ClickData;
 import be.isach.ultracosmetics.player.UltraPlayer;
 import be.isach.ultracosmetics.util.ItemFactory;
-import com.cryptomorin.xseries.XMaterial;
-import net.kyori.adventure.text.minimessage.MiniMessage;
 import org.bukkit.Bukkit;
 import org.bukkit.configuration.ConfigurationSection;
 import org.bukkit.inventory.ItemStack;
-import org.bukkit.inventory.meta.ItemMeta;
 
-import java.util.ArrayList;
-import java.util.List;
+import java.util.function.BiConsumer;
 
 public class CommandButton implements Button {
     private final ItemStack stack;
@@ -41,42 +36,28 @@ public class CommandButton implements Button {
         Bukkit.dispatchCommand(Bukkit.getConsoleSender(), command.replace("%player%", clickData.getClicker().getBukkitPlayer().getName()));
     }
 
+    private static void migrate(ConfigurationSection section) {
+        // Migrate item format to XItemStack
+        ConfigurationSection item = section.createSection("item");
+        BiConsumer<String, String> migrate = (before, after) -> {
+            item.set(after, section.get(before));
+            section.set(before, null);
+        };
+        migrate.accept("Material", "material");
+        migrate.accept("Amount", "amount");
+        migrate.accept("Name", "name");
+        migrate.accept("Lore", "lore");
+        migrate.accept("CustomModelData", "custom-model-data");
+    }
+
     public static CommandButton deserialize(ConfigurationSection section, UltraCosmetics ultraCosmetics) {
-        XMaterial xmat = XMaterial.matchXMaterial(section.getString("Material")).orElse(null);
-        if (xmat == null) {
-            throw new IllegalArgumentException("Invalid item for button: '" + section.getString("Material") + "'");
+        if (section.isString("Material")) {
+            migrate(section);
         }
-        ItemStack stack = xmat.parseItem();
-        int amount = section.getInt("Amount", 1);
-        if (amount < 1 || amount > 64) {
-            throw new IllegalArgumentException("Invalid amount: " + amount);
+        if (!section.isConfigurationSection("item")) {
+            throw new IllegalArgumentException("No item defined");
         }
-        stack.setAmount(amount);
-        MiniMessage mm = MessageManager.getMiniMessage();
-        if (section.isString("Name")) {
-            String name = MessageManager.toLegacy(mm.deserialize(section.getString("Name")));
-            ItemFactory.rename(stack, name);
-        }
-        ItemMeta meta = stack.getItemMeta();
-        boolean loreIsString = section.isString("Lore");
-        boolean loreIsList = section.isList("Lore");
-        if (loreIsString || loreIsList) {
-            List<String> lore = new ArrayList<>();
-            if (loreIsString) {
-                for (String line : section.getString("Lore").split("\n")) {
-                    lore.add(MessageManager.toLegacy(mm.deserialize(line)));
-                }
-            } else {
-                for (String line : section.getStringList("Lore")) {
-                    lore.add(MessageManager.toLegacy(mm.deserialize(line)));
-                }
-            }
-            meta.setLore(lore);
-        }
-        if (section.isInt("CustomModelData")) {
-            meta.setCustomModelData(section.getInt("CustomModelData"));
-        }
-        stack.setItemMeta(meta);
+        ItemStack stack = ItemFactory.parseXItemStack(section.getConfigurationSection("item"));
         boolean closeAfterClick = section.getBoolean("CloseAfterClick");
         String command = section.getString("Command");
         return new CommandButton(stack, command, closeAfterClick);

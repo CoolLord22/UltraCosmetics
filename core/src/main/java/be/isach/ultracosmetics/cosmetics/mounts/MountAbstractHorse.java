@@ -17,6 +17,7 @@ public abstract class MountAbstractHorse extends Mount {
         super(ultraPlayer, type, ultraCosmetics);
     }
 
+    @SuppressWarnings("deprecation")
     @Override
     public void setupEntity() {
         AbstractHorse horse = (AbstractHorse) entity;

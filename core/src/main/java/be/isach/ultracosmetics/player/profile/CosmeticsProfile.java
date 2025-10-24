@@ -58,8 +58,9 @@ public abstract class CosmeticsProfile {
         if (!SettingsManager.isAllowedWorld(ultraPlayer.getBukkitPlayer().getWorld())) return;
         ultraPlayer.withPreserveEquipped(() -> {
             for (Entry<Category, CosmeticType<?>> type : data.getEnabledCosmetics().entrySet()) {
-                if (type.getValue() == null || !type.getKey().isEnabled() || !type.getValue().isEnabled()) continue;
-                type.getValue().equip(ultraPlayer, ultraCosmetics);
+                if (type.getValue() != null && type.getKey().isEnabled() && type.getValue().isEnabled()) {
+                    type.getValue().equip(ultraPlayer, ultraCosmetics);
+                }
             }
         });
     }
@@ -74,6 +75,10 @@ public abstract class CosmeticsProfile {
 
     public void clearAllEquipped() {
         data.getEnabledCosmetics().clear();
+    }
+
+    public boolean hasAnyEquipped() {
+        return !data.getEnabledCosmetics().isEmpty();
     }
 
     public int getAmmo(GadgetType gadget) {

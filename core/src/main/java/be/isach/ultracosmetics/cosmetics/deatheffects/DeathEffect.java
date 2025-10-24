@@ -8,7 +8,7 @@ import com.cryptomorin.xseries.particles.ParticleDisplay;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.entity.PlayerDeathEvent;
 
-public abstract class DeathEffect extends Cosmetic<DeathEffectType> {
+public class DeathEffect extends Cosmetic<DeathEffectType> {
     protected ParticleDisplay display;
 
     public DeathEffect(UltraPlayer owner, DeathEffectType type, UltraCosmetics ultraCosmetics) {

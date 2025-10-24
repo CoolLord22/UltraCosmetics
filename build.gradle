@@ -12,7 +12,7 @@ allprojects {
     idea.module.downloadSources = true
 
     group = 'be.isach.UltraCosmetics'
-    version = '3.13.1-CUSTOM'
+    version = '3.14-CUSTOM'
 
     tasks.withType(JavaCompile) {
         options.encoding = 'UTF-8'
@@ -31,13 +31,8 @@ allprojects {
         compile.extendsFrom shaded
     }
 
-    def getGitHash = { ->
-        def stdout = new ByteArrayOutputStream()
-        exec {
-            commandLine 'git', 'rev-parse', '--short', 'HEAD'
-            standardOutput = stdout
-        }
-        return stdout.toString().trim()
+    def gitVersionProvider = providers.exec {
+        commandLine 'git', 'rev-parse', '--short', 'HEAD'
     }
 
     processResources {
@@ -45,7 +40,7 @@ allprojects {
 
         filter ReplaceTokens, tokens: [
                 'VERSION' : project.version,
-                'GIT-HASH': getGitHash()
+                'GIT-HASH': gitVersionProvider.standardOutput.asText.get().trim()
         ]
     }
 
@@ -61,11 +56,18 @@ allprojects {
     }
 }
 
-defaultTasks 'obfuscate'
+defaultTasks 'build'
 
-subprojects.each {
-    if (!it.hasProperty('remapMcVersion')) return
-    tasks.register('obf' + it.name, VersionedObfTask, it)
+tasks {
+    compileJava {
+        subprojects.forEach {
+            if (it.name == 'core') {
+                dependsOn "core:jar"
+            } else {
+                dependsOn("${it.path}:assemble")
+            }
+        }
+    }
 }
 
 dependencies {
@@ -86,36 +88,34 @@ subprojects { subproj ->
         // mavenCentral()
         // Instead of real maven central we use the maven mirror Paper uses, to ensure all the dependencies we want will
         // also be available to the library loader.
-        maven { url = 'https://maven-central.storage-download.googleapis.com/maven2/' }
+        maven { url = 'https://maven-central.storage-download.googleapis.com/maven2' }
 
         // AnvilGUI, Treasury
-        maven { url = 'https://repo.codemc.io/repository/maven-snapshots/' }
+        maven { url = 'https://repo.codemc.io/repository/maven-snapshots' }
         // Lib's Disguises
-        maven { url = 'https://repo.md-5.net/content/groups/public/' }
+        maven { url = 'https://repo.md-5.net/content/groups/public' }
         // WorldEdit
         maven { url = 'https://repo.aikar.co/nexus/content/groups/aikar' }
         // BungeeCord
         maven { url = 'https://oss.sonatype.org/content/repositories/snapshots' }
         // PlaceholderAPI
-        maven { url = 'https://repo.extendedclip.com/content/repositories/placeholderapi/' }
+        maven { url = 'https://repo.extendedclip.com/content/repositories/placeholderapi' }
         // PlayerPoints
-        maven { url = 'https://repo.rosewooddev.io/repository/public/' }
+        maven { url = 'https://repo.rosewooddev.io/repository/public' }
         // SpigotMC
-        maven { url = 'https://hub.spigotmc.org/nexus/content/repositories/snapshots/' }
-        // WorldGuard
-        maven { url = 'https://maven.enginehub.org/repo/' }
+        maven { url = 'https://hub.spigotmc.org/nexus/content/repositories/snapshots' }
         // DiscordSRV
-        maven { url = 'https://nexus.scarsz.me/content/groups/public/' }
-        // ChestSort
-        maven { url = 'https://repo.jeff-media.com/public/' }
+        maven { url = 'https://nexus.scarsz.me/content/groups/public' }
         // Towny
-        maven { url = 'https://repo.glaremasters.me/repository/towny/' }
+        maven { url = 'https://repo.glaremasters.me/repository/towny' }
         // PlayerAuctions
-        maven { url = 'https://repo.olziedev.com/' }
+        maven { url = 'https://repo.olziedev.com' }
+        // WorldGuard
+        maven { url = 'https://maven.enginehub.org/repo' }
         // Vault, PEconomy, MobChipLite, FoliaLib
         maven { url = 'https://jitpack.io' }
         // Paper API
-        maven { url = 'https://repo.papermc.io/repository/maven-public/' }
+        maven { url = 'https://repo.papermc.io/repository/maven-public' }
         // Mojang Authlib
         maven { url = 'https://libraries.minecraft.net' }
     }
@@ -129,49 +129,6 @@ subprojects { subproj ->
             languageVersion = JavaLanguageVersion.of(version)
         }
     }
-}
-
-abstract class VersionedObfTask extends DefaultTask {
-    private Project subproj;
-
-    @Inject
-    public VersionedObfTask(Project subproj) {
-        this.subproj = subproj
-        dependsOn 'jar'
-        description 'Generates an obfuscated version of the jar for use with Spigot.'
-        group = 'jar preparation'
-        ext.toolingDir = System.getProperty('user.dir')
-        ext.homeDir = project.gradle.gradleUserHomeDir.parent
-    }
-
-    @TaskAction
-    def go() {
-        def nms = subproj.name
-        def mcVer = subproj.getProperty('remapMcVersion')
-        def filename = project.tasks.jar.archiveFileName.get()
-        project.exec {
-            workingDir project.buildDir
-            commandLine 'java', '-cp', ext.toolingDir + '/tooling/specialsource/SpecialSource.jar' + File.pathSeparator + ext.homeDir + "/.m2/repository/org/spigotmc/spigot/$mcVer-R0.1-SNAPSHOT/spigot-$mcVer-R0.1-SNAPSHOT-remapped-mojang.jar",
-                    'net.md_5.specialsource.SpecialSource', '--live', '--only', "be/isach/ultracosmetics/$nms", '-q',
-                    '-i', 'libs/' + filename,
-                    '-o', 'libs/obfuscated-donotuse-' + filename,
-                    '-m', ext.homeDir + "/.m2/repository/org/spigotmc/minecraft-server/$mcVer-R0.1-SNAPSHOT/minecraft-server-$mcVer-R0.1-SNAPSHOT-maps-mojang.txt",
-                    '--reverse'
-        }
-        project.exec {
-            workingDir project.buildDir
-            commandLine 'java', '-cp', ext.toolingDir + '/tooling/specialsource/SpecialSource.jar' + File.pathSeparator + ext.homeDir + "/.m2/repository/org/spigotmc/spigot/$mcVer-R0.1-SNAPSHOT/spigot-$mcVer-R0.1-SNAPSHOT-remapped-obf.jar",
-                    'net.md_5.specialsource.SpecialSource', '--live', '--only', "be/isach/ultracosmetics/$nms", '-q',
-                    '-i', 'libs/obfuscated-donotuse-' + filename,
-                    '-o', 'libs/' + filename,
-                    '-m', ext.homeDir + "/.m2/repository/org/spigotmc/minecraft-server/$mcVer-R0.1-SNAPSHOT/minecraft-server-$mcVer-R0.1-SNAPSHOT-maps-spigot.csrg"
-        }
-    }
-}
-
-tasks.register('obfuscate') {
-    dependsOn tasks.withType(VersionedObfTask)
-    group = 'jar preparation'
 }
 
 boolean isDependencyInstalled(String version) {

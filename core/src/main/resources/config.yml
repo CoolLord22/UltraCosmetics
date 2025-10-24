@@ -370,6 +370,14 @@ Pets-Have-Collision: true
 # Can pets get in vehicles? (e.g. boats)
 Pets-Can-Ride: false
 
+# Limit the maximum length of a pet name to this number. Color and formatting aren't included in the length.
+# Use -1 to use vanilla name length limiting rules.
+Max-Pet-Name-Length: -1
+
+# Should pets be carried by a happy ghast while the owner is flying?
+# Only supported on 1.21.6 or later.
+Airlift-Pets: true
+
 # Are gadgets prevented from making sounds?
 Gadgets-Are-Silent: false
 

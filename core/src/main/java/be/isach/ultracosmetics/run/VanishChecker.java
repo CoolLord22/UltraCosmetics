@@ -8,16 +8,12 @@ import be.isach.ultracosmetics.player.UltraPlayerManager;
 import be.isach.ultracosmetics.task.UltraTask;
 import org.bukkit.entity.Player;
 
-import java.util.Queue;
-import java.util.concurrent.ConcurrentLinkedQueue;
-
 /**
  * Checks for vanished players that still have cosmetics equipped.
  */
 public class VanishChecker extends UltraTask {
     private final UltraCosmetics ultraCosmetics;
     private final UltraPlayerManager pm;
-    private final Queue<UltraPlayer> playersToClear = new ConcurrentLinkedQueue<>();
 
     public VanishChecker(UltraCosmetics ultraCosmetics) {
         this.ultraCosmetics = ultraCosmetics;
@@ -31,16 +27,11 @@ public class VanishChecker extends UltraTask {
             if (player == null) continue;
             if (PlayerAffectingCosmetic.isVanished(player) && ultraPlayer.hasCosmeticsEquipped()) {
                 MessageManager.send(player, "Not-Allowed-In-Vanish");
-                playersToClear.add(ultraPlayer);
+                ultraCosmetics.getScheduler().runAtEntity(player, t -> {
+                    ultraPlayer.clear(false);
+                });
             }
         }
-        // Don't hop to main thread if nothing to do
-        if (playersToClear.isEmpty()) return;
-        ultraCosmetics.getScheduler().runNextTick((task) -> {
-            while (!playersToClear.isEmpty()) {
-                playersToClear.remove().clear(false);
-            }
-        });
     }
 
     @Override

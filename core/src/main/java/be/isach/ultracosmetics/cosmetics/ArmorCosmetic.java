@@ -7,6 +7,7 @@ import be.isach.ultracosmetics.cosmetics.suits.ArmorSlot;
 import be.isach.ultracosmetics.cosmetics.type.CosmeticType;
 import be.isach.ultracosmetics.player.UltraPlayer;
 import be.isach.ultracosmetics.util.ItemFactory;
+import com.cryptomorin.xseries.XAttribute;
 import com.cryptomorin.xseries.XMaterial;
 import org.bukkit.GameMode;
 import org.bukkit.Material;
@@ -26,6 +27,7 @@ import org.bukkit.inventory.meta.ItemMeta;
 
 import java.util.HashMap;
 import java.util.Map;
+import java.util.Optional;
 
 public abstract class ArmorCosmetic<T extends CosmeticType<?>> extends Cosmetic<T> {
     protected final Map<Attribute, Double> attributes;
@@ -98,7 +100,11 @@ public abstract class ArmorCosmetic<T extends CosmeticType<?>> extends Cosmetic<
         if (section == null) return;
         for (String key : section.getKeys(false)) {
             try {
-                attrs.put(Attribute.valueOf(key), section.getDouble(key));
+                Optional<XAttribute> attr = XAttribute.of(key);
+                if (attr.isEmpty() || !attr.get().isSupported()) {
+                    continue;
+                }
+                attrs.put(attr.get().get(), section.getDouble(key));
             } catch (IllegalArgumentException ignored) {
             }
         }

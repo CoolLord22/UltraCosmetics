@@ -171,7 +171,19 @@ public class UltraCosmeticsData {
 
         try {
             versionManager = new VersionManager(serverVersion, true);
-        } catch (ReflectiveOperationException e) {
+        } catch (ReflectiveOperationException | NoClassDefFoundError e) {
+            if (e instanceof NoClassDefFoundError) {
+                StackTraceElement[] elements = ((NoClassDefFoundError) e).getStackTrace();
+                for (int i = 0; i < 5; i++) {
+                    if (elements[i].getClassName().startsWith("io.papermc.reflectionrewriter")) {
+                        String brand = Bukkit.getName();
+                        logger.write(LogLevel.WARNING, "This appears to be a version of " + brand + " that doesn't support remapping.");
+                        logger.write(LogLevel.WARNING, "Please check for " + brand + " updates. UC will try to continue in NMS-less mode.");
+                        ultraCosmetics.addProblem(Problem.NMS_LOAD_FAILURE);
+                        return false;
+                    }
+                }
+            }
             e.printStackTrace();
             logger.write(LogLevel.ERROR, "Couldn't find module for " + serverVersion + ", please report this issue.");
             logger.write("UC will try to continue in NMS-less mode.");
@@ -241,10 +253,14 @@ public class UltraCosmeticsData {
 
         try {
             ChipUtil.getWrapper();
-        } catch (IllegalStateException e) {
+            return true;
+        } catch (IllegalStateException | NoClassDefFoundError e) {
+            // NoClassDefFoundError can happen if we're on paper without remapping
+            return false;
+        } catch (Exception e) {
+            e.printStackTrace();
             return false;
         }
-        return true;
     }
 
     public void initConfigFields() {

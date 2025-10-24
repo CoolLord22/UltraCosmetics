@@ -27,8 +27,8 @@ public class ProfilePermissions implements CosmeticPermissionGetter, CosmeticPer
     }
 
     @Override
-    public boolean hasPermission(Player player, CosmeticType<?> type) {
-        return pm.getUltraPlayer(player).getProfile().hasUnlocked(type);
+    public GrantSource getGrantSource(Player player, CosmeticType<?> type) {
+        return pm.getUltraPlayer(player).getProfile().hasUnlocked(type) ? GrantSource.PROFILE : null;
     }
 
     @Override

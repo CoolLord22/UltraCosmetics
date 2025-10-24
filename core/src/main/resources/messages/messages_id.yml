@@ -1842,6 +1842,9 @@ Death-Effects:
   Lightning:
     name: <bold><white>Lightning
     Description: '⚡ ZAP!'
+  PuffOfSmoke:
+    Description: Disappear in a puff of smoke!
+    name: <bold><gray>Puff of Smoke
 Enabled-SelfMorphView: <prefix> <blue>You enabled self view for morphs!
 Disabled-SelfMorphView: <prefix> <blue>You disabled self view for morphs!
 Enabled-Gadgets: <prefix> <blue>You enabled gadgets!
@@ -1868,3 +1871,12 @@ Use-Rename-Pet-Command: <prefix> <red>Use <yellow>/uc rename</yellow> to rename
 Commands-Disabled-During-Chest: <prefix> <bold><red>You can't use commands while opening a chest!
 No-Buy-Key-Permission: <prefix> <red><bold>You don't have permission to buy treasure keys!
 Particles-Minimal-In-Client: <yellow>You have particles set to "minimal" in your client settings and so you won't be able to see particles.
+Cosmetics-Toggled-Off: <prefix> <blue>Cosmetics toggled off
+Cosmetics-Toggled-On: <prefix> <blue>Cosmetics toggled on
+Invalid-Category: <prefix> <bold><red>Invalid Category!
+Invalid-Cosmetic: <prefix> <bold><red>Invalid Cosmetic!
+Invalid-Player: '<prefix> <bold><red>Invalid Player!'
+Must-Specify-Player: <prefix> <bold><red>You must specify a player!
+Invalid-Number: '<prefix> <bold><red>Invalid number: <value>'
+Treasure-Keys-Given: <green><keys> keys given to <playername>
+Ammo-Given: <green><ammo> <gadgetname> ammo given to <playername>

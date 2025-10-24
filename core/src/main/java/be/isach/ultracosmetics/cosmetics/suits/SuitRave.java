@@ -16,17 +16,12 @@ import org.bukkit.inventory.meta.LeatherArmorMeta;
  * @since 12-20-2015
  */
 public class SuitRave extends Suit implements Updatable {
-    private int[] colors = new int[] {255, 0, 0};
+    private final int[] colors = new int[] {255, 0, 0};
+    private final int updateInterval = SettingsManager.getConfig().getInt(getOptionPath("Update-Delay-In-Creative"), 1);
     private int tick = 0;
-    private int updateInterval = SettingsManager.getConfig().getInt("Suits.Rave.Update-Delay-In-Creative", 1);
 
     public SuitRave(UltraPlayer owner, SuitType suitType, UltraCosmetics ultraCosmetics) {
         super(owner, suitType, ultraCosmetics);
-    }
-
-    @Override
-    protected boolean isAsync() {
-        return false;
     }
 
     @Override

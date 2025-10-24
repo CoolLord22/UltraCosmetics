@@ -16,8 +16,14 @@ public class ProfileBukkitHybridGetter implements CosmeticPermissionGetter {
     }
 
     @Override
-    public boolean hasPermission(Player player, CosmeticType<?> type) {
-        return profile.hasPermission(player, type) || bukkit.hasPermission(player, type);
+    public GrantSource getGrantSource(Player player, CosmeticType<?> type) {
+        if (bukkit.hasPermission(player, type)) {
+            return GrantSource.PERMISSION;
+        }
+        if (profile.hasPermission(player, type)) {
+            return GrantSource.PROFILE;
+        }
+        return null;
     }
 
     @Override
