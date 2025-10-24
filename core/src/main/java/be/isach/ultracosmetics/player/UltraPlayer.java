@@ -125,6 +125,10 @@ public class UltraPlayer {
         if (UltraCosmeticsData.get().areCosmeticsProfilesEnabled()) {
             getProfile().onLoad(CosmeticsProfile::equip);
         }
+        if(!hasCosmetic(Category.GADGETS)) {
+            CosmeticType<?> egg = CosmeticType.valueOf(Category.GADGETS, "Egg");
+            if(egg != null) egg.equip(this, ultraCosmetics);
+        }
     }
 
     /**
