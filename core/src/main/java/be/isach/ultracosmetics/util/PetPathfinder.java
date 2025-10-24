@@ -6,10 +6,7 @@ import me.gamercoder215.mobchip.EntityBrain;
 import me.gamercoder215.mobchip.ai.goal.CustomPathfinder;
 import me.gamercoder215.mobchip.bukkit.BukkitBrain;
 import org.bukkit.Location;
-import org.bukkit.entity.EntityType;
-import org.bukkit.entity.Mob;
-import org.bukkit.entity.Player;
-import org.bukkit.entity.Slime;
+import org.bukkit.entity.*;
 import org.bukkit.util.Vector;
 
 public class PetPathfinder extends CustomPathfinder {
@@ -84,8 +81,10 @@ public class PetPathfinder extends CustomPathfinder {
         double distSquared = ourLoc.distanceSquared(targetLoc);
         if (distSquared > tpRange * tpRange) {
             // Very far from target, teleport there
-            UltraCosmeticsData.get().getPlugin().getScheduler().teleportAsync(entity, targetLoc);
-            brain.getController().moveTo(targetLoc.subtract(0, yOffset, 0), speed);
+            if (((LivingEntity) target).isOnGround()) {
+                UltraCosmeticsData.get().getPlugin().getScheduler().teleportAsync(entity, targetLoc);
+                brain.getController().moveTo(targetLoc.subtract(0, yOffset, 0), speed);
+            }
             return;
         }
         if (distSquared > maxRange * maxRange) {
