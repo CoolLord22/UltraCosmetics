@@ -100,7 +100,7 @@ public class SubCommandToggle extends SubCommand {
         }
 
         if (target.hasCosmeticsEquipped()) {
-            target.withPreserveEquipped(target::clear);
+            target.withPreserveEquipped(() -> target.clear(false));
             MessageManager.send(sender, "Cosmetics-Toggled-Off");
         } else {
             target.getProfile().equip();
