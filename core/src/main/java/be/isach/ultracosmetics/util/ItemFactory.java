@@ -14,12 +14,7 @@ import com.cryptomorin.xseries.profiles.builder.XSkull;
 import com.cryptomorin.xseries.profiles.objects.ProfileInputType;
 import com.cryptomorin.xseries.profiles.objects.Profileable;
 import net.kyori.adventure.text.Component;
-import org.bukkit.Bukkit;
-import org.bukkit.Color;
-import org.bukkit.Location;
-import org.bukkit.Material;
-import org.bukkit.NamespacedKey;
-import org.bukkit.Tag;
+import org.bukkit.*;
 import org.bukkit.attribute.Attribute;
 import org.bukkit.attribute.AttributeModifier;
 import org.bukkit.block.BlockState;
@@ -43,10 +38,7 @@ import org.bukkit.util.Vector;
 
 import java.net.MalformedURLException;
 import java.net.URL;
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Random;
-import java.util.UUID;
+import java.util.*;
 import java.util.concurrent.ThreadLocalRandom;
 import java.util.function.BiConsumer;
 import java.util.function.Function;
@@ -351,11 +343,11 @@ public class ItemFactory {
     public static ItemStack hideAttributes(ItemStack itemstack) {
         ItemMeta meta = itemstack.getItemMeta();
         if(meta != null) {
-            for (Attribute attribute : Attribute.values()) {
+            for(Attribute attribute : Registry.ATTRIBUTE) {
                 meta.removeAttributeModifier(attribute);
             }
-            AttributeModifier modifier = createAttributeModifier("itemflags", 0, AttributeModifier.Operation.ADD_NUMBER, EquipmentSlot.HAND);
-            meta.addAttributeModifier(XAttribute.KNOCKBACK_RESISTANCE.get(), modifier);
+            meta.addItemFlags(ItemFlag.HIDE_ATTRIBUTES);
+            meta.addAttributeModifier(XAttribute.KNOCKBACK_RESISTANCE.get(), createAttributeModifier("itemflags", 0, AttributeModifier.Operation.ADD_NUMBER, EquipmentSlot.HAND));
         }
         itemstack.setItemMeta(meta);
         return itemstack;
