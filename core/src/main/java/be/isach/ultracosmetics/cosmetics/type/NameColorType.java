@@ -15,7 +15,7 @@ public class NameColorType extends CosmeticType<NameColor> {
 
     public NameColorType(String configName) {
         super(Category.NAME_COLOR, configName, XMaterial.PLAYER_HEAD, NameColor.class);
-        this.command = "mythrendcore namecolor " + configName;
+        this.command = "customcosmetic namecolor %uuid% " + configName;
         if (GENERATE_MISSING_MESSAGES) {
             MessageManager.addMessage(getConfigPath() + ".name", "<blue>" + configName + " Name Color");
             MessageManager.addMessage(getConfigPath() + ".description", "<white>Only visible when chatting.");

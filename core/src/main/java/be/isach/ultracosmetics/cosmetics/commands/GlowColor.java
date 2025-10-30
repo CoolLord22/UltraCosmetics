@@ -13,6 +13,6 @@ public class GlowColor extends CommandCosmetic<GlowColorType> {
 
     @Override
     protected String getResetCommand() {
-        return "mythrendcore glow reset";
+        return "customcosmetic glowcolor %uuid% reset";
     }
 }

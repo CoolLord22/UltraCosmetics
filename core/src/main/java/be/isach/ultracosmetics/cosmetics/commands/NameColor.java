@@ -13,6 +13,6 @@ public class NameColor extends CommandCosmetic<NameColorType> {
 
     @Override
     protected String getResetCommand() {
-        return "mythrendcore namecolor reset";
+        return "customcosmetic namecolor %uuid% reset";
     }
 }

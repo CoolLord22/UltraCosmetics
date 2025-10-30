@@ -21,7 +21,7 @@ public class GlowColorType extends CosmeticType<GlowColor> {
     public GlowColorType(String configName) {
         super(Category.GLOW_COLOR, configName, XMaterial.LEATHER_CHESTPLATE, GlowColor.class);
         NamedTextColor color = NamedTextColor.NAMES.value(configName);
-        this.command = "mythrendcore glow " + configName;
+        this.command = "customcosmetic glowcolor %uuid% " + configName;
         this.chestplate = color != null ? ItemFactory.createColouredLeather(Material.LEATHER_CHESTPLATE, color.red(), color.green(), color.blue()) : XMaterial.LEATHER_CHESTPLATE.parseItem();
         if (GENERATE_MISSING_MESSAGES) {
             MessageManager.addMessage(getConfigPath() + ".name", "<red>" + configName + " Glow Color");
