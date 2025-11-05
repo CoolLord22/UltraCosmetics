@@ -132,13 +132,12 @@ public class ItemFactory {
         return item;
     }
 
-    public static ItemStack applyTooltipMarker(ItemStack item, String tooltip) {
+    public static void applyTooltipMarker(ItemStack item, String tooltip) {
         ItemMeta meta = item.getItemMeta();
         // Do not cache this in a field, it doesn't exist on versions below 1.12
         NamespacedKey marker = new NamespacedKey(UltraCosmeticsData.get().getPlugin(), "tooltip");
         meta.getPersistentDataContainer().set(marker, PersistentDataType.STRING, tooltip);
         item.setItemMeta(meta);
-        return item;
     }
 
     public static ItemStack getItemStackFromConfig(String path) {

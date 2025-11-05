@@ -39,7 +39,6 @@ public class ToggleCosmeticButton extends CosmeticButton {
         Component name = cosmeticType.getName();
         name = modifyName(name, ultraPlayer);
         ItemStack stack = ItemFactory.rename(cosmeticType.getItemStack(), name);
-        ItemFactory.applyTooltipMarker(stack, PlainTextComponentSerializer.plainText().serialize(toggle));
         if (deactivate) {
             ItemFactory.addGlow(stack);
         }
@@ -67,6 +66,7 @@ public class ToggleCosmeticButton extends CosmeticButton {
         meta.setLore(loreList);
         meta = modifyMeta(meta, ultraPlayer);
         stack.setItemMeta(meta);
+        ItemFactory.applyTooltipMarker(stack, PlainTextComponentSerializer.plainText().serialize(toggle));
         stack.setAmount(getAmount(ultraPlayer));
         return stack;
     }
