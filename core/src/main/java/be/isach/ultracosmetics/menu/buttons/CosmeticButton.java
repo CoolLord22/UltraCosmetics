@@ -179,14 +179,14 @@ public abstract class CosmeticButton implements Button {
     }
 
     protected boolean startsWithColorless(String a, Component b) {
-        return ChatColor.stripColor(a).startsWith(PlainTextComponentSerializer.plainText().serialize(b));
+        return ChatColor.stripColor(a).startsWith(TextUtil.stripAndSerialize(b));
     }
 
     protected boolean tooltipMatches(ItemStack item, Component b) {
         ItemMeta meta = item.getItemMeta();
         NamespacedKey marker = new NamespacedKey(UltraCosmeticsData.get().getPlugin(), "tooltip");
         if(meta.getPersistentDataContainer().has(marker)) {
-            return PlainTextComponentSerializer.plainText().serialize(b).equals(meta.getPersistentDataContainer().get(marker, PersistentDataType.STRING));
+            return TextUtil.stripAndSerialize(b).equals(meta.getPersistentDataContainer().get(marker, PersistentDataType.STRING));
         }
         return false;
     }

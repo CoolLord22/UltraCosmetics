@@ -22,6 +22,10 @@ public class TextUtil {
         return Component.text(PlainTextComponentSerializer.plainText().serialize(component));
     }
 
+    public static String stripAndSerialize(Component component) {
+        return PlainTextComponentSerializer.plainText().serialize(component);
+    }
+
     public static String formatNumber(long number) {
         String separator = SettingsManager.getConfig().getString("Thousands-Separator", "");
         if (separator.isEmpty()) return String.valueOf(number);

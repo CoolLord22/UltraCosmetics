@@ -7,11 +7,10 @@ import be.isach.ultracosmetics.cosmetics.type.CosmeticType;
 import be.isach.ultracosmetics.menu.buttons.CosmeticButton;
 import be.isach.ultracosmetics.player.UltraPlayer;
 import be.isach.ultracosmetics.util.ItemFactory;
-import be.isach.ultracosmetics.util.LazyTag;
+import be.isach.ultracosmetics.util.TextUtil;
 import net.kyori.adventure.text.Component;
 import net.kyori.adventure.text.minimessage.tag.Tag;
 import net.kyori.adventure.text.minimessage.tag.resolver.TagResolver;
-import net.kyori.adventure.text.serializer.plain.PlainTextComponentSerializer;
 import org.bukkit.inventory.ItemStack;
 import org.bukkit.inventory.meta.ItemMeta;
 
@@ -66,7 +65,7 @@ public class ToggleCosmeticButton extends CosmeticButton {
         meta.setLore(loreList);
         meta = modifyMeta(meta, ultraPlayer);
         stack.setItemMeta(meta);
-        ItemFactory.applyTooltipMarker(stack, PlainTextComponentSerializer.plainText().serialize(toggle));
+        ItemFactory.applyTooltipMarker(stack, TextUtil.stripAndSerialize(toggle));
         stack.setAmount(getAmount(ultraPlayer));
         return stack;
     }
