@@ -50,7 +50,8 @@ public class OpenCosmeticMenuButton implements Button {
             loreList.add(MessageManager.getLegacyMessage("No-Permission"));
         } else {
             String lore = MessageManager.getLegacyMessage("Menu." + category.getConfigPath() + ".Button.Lore",
-                    TagResolver.resolver("unlocked", new LazyTag(() -> Component.text(calculateUnlocked(player))))
+                    TagResolver.resolver("unlocked", new LazyTag(() -> Component.text(calculateUnlocked(player)))),
+                    TagResolver.resolver("equipped", new LazyTag(() -> currentlyEquipped(ultraPlayer)))
             );
             loreList.addAll(Arrays.asList(lore.split("\n")));
         }
@@ -59,6 +60,11 @@ public class OpenCosmeticMenuButton implements Button {
         meta.setLore(loreList);
         stack.setItemMeta(meta);
         return stack;
+    }
+
+    protected Component currentlyEquipped(UltraPlayer ultraPlayer) {
+        if(ultraPlayer.getCosmetic(category) == null) return Component.text("None");
+        return ultraPlayer.getCosmetic(category).getTypeName();
     }
 
     protected String calculateUnlocked(Player player) {

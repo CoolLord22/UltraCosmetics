@@ -32,6 +32,7 @@ public class ClearCosmeticButton implements Button {
         UltraPlayer clicker = clickData.getClicker();
         if (category == null) {
             clicker.clear(false );
+            clickData.getMenu().refresh(clicker);
             return;
         }
         if (category.isSuits()) {
