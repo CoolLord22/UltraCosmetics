@@ -1,6 +1,6 @@
 package be.isach.ultracosmetics.util;
 
-import java.awt.Color;
+import java.awt.*;
 
 public class ColorUtils {
     /**

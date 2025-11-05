@@ -11,12 +11,7 @@ import be.isach.ultracosmetics.util.SmartLogger;
 import javax.sql.DataSource;
 import java.sql.Connection;
 import java.sql.SQLException;
-import java.util.ArrayList;
-import java.util.Collections;
-import java.util.List;
-import java.util.Locale;
-import java.util.StringJoiner;
-import java.util.UUID;
+import java.util.*;
 import java.util.function.BiConsumer;
 
 public abstract class Table {

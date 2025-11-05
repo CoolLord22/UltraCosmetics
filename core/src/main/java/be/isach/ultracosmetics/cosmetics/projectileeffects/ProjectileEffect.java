@@ -14,13 +14,8 @@ import org.bukkit.entity.Projectile;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.entity.ProjectileLaunchEvent;
 
-import java.util.HashMap;
-import java.util.HashSet;
-import java.util.Iterator;
-import java.util.Locale;
-import java.util.Map;
+import java.util.*;
 import java.util.Map.Entry;
-import java.util.Set;
 
 public abstract class ProjectileEffect extends Cosmetic<ProjectileEffectType> implements Updatable {
     private final Map<Projectile, Location> projectiles = new HashMap<>();

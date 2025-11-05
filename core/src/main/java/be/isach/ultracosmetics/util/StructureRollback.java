@@ -15,12 +15,7 @@ import org.bukkit.event.block.BlockExplodeEvent;
 import org.bukkit.event.entity.EntityChangeBlockEvent;
 import org.bukkit.event.entity.EntityExplodeEvent;
 
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.HashSet;
-import java.util.LinkedHashMap;
-import java.util.ListIterator;
-import java.util.Set;
+import java.util.*;
 
 public class StructureRollback implements Listener {
     private static final Set<StructureRollback> INSTANCES = new HashSet<>();

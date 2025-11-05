@@ -8,7 +8,7 @@ import com.cryptomorin.xseries.particles.XParticle;
 import org.bukkit.Location;
 import org.bukkit.entity.Projectile;
 
-import java.awt.Color;
+import java.awt.*;
 
 public class ProjectileEffectChristmas extends ProjectileEffectHelix {
     private final ParticleDisplay cloud = ParticleDisplay.of(XParticle.CLOUD);

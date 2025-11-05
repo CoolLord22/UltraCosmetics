@@ -12,7 +12,7 @@ import org.bukkit.Location;
 import org.bukkit.entity.Sheep;
 import org.bukkit.util.Vector;
 
-import java.awt.Color;
+import java.awt.*;
 import java.util.ArrayList;
 import java.util.List;
 

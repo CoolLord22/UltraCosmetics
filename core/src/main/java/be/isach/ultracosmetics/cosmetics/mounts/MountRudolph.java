@@ -17,7 +17,7 @@ import org.bukkit.metadata.FixedMetadataValue;
 import org.bukkit.util.EulerAngle;
 import org.bukkit.util.Vector;
 
-import java.awt.Color;
+import java.awt.*;
 
 /**
  * Created by sacha on 1/03/17.

@@ -2,14 +2,7 @@ package be.isach.ultracosmetics.cosmetics.type;
 
 import be.isach.ultracosmetics.config.MessageManager;
 import be.isach.ultracosmetics.cosmetics.Category;
-import be.isach.ultracosmetics.cosmetics.projectileeffects.ProjectileEffect;
-import be.isach.ultracosmetics.cosmetics.projectileeffects.ProjectileEffectBasicTrail;
-import be.isach.ultracosmetics.cosmetics.projectileeffects.ProjectileEffectChristmas;
-import be.isach.ultracosmetics.cosmetics.projectileeffects.ProjectileEffectHelix;
-import be.isach.ultracosmetics.cosmetics.projectileeffects.ProjectileEffectNote;
-import be.isach.ultracosmetics.cosmetics.projectileeffects.ProjectileEffectRainbow;
-import be.isach.ultracosmetics.cosmetics.projectileeffects.ProjectileEffectRedstone;
-import be.isach.ultracosmetics.cosmetics.projectileeffects.ProjectileEffectRedstoneHelix;
+import be.isach.ultracosmetics.cosmetics.projectileeffects.*;
 import be.isach.ultracosmetics.version.ServerVersion;
 import com.cryptomorin.xseries.XMaterial;
 import com.cryptomorin.xseries.particles.XParticle;

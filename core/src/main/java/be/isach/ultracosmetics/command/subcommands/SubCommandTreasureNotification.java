@@ -1,12 +1,11 @@
 package be.isach.ultracosmetics.command.subcommands;
 
-import org.bukkit.command.CommandSender;
-import org.bukkit.entity.Player;
-
 import be.isach.ultracosmetics.UltraCosmetics;
 import be.isach.ultracosmetics.command.SubCommand;
 import be.isach.ultracosmetics.config.MessageManager;
 import be.isach.ultracosmetics.player.UltraPlayer;
+import org.bukkit.command.CommandSender;
+import org.bukkit.entity.Player;
 
 public class SubCommandTreasureNotification extends SubCommand {
 

@@ -2,7 +2,6 @@ package be.isach.ultracosmetics.permissions;
 
 import be.isach.ultracosmetics.config.SettingsManager;
 import be.isach.ultracosmetics.cosmetics.type.CosmeticType;
-
 import org.bukkit.Bukkit;
 import org.bukkit.entity.Player;
 

@@ -6,7 +6,7 @@ import be.isach.ultracosmetics.player.UltraPlayer;
 import org.bukkit.Location;
 import org.bukkit.util.Vector;
 
-import java.awt.Color;
+import java.awt.*;
 
 /**
  * Represents an instance of angel wing particles summoned by a player.

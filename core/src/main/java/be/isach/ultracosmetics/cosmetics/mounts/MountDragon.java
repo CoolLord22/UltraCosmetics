@@ -15,9 +15,7 @@ import org.bukkit.entity.Mob;
 import org.bukkit.metadata.FixedMetadataValue;
 import org.bukkit.util.Vector;
 
-import static java.lang.Math.cos;
-import static java.lang.Math.sin;
-import static java.lang.Math.toRadians;
+import static java.lang.Math.*;
 
 /**
  * Represents an instance of a enderdragon mount.

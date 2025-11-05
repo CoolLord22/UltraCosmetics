@@ -4,10 +4,10 @@ import be.isach.ultracosmetics.config.CustomConfiguration;
 import be.isach.ultracosmetics.config.MessageManager;
 import be.isach.ultracosmetics.cosmetics.Category;
 import be.isach.ultracosmetics.cosmetics.commands.GlowColor;
+import be.isach.ultracosmetics.util.ItemFactory;
 import com.cryptomorin.xseries.XMaterial;
 import net.kyori.adventure.text.format.NamedTextColor;
 import org.bukkit.Material;
-import be.isach.ultracosmetics.util.ItemFactory;
 import org.bukkit.inventory.ItemStack;
 
 import java.util.Arrays;

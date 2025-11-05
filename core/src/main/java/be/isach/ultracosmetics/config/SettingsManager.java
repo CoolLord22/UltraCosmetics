@@ -1,7 +1,6 @@
 package be.isach.ultracosmetics.config;
 
 import be.isach.ultracosmetics.UltraCosmeticsData;
-
 import org.bukkit.World;
 import org.bukkit.configuration.ConfigurationSection;
 import org.bukkit.configuration.InvalidConfigurationException;

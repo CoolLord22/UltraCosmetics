@@ -8,7 +8,7 @@ import com.cryptomorin.xseries.particles.XParticle;
 import org.bukkit.Location;
 import org.bukkit.util.Vector;
 
-import java.awt.Color;
+import java.awt.*;
 
 /**
  * Represents an instance of super hero particles summoned by a player.

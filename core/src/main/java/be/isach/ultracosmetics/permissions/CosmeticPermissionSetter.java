@@ -1,7 +1,6 @@
 package be.isach.ultracosmetics.permissions;
 
 import be.isach.ultracosmetics.cosmetics.type.CosmeticType;
-
 import org.bukkit.entity.Player;
 
 import java.util.Set;

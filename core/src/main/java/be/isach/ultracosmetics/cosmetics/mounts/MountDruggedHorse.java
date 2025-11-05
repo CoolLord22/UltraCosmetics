@@ -10,7 +10,7 @@ import org.bukkit.Location;
 import org.bukkit.entity.Horse;
 import org.bukkit.potion.PotionEffect;
 
-import java.awt.Color;
+import java.awt.*;
 import java.util.concurrent.ThreadLocalRandom;
 
 /**

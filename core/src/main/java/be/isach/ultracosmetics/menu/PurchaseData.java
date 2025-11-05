@@ -1,6 +1,5 @@
 package be.isach.ultracosmetics.menu;
 
-import be.isach.ultracosmetics.cosmetics.type.CosmeticType;
 import org.bukkit.inventory.ItemStack;
 
 import java.util.function.BooleanSupplier;

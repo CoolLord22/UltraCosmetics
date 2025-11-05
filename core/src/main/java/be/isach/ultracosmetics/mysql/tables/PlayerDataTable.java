@@ -5,12 +5,11 @@ import be.isach.ultracosmetics.mysql.column.UUIDColumn;
 import be.isach.ultracosmetics.mysql.column.VirtualUUIDColumn;
 import be.isach.ultracosmetics.player.profile.ProfileKey;
 
+import javax.sql.DataSource;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.StringJoiner;
 import java.util.UUID;
-
-import javax.sql.DataSource;
 
 public class PlayerDataTable extends Table {
 

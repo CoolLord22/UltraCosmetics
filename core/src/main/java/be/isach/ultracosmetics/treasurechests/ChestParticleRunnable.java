@@ -10,7 +10,7 @@ import org.bukkit.block.BlockFace;
 import org.bukkit.entity.Player;
 import org.bukkit.util.Vector;
 
-import java.awt.Color;
+import java.awt.*;
 
 public class ChestParticleRunnable extends UltraTask {
     private static final Vector Y_AXIS = new Vector(0, 1, 0);

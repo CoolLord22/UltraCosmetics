@@ -1,7 +1,6 @@
 package be.isach.ultracosmetics.config;
 
 import be.isach.ultracosmetics.UltraCosmetics;
-
 import org.bukkit.configuration.file.YamlConfiguration;
 
 import java.io.File;

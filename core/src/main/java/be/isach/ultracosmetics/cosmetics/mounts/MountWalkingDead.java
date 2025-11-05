@@ -6,7 +6,7 @@ import be.isach.ultracosmetics.player.UltraPlayer;
 import com.cryptomorin.xseries.particles.ParticleDisplay;
 import com.cryptomorin.xseries.particles.XParticle;
 
-import java.awt.Color;
+import java.awt.*;
 
 /**
  * Created by sacha on 1/03/17.

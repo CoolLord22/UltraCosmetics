@@ -2,11 +2,7 @@ package be.isach.ultracosmetics.mysql.tables;
 
 import be.isach.ultracosmetics.cosmetics.Category;
 import be.isach.ultracosmetics.cosmetics.type.GadgetType;
-import be.isach.ultracosmetics.mysql.column.Column;
-import be.isach.ultracosmetics.mysql.column.ForeignKeyConstraint;
-import be.isach.ultracosmetics.mysql.column.UUIDColumn;
-import be.isach.ultracosmetics.mysql.column.UniqueConstraint;
-import be.isach.ultracosmetics.mysql.column.VirtualUUIDColumn;
+import be.isach.ultracosmetics.mysql.column.*;
 import be.isach.ultracosmetics.mysql.query.InnerJoin;
 import be.isach.ultracosmetics.mysql.query.InsertQuery;
 import be.isach.ultracosmetics.mysql.query.InsertValue;

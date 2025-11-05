@@ -3,11 +3,9 @@ package be.isach.ultracosmetics.cosmetics.pets;
 import be.isach.ultracosmetics.UltraCosmetics;
 import be.isach.ultracosmetics.cosmetics.type.PetType;
 import be.isach.ultracosmetics.player.UltraPlayer;
-
+import com.cryptomorin.xseries.XMaterial;
 import org.bukkit.entity.Rabbit;
 import org.bukkit.entity.Rabbit.Type;
-
-import com.cryptomorin.xseries.XMaterial;
 
 import java.util.Arrays;
 import java.util.List;

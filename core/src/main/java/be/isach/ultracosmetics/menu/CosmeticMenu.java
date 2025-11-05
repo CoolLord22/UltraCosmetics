@@ -6,12 +6,7 @@ import be.isach.ultracosmetics.config.MessageManager;
 import be.isach.ultracosmetics.config.SettingsManager;
 import be.isach.ultracosmetics.cosmetics.Category;
 import be.isach.ultracosmetics.cosmetics.type.CosmeticType;
-import be.isach.ultracosmetics.menu.buttons.ClearCosmeticButton;
-import be.isach.ultracosmetics.menu.buttons.CosmeticButton;
-import be.isach.ultracosmetics.menu.buttons.FilterCosmeticsButton;
-import be.isach.ultracosmetics.menu.buttons.MainMenuButton;
-import be.isach.ultracosmetics.menu.buttons.NextPageButton;
-import be.isach.ultracosmetics.menu.buttons.PreviousPageButton;
+import be.isach.ultracosmetics.menu.buttons.*;
 import be.isach.ultracosmetics.permissions.PermissionManager;
 import be.isach.ultracosmetics.player.UltraPlayer;
 import net.kyori.adventure.text.Component;
@@ -19,12 +14,8 @@ import net.kyori.adventure.text.format.NamedTextColor;
 import net.kyori.adventure.text.format.TextDecoration;
 import org.bukkit.inventory.Inventory;
 
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
+import java.util.*;
 import java.util.Map.Entry;
-import java.util.UUID;
 
 /**
  * A cosmetic menu.

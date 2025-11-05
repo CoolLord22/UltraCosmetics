@@ -1,11 +1,13 @@
 package be.isach.ultracosmetics.treasurechests;
 
 // x(true) and o(false) constants
+
 import org.bukkit.Location;
 
 import java.util.function.Consumer;
 
-import static be.isach.ultracosmetics.cosmetics.particleeffects.ParticleEffectAngelWings.*;
+import static be.isach.ultracosmetics.cosmetics.particleeffects.ParticleEffectAngelWings.o;
+import static be.isach.ultracosmetics.cosmetics.particleeffects.ParticleEffectAngelWings.x;
 
 public enum ChestBlockPattern {
     CENTER_BLOCK(new boolean[][]{

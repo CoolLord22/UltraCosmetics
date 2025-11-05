@@ -1,7 +1,6 @@
 package be.isach.ultracosmetics.worldguard;
 
 import be.isach.ultracosmetics.cosmetics.Category;
-
 import org.bukkit.entity.Player;
 
 import java.util.Set;

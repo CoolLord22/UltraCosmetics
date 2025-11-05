@@ -6,7 +6,7 @@ import be.isach.ultracosmetics.player.UltraPlayer;
 import be.isach.ultracosmetics.util.MathUtils;
 import org.bukkit.Location;
 
-import java.awt.Color;
+import java.awt.*;
 
 /**
  * Represents an instance of  particles summoned by a player.

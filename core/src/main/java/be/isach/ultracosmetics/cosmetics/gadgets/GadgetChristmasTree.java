@@ -13,7 +13,7 @@ import org.bukkit.Location;
 import org.bukkit.event.block.Action;
 import org.bukkit.event.player.PlayerInteractEvent;
 
-import java.awt.Color;
+import java.awt.*;
 
 /**
  * Represents an instance of a Christmas Tree gadget summoned by a player.
