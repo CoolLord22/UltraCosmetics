@@ -10,6 +10,7 @@ import be.isach.ultracosmetics.menu.Menus;
 import be.isach.ultracosmetics.permissions.PermissionManager;
 import be.isach.ultracosmetics.player.UltraPlayer;
 import be.isach.ultracosmetics.util.LazyTag;
+import be.isach.ultracosmetics.util.TextUtil;
 import net.kyori.adventure.text.Component;
 import net.kyori.adventure.text.minimessage.tag.resolver.TagResolver;
 import org.bukkit.entity.Player;
@@ -51,7 +52,8 @@ public class OpenCosmeticMenuButton implements Button {
         } else {
             String lore = MessageManager.getLegacyMessage("Menu." + category.getConfigPath() + ".Button.Lore",
                     TagResolver.resolver("unlocked", new LazyTag(() -> Component.text(calculateUnlocked(player)))),
-                    TagResolver.resolver("equipped", new LazyTag(() -> currentlyEquipped(ultraPlayer)))
+                    TagResolver.resolver("equipped", new LazyTag(() -> currentlyEquipped(ultraPlayer))),
+                    TagResolver.resolver("equipped_plaintext", new LazyTag(() -> TextUtil.stripColor(currentlyEquipped(ultraPlayer))))
             );
             loreList.addAll(Arrays.asList(lore.split("\n")));
         }
