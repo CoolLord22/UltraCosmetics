@@ -7,7 +7,11 @@ import be.isach.ultracosmetics.cosmetics.type.CosmeticType;
 import be.isach.ultracosmetics.menu.buttons.CosmeticButton;
 import be.isach.ultracosmetics.player.UltraPlayer;
 import be.isach.ultracosmetics.util.ItemFactory;
+import be.isach.ultracosmetics.util.LazyTag;
 import net.kyori.adventure.text.Component;
+import net.kyori.adventure.text.minimessage.tag.Tag;
+import net.kyori.adventure.text.minimessage.tag.resolver.TagResolver;
+import net.kyori.adventure.text.serializer.plain.PlainTextComponentSerializer;
 import org.bukkit.inventory.ItemStack;
 import org.bukkit.inventory.meta.ItemMeta;
 
@@ -16,9 +20,6 @@ import java.util.List;
 
 public class ToggleCosmeticButton extends CosmeticButton {
     private final boolean showPermissionInLore = SettingsManager.getConfig().getBoolean("No-Permission.Show-In-Lore");
-    private final Component permissionYes = MessageManager.getMessage("Permission-Lore.Permission-Yes");
-    private final Component permissionNo = MessageManager.getMessage("Permission-Lore.Permission-No");
-    private final Component permissionShowroom = MessageManager.getMessage("Permission-Lore.Showroom");
 
     public ToggleCosmeticButton(UltraCosmetics ultraCosmetics, CosmeticType<?> cosmeticType) {
         super(ultraCosmetics, cosmeticType, false);
@@ -33,12 +34,16 @@ public class ToggleCosmeticButton extends CosmeticButton {
         if (deactivate) {
             toggle = cosmeticType.getCategory().getDeactivateTooltip();
         }
-        Component name = Component.empty().append(toggle).appendSpace().append(cosmeticType.getName());
+        TagResolver.Single tooltipResolver = TagResolver.resolver("tooltip", Tag.inserting(toggle));
+
+        Component name = cosmeticType.getName();
         name = modifyName(name, ultraPlayer);
         ItemStack stack = ItemFactory.rename(cosmeticType.getItemStack(), name);
+        ItemFactory.applyTooltipMarker(stack, PlainTextComponentSerializer.plainText().serialize(toggle));
         if (deactivate) {
             ItemFactory.addGlow(stack);
         }
+
         ItemMeta meta = stack.getItemMeta();
         List<String> loreList = new ArrayList<>();
         if (cosmeticType.showsDescription()) {
@@ -51,11 +56,11 @@ public class ToggleCosmeticButton extends CosmeticButton {
             loreList.add("");
             Component permissionLore;
             if (ultraCosmetics.getPermissionManager().hasPermission(ultraPlayer, cosmeticType)) {
-                permissionLore = permissionYes;
+                permissionLore = MessageManager.getMessage("Permission-Lore.Permission-Yes", tooltipResolver);
             } else if (ultraCosmetics.getWorldGuardManager().isInShowroom(ultraPlayer.getBukkitPlayer())) {
-                permissionLore = permissionShowroom;
+                permissionLore = MessageManager.getMessage("Permission-Lore.Showroom", tooltipResolver);
             } else {
-                permissionLore = permissionNo;
+                permissionLore = MessageManager.getMessage("Permission-Lore.Permission-No", tooltipResolver);
             }
             loreList.add(MessageManager.toLegacy(permissionLore));
         }

@@ -16,9 +16,11 @@ import net.kyori.adventure.text.minimessage.tag.resolver.Placeholder;
 import net.kyori.adventure.text.serializer.plain.PlainTextComponentSerializer;
 import org.bukkit.Bukkit;
 import org.bukkit.ChatColor;
+import org.bukkit.NamespacedKey;
 import org.bukkit.entity.Player;
 import org.bukkit.inventory.ItemStack;
 import org.bukkit.inventory.meta.ItemMeta;
+import org.bukkit.persistence.PersistentDataType;
 
 import java.util.List;
 
@@ -99,7 +101,7 @@ public abstract class CosmeticButton implements Button {
             }
         }
 
-        if (ignoreTooltip || startsWithColorless(clicked.getItemMeta().getDisplayName(), cosmeticType.getCategory().getActivateTooltip())) {
+        if (ignoreTooltip || tooltipMatches(clicked, cosmeticType.getCategory().getActivateTooltip())) {
             if (ultraPlayer.canEquip(cosmeticType)) {
                 cosmeticType.equip(ultraPlayer, ultraCosmetics);
                 if (ultraPlayer.hasCosmetic(cosmeticType.getCategory())) {
@@ -145,7 +147,7 @@ public abstract class CosmeticButton implements Button {
             MenuPurchase mp = mpFactory.createPurchaseMenu(ultraCosmetics, title, pd);
             ultraPlayer.getBukkitPlayer().openInventory(mp.getInventory(ultraPlayer));
             return false; // We just opened another inventory, don't close it
-        } else if (startsWithColorless(clicked.getItemMeta().getDisplayName(), cosmeticType.getCategory().getDeactivateTooltip())) {
+        } else if (tooltipMatches(clicked, cosmeticType.getCategory().getDeactivateTooltip())) {
             ultraPlayer.removeCosmetic(cosmeticType.getCategory());
             if (!UltraCosmeticsData.get().shouldCloseAfterSelect()) {
                 data.getMenu().refresh(ultraPlayer);
@@ -178,5 +180,14 @@ public abstract class CosmeticButton implements Button {
 
     protected boolean startsWithColorless(String a, Component b) {
         return ChatColor.stripColor(a).startsWith(PlainTextComponentSerializer.plainText().serialize(b));
+    }
+
+    protected boolean tooltipMatches(ItemStack item, Component b) {
+        ItemMeta meta = item.getItemMeta();
+        NamespacedKey marker = new NamespacedKey(UltraCosmeticsData.get().getPlugin(), "tooltip");
+        if(meta.getPersistentDataContainer().has(marker)) {
+            return PlainTextComponentSerializer.plainText().serialize(b).equals(meta.getPersistentDataContainer().get(marker, PersistentDataType.STRING));
+        }
+        return false;
     }
 }
