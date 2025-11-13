@@ -94,7 +94,7 @@ public abstract class CosmeticMenu<T extends CosmeticType<?>> extends Menu {
         }
 
         if (hasUnlockable && !hideNoPermissionItems) {
-            putItem(inventory, inventory.getSize() - 3, new FilterCosmeticsButton(), player);
+            putItem(inventory, inventory.getSize() - 4, new FilterCosmeticsButton(), player);
         }
 
         putItems(inventory, player, page);

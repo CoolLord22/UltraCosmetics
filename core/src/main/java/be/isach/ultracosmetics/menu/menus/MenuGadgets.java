@@ -24,7 +24,7 @@ public class MenuGadgets extends CosmeticMenu<GadgetType> {
     @Override
     protected void putItems(Inventory inventory, UltraPlayer player, int page) {
         if (SettingsManager.getConfig().getBoolean("Categories.Gadgets.Allow-Disable-Gadgets", true)) {
-            int slot = inventory.getSize() - (getCategory().hasGoBackArrow() ? 4 : 6);
+            int slot = inventory.getSize() - (getCategory().hasGoBackArrow() ? 3 : 6);
             putItem(inventory, slot, new ToggleGadgetsButton(), player);
         }
     }
