@@ -10,12 +10,12 @@ import java.util.Arrays;
 
 public class PlayerTitleType extends CosmeticType<PlayerTitle> {
     private static final String keys =
-            "bs_milestone_100blocksfound,bs_milestone_level10,bs_milestone_10wins," + // Common
-            "bs_milestone_500blocksfound,bs_milestone_level25,bs_milestone_50wins," + // Uncommon
-            "bs_milestone_1000blocksfound,bs_milestone_level50,bs_milestone_150wins," + // Rare
-            "bs_milestone_2500blocksfound,bs_milestone_level100,bs_milestone_300wins," + // Epic
-            "bs_milestone_5000blocksfound,bs_milestone_level250,bs_milestone_600wins," + // Legendary
-            "bs_milestone_10000blocksfound,bs_milestone_level500,bs_milestone_1000wins," + // Mythic
+            "sur_milestone_mine_common,sur_milestone_chop_common,sur_milestone_monster_common,sur_milestone_dragon_common,bs_milestone_100blocksfound,bs_milestone_level10,bs_milestone_10wins," + // Common
+            "sur_milestone_mine_uncommon,sur_milestone_chop_uncommon,sur_milestone_monster_uncommon,sur_milestone_dragon_uncommon,bs_milestone_500blocksfound,bs_milestone_level25,bs_milestone_50wins," + // Uncommon
+            "sur_milestone_mine_rare,sur_milestone_chop_rare,sur_milestone_monster_rare,sur_milestone_dragon_rare,bs_milestone_1000blocksfound,bs_milestone_level50,bs_milestone_150wins," + // Rare
+            "sur_milestone_mine_epic,sur_milestone_chop_epic,sur_milestone_monster_epic,sur_milestone_dragon_epic,bs_milestone_2500blocksfound,bs_milestone_level100,bs_milestone_300wins," + // Epic
+            "sur_milestone_mine_legendary,sur_milestone_chop_legendary,sur_milestone_monster_legendary,sur_milestone_dragon_legendary,bs_milestone_5000blocksfound,bs_milestone_level250,bs_milestone_600wins," + // Legendary
+            "sur_milestone_mine_mythic,sur_milestone_chop_mythic,sur_milestone_monster_mythic,sur_milestone_dragon_mythic,bs_milestone_10000blocksfound,bs_milestone_level500,bs_milestone_1000wins," + // Mythic
             "betatester"; // Extra
     private static final String[] titlename = keys.split(",");
     private final String command;
