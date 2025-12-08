@@ -11,6 +11,7 @@ import net.kyori.adventure.text.Component;
 import org.bukkit.Bukkit;
 import org.bukkit.ChatColor;
 import org.bukkit.Material;
+import org.bukkit.Sound;
 import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
@@ -180,7 +181,7 @@ public abstract class Menu implements Listener {
 
     @EventHandler
     public void onClick(InventoryClickEvent event) {
-        if (!(event.getWhoClicked() instanceof Player)) {
+        if (!(event.getWhoClicked() instanceof Player player)) {
             return;
         }
 
@@ -212,10 +213,10 @@ public abstract class Menu implements Listener {
             return;
         }
 
-        Player player = (Player) event.getWhoClicked();
         UltraPlayer ultraPlayer = ultraCosmetics.getPlayerManager().getUltraPlayer(player);
         button.onClick(new ClickData(this, ultraPlayer, event.getClick(), event.getCurrentItem(), event.getSlot()));
         player.updateInventory();
+        player.playSound(player, Sound.BLOCK_LEVER_CLICK, 0.5F, 1F);
     }
 
     public UltraCosmetics getUltraCosmetics() {
