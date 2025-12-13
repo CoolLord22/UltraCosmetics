@@ -1,4 +1,4 @@
-package be.isach.ultracosmetics.cosmetics.commands;
+package be.isach.ultracosmetics.cosmetics.custom;
 
 import be.isach.ultracosmetics.UltraCosmetics;
 import be.isach.ultracosmetics.cosmetics.CommandCosmetic;

@@ -3,7 +3,7 @@ package be.isach.ultracosmetics.cosmetics.type;
 import be.isach.ultracosmetics.config.CustomConfiguration;
 import be.isach.ultracosmetics.config.MessageManager;
 import be.isach.ultracosmetics.cosmetics.Category;
-import be.isach.ultracosmetics.cosmetics.commands.NameColor;
+import be.isach.ultracosmetics.cosmetics.custom.NameColor;
 import com.cryptomorin.xseries.XMaterial;
 
 import java.util.Arrays;
