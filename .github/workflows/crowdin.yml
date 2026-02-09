@@ -15,11 +15,11 @@ jobs:
     steps:
       # https://github.com/actions/checkout
       - name: Checkout Git repository
-        uses: actions/checkout@v5.0.0
+        uses: actions/checkout@v6.0.2
 
       # https://github.com/crowdin/github-action
       - name: Crowdin action
-        uses: crowdin/github-action@v2.12.0
+        uses: crowdin/github-action@v2.14.0
         with:
           upload_sources: false
           upload_translations: false

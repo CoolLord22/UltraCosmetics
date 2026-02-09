@@ -3,7 +3,6 @@ package be.isach.ultracosmetics.util;
 import be.isach.ultracosmetics.UltraCosmeticsData;
 import be.isach.ultracosmetics.config.CustomConfiguration;
 import be.isach.ultracosmetics.config.MessageManager;
-import be.isach.ultracosmetics.config.SettingsManager;
 import be.isach.ultracosmetics.util.SmartLogger.LogLevel;
 import be.isach.ultracosmetics.version.ServerVersion;
 import com.cryptomorin.xseries.XAttribute;
@@ -17,7 +16,6 @@ import net.kyori.adventure.text.Component;
 import org.bukkit.*;
 import org.bukkit.attribute.Attribute;
 import org.bukkit.attribute.AttributeModifier;
-import org.bukkit.block.BlockState;
 import org.bukkit.configuration.ConfigurationSection;
 import org.bukkit.enchantments.Enchantment;
 import org.bukkit.entity.Item;
@@ -26,10 +24,10 @@ import org.bukkit.inventory.EquipmentSlot;
 import org.bukkit.inventory.EquipmentSlotGroup;
 import org.bukkit.inventory.ItemFlag;
 import org.bukkit.inventory.ItemStack;
-import org.bukkit.inventory.meta.BlockStateMeta;
 import org.bukkit.inventory.meta.ItemMeta;
 import org.bukkit.inventory.meta.LeatherArmorMeta;
 import org.bukkit.inventory.meta.SkullMeta;
+import org.bukkit.inventory.meta.components.UseCooldownComponent;
 import org.bukkit.metadata.FixedMetadataValue;
 import org.bukkit.persistence.PersistentDataType;
 import org.bukkit.profile.PlayerProfile;
@@ -43,17 +41,18 @@ import java.util.List;
 import java.util.Random;
 import java.util.UUID;
 import java.util.concurrent.ThreadLocalRandom;
-import java.util.function.BiConsumer;
 import java.util.function.Function;
 
 /**
  * Created by sacha on 03/08/15.
  */
 public class ItemFactory {
+    private static final NamespacedKey MARKER = new NamespacedKey(UltraCosmeticsData.get().getPlugin(), "marker");
     // for some reason I don't understand, there's no Tag or XTag for dyes
     private static final List<XMaterial> DYES = new ArrayList<>(16);
     private static final List<XMaterial> STAINED_GLASS = new ArrayList<>(16);
     private static final FixedMetadataValue UNPICKABLE_META = new FixedMetadataValue(UltraCosmeticsData.get().getPlugin(), true);
+    private static final XItemStack.Deserializer deserializer;
 
     static {
         for (XMaterial mat : XMaterial.VALUES) {
@@ -63,6 +62,9 @@ public class ItemFactory {
                 STAINED_GLASS.add(mat);
             }
         }
+
+        Function<String, String> translator = s -> MessageManager.toLegacy(MessageManager.getMiniMessage().deserialize(s));
+        deserializer = XItemStack.deserializer().withTranslator(translator);
     }
 
     private ItemFactory() {
@@ -128,9 +130,7 @@ public class ItemFactory {
      */
     public static ItemStack applyCosmeticMarker(ItemStack item) {
         ItemMeta meta = item.getItemMeta();
-        // Do not cache this in a field, it doesn't exist on versions below 1.12
-        NamespacedKey marker = new NamespacedKey(UltraCosmeticsData.get().getPlugin(), "marker");
-        meta.getPersistentDataContainer().set(marker, PersistentDataType.BYTE, (byte) 1);
+        meta.getPersistentDataContainer().set(MARKER, PersistentDataType.BYTE, (byte) 1);
         item.setItemMeta(meta);
         return item;
     }
@@ -143,10 +143,29 @@ public class ItemFactory {
         item.setItemMeta(meta);
     }
 
+    /**
+     * Attempt to suppress the cooldown for the given item
+     *
+     * @param item The item to modify.
+     */
+    @SuppressWarnings("UnstableApiUsage")
+    public static void removeCooldown(ItemStack item) {
+        try {
+            ItemMeta meta = item.getItemMeta();
+            UseCooldownComponent cooldown = meta.getUseCooldown();
+            cooldown.setCooldownSeconds(0.01f);
+            meta.setUseCooldown(cooldown);
+            item.setItemMeta(meta);
+        } catch (NoSuchMethodError ignored) {
+        }
+    }
+
     public static ItemStack getItemStackFromConfig(String path) {
         XMaterial mat = getFromConfigInternal(path);
-        if (mat != null) return mat.parseItem();
-        return create(XMaterial.BEDROCK, "&cError parsing material", "&cFailed to parse material");
+        if (mat == null) {
+            return create(XMaterial.BEDROCK, "&cError parsing material", "&cFailed to parse material");
+        }
+        return mat.parseItem();
     }
 
     public static XMaterial getXMaterialFromConfig(String path) {
@@ -182,41 +201,8 @@ public class ItemFactory {
         return XMaterial.matchXMaterial(fromConfig).orElse(null);
     }
 
-    private static void migrateMenuItem(ConfigurationSection section) {
-        // Migrate item format to XItemStack
-        ConfigurationSection item = section.createSection("item");
-        BiConsumer<String, String> migrate = (before, after) -> {
-            item.set(after, section.get(before));
-            section.set(before, null);
-        };
-        migrate.accept("Type", "material");
-        migrate.accept("Displayname", "name");
-        migrate.accept("Lore", "lore");
-        migrate.accept("Custom-Model-Data", "custom-model-data");
-    }
-
-    private static ItemStack createMenuItem() {
-        ConfigurationSection section = SettingsManager.getConfig().getConfigurationSection("Menu-Item");
-        if (section.isString("Type")) {
-            migrateMenuItem(section);
-        }
-        if (!section.isConfigurationSection("item")) {
-            section.createSection("item").set("material", "ENDER_CHEST");
-        }
-        ItemStack stack = parseXItemStack(section.getConfigurationSection("item"));
-        return ItemFactory.hideAttributes(stack);
-    }
-
-    public static ItemStack getMenuItem() {
-        if (!SettingsManager.getConfig().getBoolean("Menu-Item.Enabled")) {
-            return null;
-        }
-        return createMenuItem();
-    }
-
     public static ItemStack parseXItemStack(ConfigurationSection section) {
-        Function<String, String> translator = s -> MessageManager.toLegacy(MessageManager.getMiniMessage().deserialize(s));
-        return applyCosmeticMarker(XItemStack.deserialize(section, translator));
+        return applyCosmeticMarker(getItemDeserializer().withConfig(section).read());
     }
 
     public static ItemStack createSkull(String url, String name) {
@@ -334,21 +320,8 @@ public class ItemFactory {
         return randomFromList(new ArrayList<>(tag.getValues()));
     }
 
-    public static boolean isSimilar(ItemStack a, ItemStack b) {
-        if (a == b) return true;
-        if (a == null || b == null) return false;
-        if (a.getType() != b.getType()) return false;
-        if (a.getItemMeta() instanceof BlockStateMeta aMeta && b.getItemMeta() instanceof BlockStateMeta bMeta) {
-            // Block state meta spontaneously creates "internal" data that causes it to not be equal.
-            // So, we set them to have the same state part and then compare them.
-            // There seems to be some sort of conversion that happens when getting the state,
-            // so just `aMeta.setBlockState(bMeta.getBlockState())` isn't enough, we have to set both.
-            BlockState common = aMeta.getBlockState();
-            aMeta.setBlockState(common);
-            bMeta.setBlockState(common);
-            return aMeta.equals(bMeta);
-        }
-        return a.isSimilar(b);
+    public static XItemStack.Deserializer getItemDeserializer() {
+        return deserializer.copy().withItem(null);
     }
 
     public static ItemStack hideAttributes(ItemStack itemstack) {

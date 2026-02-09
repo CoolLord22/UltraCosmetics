@@ -25,7 +25,7 @@ public class PetAllay extends Pet {
     }
 
     @Override
-    public boolean customize(String customization) {
+    protected boolean customize(String customization) {
         return customizeHeldItem(customization);
     }
 }

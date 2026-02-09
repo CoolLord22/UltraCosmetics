@@ -17,11 +17,9 @@ import java.util.concurrent.ThreadLocalRandom;
  * Created by sacha on 10/08/15.
  */
 public class MountDruggedHorse extends MountAbstractHorse {
-    private static final int AMBIENT_ALPHA = 38;
-
     private final ParticleDisplay fireworkDisplay = ParticleDisplay.of(XParticle.FIREWORK).offset(0.4, 0.2, 0.4).withCount(5);
     private final ParticleDisplay effectDisplay = fireworkDisplay.copy().withParticle(XParticle.EFFECT);
-    private final ParticleDisplay ambientEffectDisplay = effectDisplay.copy().withCount(1);
+    private final ParticleDisplay ambientEffectDisplay = effectDisplay.copy().withParticle(XParticle.ENTITY_EFFECT);
     private final ParticleDisplay coloredEffectDisplay = effectDisplay.copy().withColor(new Color(5, 255, 0));
 
     public MountDruggedHorse(UltraPlayer owner, MountType type, UltraCosmetics ultraCosmetics) {
@@ -47,9 +45,7 @@ public class MountDruggedHorse extends MountAbstractHorse {
         effectDisplay.spawn(loc);
         coloredEffectDisplay.spawn(loc);
         ThreadLocalRandom r = ThreadLocalRandom.current();
-        for (int i = 0; i < 5; i++) {
-            ambientEffectDisplay.withColor(new Color(r.nextInt(256), r.nextInt(256), r.nextInt(256), AMBIENT_ALPHA)).spawn(loc);
-        }
+        ambientEffectDisplay.withColor(new Color(r.nextInt(256), r.nextInt(256), r.nextInt(256), 100)).spawn(loc);
     }
 
     @Override

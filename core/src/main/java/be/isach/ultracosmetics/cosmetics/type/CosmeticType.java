@@ -23,7 +23,11 @@ import org.bukkit.permissions.Permission;
 
 import java.io.File;
 import java.io.IOException;
-import java.util.*;
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Locale;
+import java.util.Map;
 
 /**
  * A cosmetic type.
@@ -39,6 +43,7 @@ public abstract class CosmeticType<T extends Cosmetic<?>> {
     private static final Map<Category, List<CosmeticType<?>>> VALUES = new HashMap<>();
     private static final Map<Category, List<CosmeticType<?>>> ENABLED = new HashMap<>();
     private static final YamlConfiguration customConfig = new YamlConfiguration();
+    protected static boolean rewriteCustomConfig = false;
 
     static {
         try {
@@ -64,6 +69,16 @@ public abstract class CosmeticType<T extends Cosmetic<?>> {
     protected static ConfigurationSection getCustomConfig(Category cat) {
         if (cat.isSuits()) return customConfig.getConfigurationSection("Suits");
         return customConfig.getConfigurationSection(cat.getConfigPath());
+    }
+
+    private static void saveCustomCosmetics() {
+        try {
+            File configFile = new File(UltraCosmeticsData.get().getPlugin().getDataFolder(), "custom_cosmetics.yml");
+            customConfig.save(configFile);
+        } catch (IOException e) {
+            UltraCosmeticsData.get().getPlugin().getSmartLogger().write(LogLevel.ERROR, "Failed to load custom cosmetics, they will be ignored.");
+            e.printStackTrace();
+        }
     }
 
     @SuppressWarnings("unchecked")
@@ -109,6 +124,9 @@ public abstract class CosmeticType<T extends Cosmetic<?>> {
         NameColorType.register();
         PlayerTitleType.register();
         IceSkateType.register();
+        if (rewriteCustomConfig) {
+            saveCustomCosmetics();
+        }
 
         // Permissions registered by cosmetics are not fully calculated until here,
         // reducing loading time.

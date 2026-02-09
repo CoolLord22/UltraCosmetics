@@ -18,7 +18,7 @@ public class PetFox extends Pet {
     }
 
     @Override
-    public boolean customize(String customization) {
+    protected boolean customize(String customization) {
         return enumCustomize(Type.class, customization, ((Fox) entity)::setFoxType);
     }
 }

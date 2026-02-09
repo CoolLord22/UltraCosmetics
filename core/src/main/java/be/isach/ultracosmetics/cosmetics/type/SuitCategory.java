@@ -8,7 +8,6 @@ import be.isach.ultracosmetics.cosmetics.Category;
 import be.isach.ultracosmetics.cosmetics.suits.*;
 import be.isach.ultracosmetics.util.MathUtils;
 import be.isach.ultracosmetics.util.SmartLogger;
-import com.cryptomorin.xseries.XItemStack;
 import com.cryptomorin.xseries.XMaterial;
 import org.bukkit.Color;
 import org.bukkit.configuration.ConfigurationSection;
@@ -94,7 +93,7 @@ public class SuitCategory {
         if (!section.isConfigurationSection(key)) {
             return null;
         }
-        return XItemStack.deserialize(section.getConfigurationSection(key));
+        return ItemFactory.getItemDeserializer().withConfig(section).read();
     }
 
     private static void addDefaultStrings(String key) {

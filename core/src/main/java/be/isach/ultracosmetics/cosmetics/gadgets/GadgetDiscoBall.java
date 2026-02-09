@@ -24,9 +24,10 @@ import org.bukkit.event.player.PlayerInteractEvent;
 import org.bukkit.metadata.FixedMetadataValue;
 import org.bukkit.util.Vector;
 
-import java.awt.*;
+import java.awt.Color;
 import java.util.HashMap;
 import java.util.Map;
+import java.util.concurrent.ThreadLocalRandom;
 
 /**
  * Represents an instance of a discoball gadget summoned by a player.
@@ -93,8 +94,7 @@ public class GadgetDiscoBall extends Gadget implements PlayerAffectingCosmetic, 
         effect.spawn();
         instantEffect.spawn();
         Location loc = armorStand.getEyeLocation().add(MathUtils.randomDouble(-4, 4), MathUtils.randomDouble(-3, 3), MathUtils.randomDouble(-4, 4));
-        // This picks a random note color. Kinda weird but that's how you have to do it in XParticle I guess
-        note.withColor(new Color(RANDOM.nextInt(256), 0, 0)).spawn(loc);
+        note.withNoteColor(ThreadLocalRandom.current().nextInt(25)).spawn(loc);
         double angle, x, z;
 
         angle = 2 * Math.PI * i / 100;
