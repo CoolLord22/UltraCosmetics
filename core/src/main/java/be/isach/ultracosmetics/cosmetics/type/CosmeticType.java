@@ -108,6 +108,7 @@ public abstract class CosmeticType<T extends Cosmetic<?>> {
         GlowColorType.register();
         NameColorType.register();
         PlayerTitleType.register();
+        IceSkateType.register();
 
         // Permissions registered by cosmetics are not fully calculated until here,
         // reducing loading time.

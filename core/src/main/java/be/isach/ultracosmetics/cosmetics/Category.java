@@ -40,6 +40,7 @@ public enum Category {
     PROJECTILE_EFFECTS("Projectile-Effects", "projectile-effectname", "projectileeffects", "pr", false),
     DEATH_EFFECTS("Death-Effects", "death-effectname", "deatheffects", "d", false),
 
+    CUSTOM("Custom", "customname", "custom", "custom", false),
     GLOW_COLOR("Glow-Color", "colorname", "glowcolor", "g", false),
     NAME_COLOR("Name-Color", "colorname", "namecolor", "n", false),
     PLAYER_TITLE("Player-Title", "title", "playertitle", "pl", false),
