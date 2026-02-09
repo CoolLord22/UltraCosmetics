@@ -16,6 +16,6 @@ public class ToggleNameColorCosmeticButton extends ToggleCosmeticButton {
     protected void modifyLore(List<String> lore, UltraPlayer ultraPlayer) {
         NameColorType nameColorType = (NameColorType) cosmeticType;
         String text = "<gray>Preview: <%s>%s".formatted(nameColorType.getConfigName(), ultraPlayer.getBukkitPlayer().getName());
-        lore.add(MessageManager.toLegacy(MessageManager.getMiniMessage().deserialize(text)));
+        lore.addAll(List.of("", MessageManager.toLegacy(MessageManager.getMiniMessage().deserialize(text))));
     }
 }
