@@ -3,8 +3,8 @@ package be.isach.ultracosmetics.cosmetics.deatheffects;
 import be.isach.ultracosmetics.UltraCosmetics;
 import be.isach.ultracosmetics.cosmetics.type.DeathEffectType;
 import be.isach.ultracosmetics.player.UltraPlayer;
-import org.bukkit.entity.Player;
 import org.bukkit.Effect;
+import org.bukkit.entity.Player;
 
 public class DeathEffectDragonBreath extends DeathEffect {
 
