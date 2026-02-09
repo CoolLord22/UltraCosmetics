@@ -452,6 +452,7 @@ No-Permission:
   Show-In-Lore: true
   Dont-Show-Item: false
   Allow-Purchase: false
+  Use-Purchase-Permissions: false
   Custom-Item:
     enabled: false
     Type: BARRIER

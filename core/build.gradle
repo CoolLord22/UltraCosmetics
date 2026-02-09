@@ -115,6 +115,9 @@ bukkit {
         'ultracosmetics.treasurechests.buykey' {
             setDefault('TRUE')
         }
+        'ultracosmetics.purchase.*' {
+            setDefault('TRUE')
+        }
         'ultracosmetics.bypass.disabledcommands' {
             setDefault('OP')
         }
