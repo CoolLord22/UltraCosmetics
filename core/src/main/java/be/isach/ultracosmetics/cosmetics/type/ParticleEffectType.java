@@ -39,7 +39,6 @@ public class ParticleEffectType extends CosmeticParticleType<ParticleEffect> {
         new ParticleEffectType("SnowCloud", 1, XParticle.ITEM_SNOWBALL, XMaterial.SNOWBALL, ParticleEffectCloud.class, true);
         new ParticleEffectType("RainCloud", 1, XParticle.DRIPPING_WATER, XMaterial.LAPIS_LAZULI, ParticleEffectCloud.class, true);
         new ParticleEffectType("Notes", 6, XParticle.NOTE, XMaterial.NOTE_BLOCK, ParticleEffectAboveHead.class, false);
-        new ParticleEffectType("SuperVillain", 2,XParticle.DUST, XMaterial.DRIED_KELP, ParticleEffectSuperVillain.class, false);
 
         new ParticleEffectType("GreenSparks", 1, XParticle.HAPPY_VILLAGER, XMaterial.EMERALD, ParticleEffectGreenSparks.class, false);
         new ParticleEffectType("BloodHelix", 1, XParticle.DUST, XMaterial.REDSTONE, ParticleEffectBloodHelix.class, true);
@@ -49,15 +48,17 @@ public class ParticleEffectType extends CosmeticParticleType<ParticleEffect> {
         new ParticleEffectType("Inferno", 1, XParticle.FLAME, XMaterial.NETHER_WART, ParticleEffectInferno.class, true);
         new ParticleEffectType("MagicalRods", 3, XParticle.DUST, XMaterial.BLAZE_ROD, ParticleEffectMagicalRods.class, true);
         new ParticleEffectType("CherryAura", 2, XParticle.CHERRY_LEAVES, XMaterial.CHERRY_LEAVES, ParticleEffectEnderAura.class, true);
+
+        new ParticleEffectType("Enchanted", 1, XParticle.ENCHANT, XMaterial.BOOK, ParticleEffectEnchanted.class, true);
+
         if (XParticle.CHERRY_LEAVES.isSupported()) {
             new ParticleEffectType("CherryFairy", 2,XParticle.WITCH, XMaterial.PINK_PETALS, ParticleEffectCherryFairy.class, false);
         }
-        new ParticleEffectType("Enchanted", 1, XParticle.ENCHANT, XMaterial.BOOK, ParticleEffectEnchanted.class, true);
-
         new ParticleEffectType("FlameFairy", 1, XParticle.FLAME, XMaterial.BLAZE_POWDER, ParticleEffectFlameFairy.class, false);
         new ParticleEffectType("AngelWings", 2, XParticle.DUST, XMaterial.FEATHER, ParticleEffectAngelWings.class, true);
         new ParticleEffectType("RainbowWings", 2, XParticle.DUST, XMaterial.YELLOW_DYE, ParticleEffectRainbowWings.class, true);
         new ParticleEffectType("SuperHero", 2, XParticle.DUST, XMaterial.GLOWSTONE_DUST, ParticleEffectSuperHero.class, true);
+        new ParticleEffectType("SuperVillain", 2,XParticle.DUST, XMaterial.DRIED_KELP, ParticleEffectSuperVillain.class, false);
 
         new ParticleEffectType("Hearts", 6, XParticle.HEART, XMaterial.RED_WOOL, ParticleEffectAboveHead.class, false);
         new ParticleEffectType("InLove", 1, XParticle.HEART, XMaterial.RED_DYE, ParticleEffectInLove.class, true);
