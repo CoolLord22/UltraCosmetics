@@ -9,9 +9,9 @@ import com.cryptomorin.xseries.XMaterial;
 import java.util.Arrays;
 
 public class NameColorType extends CosmeticType<NameColor> {
-    private static final String[] colors = new String[] {"#2bbdff", "#6eed13", "#ff9013", "#ff2b8e", "#E8004D",
+    private static final String[] colors = new String[] {"gray", "#2bbdff", "#6eed13", "#ff9013", "#ff2b8e", "#E8004D",
             "black", "dark_blue", "dark_green", "dark_aqua", "dark_red", "dark_purple",
-            "gold", "dark_gray", "blue", "green", "aqua", "red", "light_purple", "yellow", "gray", "white"};
+            "gold", "dark_gray", "blue", "green", "aqua", "red", "light_purple", "yellow", "white"};
     private final String command;
 
     public NameColorType(String configName) {
