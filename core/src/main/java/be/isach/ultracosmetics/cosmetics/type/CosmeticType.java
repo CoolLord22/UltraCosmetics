@@ -163,7 +163,7 @@ public abstract class CosmeticType<T extends Cosmetic<?>> {
         this.category = category;
         this.configName = configName;
         this.material = material;
-        this.itemTag = new NamespacedKey(UltraCosmeticsData.get().getPlugin(), category.name() + "_" + configName);
+        this.itemTag = new NamespacedKey(UltraCosmeticsData.get().getPlugin(), category.name() + "_" + configName.replaceAll("#", ""));
         this.clazz = clazz;
 
         if (GENERATE_MISSING_MESSAGES) {
