@@ -34,7 +34,7 @@ import java.util.Optional;
 
 public abstract class ArmorCosmetic<T extends CosmeticType<?>> extends Cosmetic<T> {
     protected final Map<Attribute, Double> attributes;
-    private ItemStack itemStack;
+    protected ItemStack itemStack;
 
     public ArmorCosmetic(UltraPlayer owner, T type, UltraCosmetics ultraCosmetics) {
         super(owner, type, ultraCosmetics);
@@ -113,7 +113,7 @@ public abstract class ArmorCosmetic<T extends CosmeticType<?>> extends Cosmetic<
         }
     }
 
-    private ItemStack getArmorItem() {
+    protected ItemStack getArmorItem() {
         return switch (getArmorSlot()) {
             case BOOTS -> getPlayer().getInventory().getBoots();
             case LEGGINGS -> getPlayer().getInventory().getLeggings();
@@ -122,7 +122,7 @@ public abstract class ArmorCosmetic<T extends CosmeticType<?>> extends Cosmetic<
         };
     }
 
-    private void setArmorItem(ItemStack item) {
+    protected void setArmorItem(ItemStack item) {
         switch (getArmorSlot()) {
             case BOOTS -> getPlayer().getInventory().setBoots(item);
             case LEGGINGS -> getPlayer().getInventory().setLeggings(item);

@@ -27,7 +27,7 @@ public class EconomyHandler {
         economies.put("vault", (uc, currency) -> new VaultHook());
         economies.put("playerpoints", (uc, currency) -> new PlayerPointsHook());
         economies.put("peconomy", (uc, currency) -> new PEconomyHook(uc, currency));
-        economies.put("coinsengine", (uc, currency) -> new CoinsEngineHook(uc, currency));
+        economies.put("coinsengine", (uc, currency) -> loadByReflection(uc, currency, "CoinsEngineHook"));
         economies.put("excellenteconomy", (uc, currency) -> loadByReflection(uc, currency, "ExcellentEconomyHook"));
     }
 

@@ -12,12 +12,9 @@ public enum ServerVersion {
     v1_17(17, 1),
     v1_18(18, 2),
     v1_19(19, 4),
-    v1_20(20, 6, "v1_20_R4"),
+    v1_20(20, 6),
     v1_21(21, 4, "v1_21_R3"),
-    //v1_21(21, 11, "v1_21_R7"),
-    //v1_21(21, 4, "60ac387ca8007aa018e6aeb394a6988c", 3),
-    //v1_21(21, 11, "e3cd927e07e6ff434793a0474c51b2b9", 7),
-    //v1_20(20, 6),
+    //v1_21(21, 11, "v1_21_R7"), todo: see if this upgrade is needed?
     NMS("26+", "nms") {
         @Override
         public boolean isNmsSupportedOn(int major, int minor) {
