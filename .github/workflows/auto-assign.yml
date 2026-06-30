@@ -12,11 +12,11 @@ jobs:
 
     runs-on: ubuntu-24.04
 
-    if: github.actor != 'renovate[bot]'
+    if: github.actor != 'dependabot[bot]'
 
     steps:
       # https://github.com/kentaro-m/auto-assign-action
       - name: Auto Assign
-        uses: kentaro-m/auto-assign-action@v2.0.1
+        uses: kentaro-m/auto-assign-action@v2.0.2
         with:
           configuration-path: .github/auto-assign_config.yml

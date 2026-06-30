@@ -1,0 +1,11 @@
+dependencies {
+    // https://hub.spigotmc.org/stash/projects/SPIGOT/repos/spigot
+    implementation "org.spigotmc:spigot:26.2-R0.1-SNAPSHOT"
+
+    implementation project(':core')
+}
+
+java {
+    sourceCompatibility = JavaVersion.VERSION_21
+    targetCompatibility = JavaVersion.VERSION_21
+}

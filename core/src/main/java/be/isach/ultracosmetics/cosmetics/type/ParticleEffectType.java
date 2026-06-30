@@ -3,7 +3,6 @@ package be.isach.ultracosmetics.cosmetics.type;
 import be.isach.ultracosmetics.config.MessageManager;
 import be.isach.ultracosmetics.cosmetics.Category;
 import be.isach.ultracosmetics.cosmetics.particleeffects.*;
-import be.isach.ultracosmetics.version.ServerVersion;
 import com.cryptomorin.xseries.XMaterial;
 import com.cryptomorin.xseries.particles.XParticle;
 
@@ -22,7 +21,7 @@ public class ParticleEffectType extends CosmeticParticleType<ParticleEffect> {
         }
     }
 
-    public static void register(ServerVersion version) {
+    public static void register() {
         new ParticleEffectType("SnowFootprints", 1, XParticle.SNOWFLAKE, XMaterial.POWDER_SNOW_BUCKET, ParticleEffectFootprints.class, false);
         new ParticleEffectType("SpringFootprints", 1, XParticle.HAPPY_VILLAGER, XMaterial.POPPY, ParticleEffectFootprints.class, false);
         new ParticleEffectType("ShadowFootprints", 2, XParticle.LARGE_SMOKE, XMaterial.BLACK_WOOL, ParticleEffectFootprints.class, false);

@@ -3,7 +3,6 @@ package be.isach.ultracosmetics.cosmetics.type;
 import be.isach.ultracosmetics.config.MessageManager;
 import be.isach.ultracosmetics.cosmetics.Category;
 import be.isach.ultracosmetics.cosmetics.projectileeffects.*;
-import be.isach.ultracosmetics.version.ServerVersion;
 import com.cryptomorin.xseries.XMaterial;
 import com.cryptomorin.xseries.particles.XParticle;
 
@@ -20,7 +19,7 @@ public class ProjectileEffectType extends CosmeticParticleType<ProjectileEffect>
         }
     }
 
-    public static void register(ServerVersion version) {
+    public static void register() {
         new ProjectileEffectType("Scrape", 1, XParticle.SCRAPE, XMaterial.OXIDIZED_COPPER, ProjectileEffectBasicTrail.class);
         new ProjectileEffectType("Emerald", 1, XParticle.HAPPY_VILLAGER, XMaterial.EMERALD, ProjectileEffectBasicTrail.class);
         new ProjectileEffectType("Flame", 1, XParticle.FLAME, XMaterial.TORCH, ProjectileEffectBasicTrail.class);
@@ -59,7 +58,7 @@ public class ProjectileEffectType extends CosmeticParticleType<ProjectileEffect>
         new ProjectileEffectType("GlowSquidInk", 1, XParticle.GLOW_SQUID_INK, XMaterial.GLOW_INK_SAC, ProjectileEffectBasicTrail.class);
         new ProjectileEffectType("WaxOff", 1, XParticle.WAX_OFF, XMaterial.WAXED_COPPER_BLOCK, ProjectileEffectBasicTrail.class);
         new ProjectileEffectType("WaxOn", 1, XParticle.WAX_ON, XMaterial.HONEYCOMB, ProjectileEffectBasicTrail.class);
-        if (version.isAtLeast(ServerVersion.v1_19)) {
+        if (XParticle.SCULK_SOUL.isSupported()) {
             new ProjectileEffectType("SculkSoul", 1, XParticle.SCULK_SOUL, XMaterial.SCULK_CATALYST, ProjectileEffectBasicTrail.class);
         }
         // Rainbow Trail

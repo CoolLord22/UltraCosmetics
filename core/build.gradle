@@ -1,8 +1,8 @@
 plugins {
     // https://github.com/GradleUp/shadow
-    id 'com.gradleup.shadow' version '9.3.1'
+    id 'com.gradleup.shadow' version '9.4.3'
     // https://github.com/eldoriarpg/plugin-yml
-    id 'de.eldoria.plugin-yml.bukkit' version '0.8.0'
+    id 'de.eldoria.plugin-yml.bukkit' version '0.9.0'
 }
 
 configurations {
@@ -28,17 +28,17 @@ dependencies {
     // https://github.com/PlaceholderAPI/PlaceholderAPI
     compileOnly 'me.clip:placeholderapi:2.12.2'
     // https://github.com/Rosewood-Development/PlayerPoints
-    compileOnly 'org.black_ixx:playerpoints:3.3.3'
+    compileOnly 'org.black_ixx:playerpoints:3.3.5'
     // https://github.com/EngineHub/WorldGuard
     compileOnly 'com.sk89q.worldguard:worldguard-bukkit:7.0.9'
     compileOnly 'com.mojang:authlib:2.3.31'
     // https://mvnrepository.com/artifact/com.googlecode.json-simple/json-simple
     compileOnly 'com.googlecode.json-simple:json-simple:1.1.1'
     // https://github.com/CryptoMorin/XSeries
-//    library 'com.github.cryptomorin:XSeries:13.6.0'
+    // library 'com.github.cryptomorin:XSeries:13.6.0'
     implementation fileTree(dir: '.', include: ['XSeries-*.jar'])
     // https://github.com/Bastian/bstats-metrics
-    implementation 'org.bstats:bstats-bukkit:3.1.0'
+    implementation 'org.bstats:bstats-bukkit:3.2.1'
     // https://github.com/LuckPerms/LuckPerms
     compileOnly 'net.luckperms:api:5.5'
     // https://github.com/ArcanePlugins/Treasury
@@ -46,15 +46,15 @@ dependencies {
     // https://github.com/TownyAdvanced/Towny
     compileOnly 'com.palmergames.bukkit.towny:towny:0.100.4.7'
     // https://github.com/brettwooldridge/HikariCP
-    library 'com.zaxxer:HikariCP:7.0.2'
+    library 'com.zaxxer:HikariCP:7.1.0'
     // https://github.com/WesJD/AnvilGUI
     implementation 'net.wesjd:anvilgui:1.10.11-SNAPSHOT'
     // https://github.com/datatags/MobChipLite
-    implementation 'com.github.datatags.MobChipLite:mobchip-bukkit:1.10.16'
+    implementation 'com.github.datatags.MobChipLite:mobchip-bukkit:1.10.21'
     // keep for testing purposes
-    // implementation fileTree(dir: '.', include: ['mobchip-*.jar'])
+    //implementation fileTree(dir: '.', include: ['mobchip-*.jar'])
     // https://github.com/DiscordSRV/DiscordSRV
-    compileOnly 'com.discordsrv:discordsrv:1.30.4'
+    compileOnly 'com.discordsrv:discordsrv:1.30.5'
     // https://github.com/SoKnight/PEconomy
     compileOnly 'me.soknight:peconomy:2.7.4-pre1'
     // https://github.com/KyoriPowered/adventure
@@ -65,7 +65,7 @@ dependencies {
     // https://github.com/TechnicallyCoded/FoliaLib
     implementation 'com.github.technicallycoded:FoliaLib:0.4.4'
     // https://www.spigotmc.org/resources/%E2%AD%90-player-auctions-%E2%AD%90-%E2%9E%A2-let-your-players-sell-items-1-7-1-20-4.83073
-    compileOnly 'com.olziedev:playerauctions-api:1.33.0-pre16'
+    compileOnly 'com.olziedev:playerauctions-api:1.34.0-pre1'
 
     compileOnly files('libs/CoinsEngine-2.1.1.jar')
     compileOnly files('libs/NexEngine.jar')
@@ -78,12 +78,12 @@ shadowJar {
     // Causes shadow jar to overwrite normal jar, which makes it work with Jitpack
     archiveClassifier = ''
     // removes unused classes in 'implementation' path dependencies
-//    minimize {
-//        // Loads classes reflectively
-//        exclude(dependency('net.wesjd:anvilgui:.*'))
-//        exclude(dependency('com.github.technicallycoded:FoliaLib:.*'))
-//        exclude(dependency('com.github.datatags.MobChipLite:.*:.*'))
-//    }
+    minimize {
+        // Loads classes reflectively
+        exclude(dependency('net.wesjd:anvilgui:.*'))
+        exclude(dependency('com.github.technicallycoded:FoliaLib:.*'))
+        exclude(dependency('com.github.datatags.MobChipLite:.*:.*'))
+    }
     def path = 'be.isach.ultracosmetics.shaded'
     relocate('org.bstats', path + '.metrics')
     relocate('net.wesjd', path + '.anvilgui')
@@ -97,7 +97,7 @@ bukkit {
     authors = ['datatags, CoolLord22']
     main = 'be.isach.ultracosmetics.UltraCosmetics'
     apiVersion = '1.17'
-    softDepend = ['LibsDisguises', 'Vault', 'PlaceholderAPI', 'PlayerPoints', 'WorldGuard', 'Essentials', 'LuckPerms', 'DiscordSRV', 'ChestSort', 'Towny', 'PEconomy', 'PlayerAuctions', 'CoinsEngine', 'Treasury', 'MythrendSuite']
+    softDepend = ['LibsDisguises', 'Vault', 'PlaceholderAPI', 'PlayerPoints', 'WorldGuard', 'Essentials', 'LuckPerms', 'DiscordSRV', 'ChestSort', 'Towny', 'PEconomy', 'PlayerAuctions', 'CoinsEngine', 'Treasury', 'ExcellentEconomy', 'MythrendSuite']
     commands {
         ultracosmetics {
             aliases = ['uc', 'cosmetics']

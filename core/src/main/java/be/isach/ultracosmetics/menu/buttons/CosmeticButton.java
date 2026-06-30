@@ -161,16 +161,14 @@ public abstract class CosmeticButton implements Button {
     }
 
     private void addPurchaseLore(ItemStack stack, UltraPlayer player) {
-        if (price > 0 && !player.canEquip(cosmeticType) && allowPurchase) {
-            if(player.canPurchase(cosmeticType)) {
-                ItemMeta meta = stack.getItemMeta();
-                List<String> lore = meta.getLore();
-                lore.add("");
-                int discountPrice = ultraCosmetics.getEconomyHandler().calculateDiscountPrice(player.getBukkitPlayer(), price);
-                lore.add(MessageManager.getLegacyMessage("Click-To-Purchase", Placeholder.unparsed("price", String.valueOf(discountPrice))));
-                meta.setLore(lore);
-                stack.setItemMeta(meta);
-            }
+        if (price > 0 && !player.canEquip(cosmeticType) && allowPurchase && player.canPurchase(cosmeticType)) {
+            ItemMeta meta = stack.getItemMeta();
+            List<String> lore = meta.getLore();
+            lore.add("");
+            int discountPrice = ultraCosmetics.getEconomyHandler().calculateDiscountPrice(player.getBukkitPlayer(), price);
+            lore.add(MessageManager.getLegacyMessage("Click-To-Purchase", Placeholder.unparsed("price", String.valueOf(discountPrice))));
+            meta.setLore(lore);
+            stack.setItemMeta(meta);
         }
     }
 

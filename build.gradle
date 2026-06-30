@@ -12,7 +12,7 @@ allprojects {
     idea.module.downloadSources = true
 
     group = 'be.isach.UltraCosmetics'
-    version = '3.15-DEV-b1-CUSTOM'
+    version = '3.15.0.1-RELEASE-CUSTOM'
 
     tasks.withType(JavaCompile) {
         options.encoding = 'UTF-8'
@@ -22,7 +22,7 @@ allprojects {
     java {
         toolchain {
             // minimum Java version to compile all subprojects
-            languageVersion = JavaLanguageVersion.of(21)
+            languageVersion = JavaLanguageVersion.of(25)
         }
     }
 
@@ -92,8 +92,6 @@ subprojects { subproj ->
 
         // AnvilGUI, Treasury
         maven { url = 'https://repo.codemc.io/repository/maven-snapshots' }
-        // Lib's Disguises
-        maven { url = 'https://repo.md-5.net/content/groups/public' }
         // WorldEdit
         maven { url = 'https://repo.aikar.co/nexus/content/groups/aikar' }
         // BungeeCord
@@ -112,8 +110,12 @@ subprojects { subproj ->
         maven { url = 'https://repo.olziedev.com' }
         // WorldGuard
         maven { url = 'https://maven.enginehub.org/repo' }
+        // ExcellentEconomy
+        maven { url = 'https://repo.nightexpressdev.com/releases' }
         // Vault, PEconomy, MobChipLite, FoliaLib
         maven { url = 'https://jitpack.io' }
+        // Lib's Disguises
+        maven { url = 'https://mvn.lib.co.nz/public' }
         // Paper API
         maven { url = 'https://repo.papermc.io/repository/maven-public' }
         // Mojang Authlib
@@ -139,8 +141,8 @@ boolean isDependencyInstalled(String version) {
 
 def getAllDependencies() {
     def deps = [] as Set
-    subprojects.findAll(it -> it.hasProperty("remapMcVersion")).each { proj ->
-        deps << new Tuple2(proj.property("remapMcVersion") + "-R0.1-SNAPSHOT", proj.property("javaVersion"))
+    subprojects.findAll(it -> it.hasProperty("requiresMinecraft")).each { proj ->
+        deps << new Tuple2(proj.property("requiresMinecraft") + "-R0.1-SNAPSHOT", proj.property("javaVersion"))
     }
     return deps
 }

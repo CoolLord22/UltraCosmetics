@@ -6,7 +6,6 @@ import be.isach.ultracosmetics.config.MessageManager;
 import be.isach.ultracosmetics.config.SettingsManager;
 import be.isach.ultracosmetics.cosmetics.Category;
 import be.isach.ultracosmetics.cosmetics.mounts.*;
-import be.isach.ultracosmetics.version.ServerVersion;
 import be.isach.ultracosmetics.version.VersionManager;
 import com.cryptomorin.xseries.XEntityType;
 import com.cryptomorin.xseries.XMaterial;
@@ -91,7 +90,7 @@ public class MountType extends CosmeticEntType<Mount> {
         }
     }
 
-    public static void register(ServerVersion version) {
+    public static void register() {
         VersionManager vm = UltraCosmeticsData.get().getVersionManager();
         new MountType("EcologistHorse", XMaterial.GREEN_DYE, XEntityType.HORSE, 2, 0.4, MountEcologistHorse.class, Arrays.asList(XMaterial.LIME_TERRACOTTA, XMaterial.GREEN_TERRACOTTA));
         new MountType("MountOfFire", XMaterial.BLAZE_POWDER, XEntityType.HORSE, 2, 0.4, MountOfFire.class, Arrays.asList(XMaterial.ORANGE_TERRACOTTA, XMaterial.YELLOW_TERRACOTTA, XMaterial.RED_TERRACOTTA));
@@ -101,7 +100,7 @@ public class MountType extends CosmeticEntType<Mount> {
         new MountType("Horse", XMaterial.SADDLE, XEntityType.HORSE, 0, 0.3, MountHorse.class);
         new MountType("Donkey", XMaterial.CHEST, XEntityType.DONKEY, 0, 0.25, MountDonkey.class);
         new MountType("Mule", XMaterial.ENDER_CHEST, XEntityType.MULE, 0, 0.25, MountMule.class);
-        if (version.isAtLeast(ServerVersion.v1_20)) {
+        if (XEntityType.CAMEL.isSupported()) {
             new MountType("Camel", XMaterial.CACTUS, XEntityType.CAMEL, 0, 0.35, MountCamel.class);
         }
         new MountType("InfernalHorror", XMaterial.BONE, XEntityType.SKELETON_HORSE, 2, 0.4, MountInfernalHorror.class);
